@@ -1,0 +1,89 @@
+/* ================================================================
+   BBEducation — Primary & Middle School
+   Override palette: sostituisce i colori baby con la palette PMS.
+   Caricato DOPO tokens.css e style.css su primary-middle-school.html.
+   Non modifica index.html né nessun file condiviso.
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. OVERRIDE DESIGN TOKENS — swappa la palette baby → PMS
+---------------------------------------------------------------- */
+:root {
+  /* Palette PMS */
+  --bbe-baby-green:          #FFAC59;
+  --bbe-baby-blue:           #FF788D;
+
+  /* Gradienti */
+  --bbe-baby-gradient:       linear-gradient(90deg,  #FF788D 0%, #FFAC59 100%);
+  --bbe-baby-gradient-135:   linear-gradient(135deg, #FF788D 0%, #FFAC59 100%);
+  --bbe-baby-gradient-180:   linear-gradient(180deg, #FF788D 0%, #FFAC59 100%);
+
+  /* Colori funzionali derivati */
+  --color-bg-baby-tint:      rgba(255, 120, 141, 0.07);
+  --color-border-baby:       rgba(255, 120, 141, 0.4);
+  --shadow-card-hover:       0 8px 24px rgba(255, 120, 141, 0.2);
+  --focus-ring:              0 0 0 3px rgba(255, 120, 141, 0.5);
+  --focus-outline:           2px solid #FF788D;
+}
+
+/* ----------------------------------------------------------------
+   2. HEADER — linea gradiente
+---------------------------------------------------------------- */
+.site-header::after {
+  background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%);
+}
+
+/* ----------------------------------------------------------------
+   3. HERO — overlay media (visibile solo su desktop ≥ 768px)
+---------------------------------------------------------------- */
+.hero__media-overlay {
+  background: linear-gradient(to right, #FFAC59 0%, rgba(255,172,89,0.6) 25%, transparent 60%);
+}
+
+/* ----------------------------------------------------------------
+   4. VALUE CARDS — gradiente di sfondo e ombra
+---------------------------------------------------------------- */
+.value-card__front,
+.value-card__back {
+  background: linear-gradient(135deg, #FFAC59 0%, #FF788D 100%);
+  box-shadow: 0 4px 20px rgba(255, 120, 141, 0.25);
+}
+
+.value-card:hover .value-card__front,
+.value-card:hover .value-card__back {
+  box-shadow: 0 8px 32px rgba(255, 120, 141, 0.40);
+}
+
+/* ----------------------------------------------------------------
+   5. SECTION--BLUE (Open Day) — colore di sfondo PMS
+---------------------------------------------------------------- */
+.section--blue {
+  background: #FF788D;
+}
+
+/* ----------------------------------------------------------------
+   6. OPEN DAY — note e badge capacity
+---------------------------------------------------------------- */
+.open-day-section .open-school-note {
+  border-color: #FF788D;
+}
+
+.booking-form-wrapper .open-day__capacity {
+  background: rgba(255, 172, 89, 0.12);
+  border-color: rgba(255, 172, 89, 0.4);
+}
+
+/* ----------------------------------------------------------------
+   7. INFO FORM WRAPPER
+---------------------------------------------------------------- */
+.info-form-section .info-form-wrapper {
+  background: rgba(255, 120, 141, 0.08);
+  border: 1px solid rgba(255, 120, 141, 0.3);
+}
+
+/* ----------------------------------------------------------------
+   8. FOOTER — usa il pattern PMS al posto del pattern baby
+---------------------------------------------------------------- */
+.site-footer {
+  background: url('../gradientiepatternbaby/patterngradiente.webp') center/cover no-repeat;
+}

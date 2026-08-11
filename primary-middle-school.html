@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Scuola Primaria e Media Bilingue a Biassono | Open Day BBEducation</title>
+  <meta name="description" content="Scopri la Scuola Primaria e Media bilingue BBEducation a Biassono. Metodo CLIL, docenti qualificati, percorso accademico per ragazzi da 6 a 14 anni. Prenota l'Open Day.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Scuola Primaria e Media Bilingue a Biassono | BBEducation">
+  <meta property="og:description" content="Un percorso accademico bilingue con metodo CLIL per ragazzi da 6 a 14 anni. Scopri BBEducation Primary &amp; Middle School a Biassono.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <!-- TODO: og:image, og:url quando disponibili -->
+
+  <!-- Performance: preload critical font & LCP image -->
+  <link rel="preload" href="Font/Nunito-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="Foto primary/primary.webp" as="image">
+
+  <!-- Styles — cascade: tokens → base → override PMS -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/style.css?v=26">
+  <link rel="stylesheet" href="css/primary-middle-school.css?v=2">
+
+  <!-- Structured data: nessun dato inventato -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "BBEducation — Primary & Middle School",
+        "alternateName": "BBEducation PMS",
+        "description": "Scuola Primaria e Media bilingue a Biassono con metodo CLIL per ragazzi da 6 a 14 anni.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Lega Lombarda n.11",
+          "addressLocality": "Biassono",
+          "postalCode": "20853",
+          "addressRegion": "MB",
+          "addressCountry": "IT"
+        },
+        "areaServed": "Brianza",
+        "knowsLanguage": ["it", "en"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Cos'è il metodo CLIL?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CLIL (Content and Language Integrated Learning) è un approccio in cui alcune materie vengono insegnate anche in inglese. La lingua diventa così uno strumento per studiare e pensare, non solo un oggetto di studio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il percorso segue i programmi ministeriali?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Il curricolo rispetta le Indicazioni Nazionali per la Scuola Primaria e Secondaria di Primo Grado, integrandole con il percorso bilingue."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso visitare la scuola prima di iscrivere mio figlio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Certamente. L'Open Day è pensato proprio per questo: potrai visitare la scuola, conoscere il team e capire se BBEducation è la scelta giusta per tuo figlio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come posso ricevere maggiori informazioni?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Prenota il tuo Open Day oppure compila il modulo informativo: ti ricontatteremo per rispondere a tutte le tue domande."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- Skip to main content -->
+  <a class="skip-link" href="#main-content">Vai al contenuto principale</a>
+
+  <!-- ============================================================
+       1. HEADER STICKY
+  ============================================================ -->
+  <header class="site-header" role="banner">
+    <div class="container header__inner">
+
+      <!-- Brand -->
+      <a href="/primary-middle-school.html" class="header__brand" aria-label="BBEducation — torna alla homepage">
+        <img
+          src="logo/BBEnormalelogofull.webp"
+          alt="BBEducation logo"
+          class="header__logo"
+          width="315"
+          height="90"
+        >
+        <span class="header__label">Primary &amp; Middle School</span>
+      </a>
+
+      <!-- Nav minimale -->
+      <nav class="header__nav" aria-label="Navigazione principale">
+        <ul>
+          <li><a href="#method">Metodo</a></li>
+          <li><a href="#open-day">Open Day</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#info">Contatti</a></li>
+        </ul>
+      </nav>
+
+      <!-- CTA primaria -->
+      <div class="header__cta">
+        <a href="#open-day" class="btn btn-primary">Prenotazione Open Day</a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN
+  ============================================================ -->
+  <main id="main-content">
+
+    <!-- ==========================================================
+         2. HERO
+    ========================================================== -->
+    <section
+      id="hero"
+      class="hero"
+      aria-labelledby="hero-h1"
+    >
+      <div class="hero__inner">
+
+        <!-- Immagine — destra su desktop (order:1), sopra il copy su mobile (DOM first) -->
+        <div class="hero__media" aria-hidden="true">
+          <img
+            src="Foto primary/primary.webp"
+            alt=""
+            class="hero__image"
+            width="840"
+            height="960"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </div>
+
+        <!-- Copy — sinistra su desktop (order:-1), sotto immagine su mobile -->
+        <div class="hero__copy">
+          <p class="hero__eyebrow">Primary &amp; Middle School · Biassono</p>
+
+          <!-- H1 SEO -->
+          <h1 id="hero-h1" class="hero__h1">
+            Scuola Primaria e&nbsp;Media Bilingue a&nbsp;Biassono
+          </h1>
+
+          <!-- Headline emozionale -->
+          <p class="hero__headline">
+            Il futuro si&nbsp;prepara<br>
+            <span>già da&nbsp;oggi.</span>
+          </p>
+
+          <p class="hero__subtitle">
+            Un percorso accademico bilingue per ragazzi da&nbsp;6 a&nbsp;14 anni,
+            dove l'inglese diventa strumento di&nbsp;crescita, pensiero critico
+            e&nbsp;apertura al&nbsp;mondo.
+          </p>
+
+          <div class="hero__cta-group">
+            <a href="#open-day" class="btn btn-primary">
+              Prenota il tuo Open Day
+            </a>
+            <p class="hero__cta-note">
+              Scopri BBEducation, visita la scuola e&nbsp;incontra il nostro team.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         4. PERCHÉ BBEDUCATION PMS
+    ========================================================== -->
+    <section id="why" class="section" aria-labelledby="why-title">
+      <div class="container">
+        <div class="section__header fade-up">
+          <h2 id="why-title" class="section__title">Un metodo pensato per&nbsp;chi&nbsp;cresce</h2>
+          <p class="section__subtitle">
+            Gli anni della primaria e&nbsp;della media sono determinanti.
+            In&nbsp;BBEducation ogni percorso è&nbsp;progettato per sviluppare
+            competenze reali, autonomia e&nbsp;il bilinguismo che apre le&nbsp;porte
+            al&nbsp;futuro.
+          </p>
+        </div>
+
+        <div class="why-grid">
+
+          <!-- Card 1: Metodo CLIL -->
+          <article class="value-card fade-up" aria-labelledby="vc-1-title" role="button" tabindex="0" aria-expanded="false">
+            <div class="value-card__flipper">
+              <div class="value-card__front">
+                <div class="value-card__big-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                  </svg>
+                </div>
+                <p class="value-card__front-label">Metodo CLIL</p>
+                <p class="value-card__hint">scopri di più →</p>
+              </div>
+              <div class="value-card__back">
+                <div class="value-card__back-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                  </svg>
+                </div>
+                <h3 id="vc-1-title" class="value-card__title">Metodo CLIL</h3>
+                <p class="value-card__body">Le materie vengono insegnate anche in inglese: la lingua diventa uno strumento per pensare, studiare e comunicare nel mondo.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Percorso accademico -->
+          <article class="value-card fade-up" aria-labelledby="vc-2-title" role="button" tabindex="0" aria-expanded="false">
+            <div class="value-card__flipper">
+              <div class="value-card__front">
+                <div class="value-card__big-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
+                  </svg>
+                </div>
+                <p class="value-card__front-label">Percorso accademico solido</p>
+                <p class="value-card__hint">scopri di più →</p>
+              </div>
+              <div class="value-card__back">
+                <div class="value-card__back-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
+                  </svg>
+                </div>
+                <h3 id="vc-2-title" class="value-card__title">Percorso accademico solido</h3>
+                <p class="value-card__body">Un curricolo che rispetta i programmi ministeriali e prepara ogni ragazzo con solidità, rigore e curiosità alle sfide future.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Docenti qualificati -->
+          <article class="value-card fade-up" aria-labelledby="vc-3-title" role="button" tabindex="0" aria-expanded="false">
+            <div class="value-card__flipper">
+              <div class="value-card__front">
+                <div class="value-card__big-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                  </svg>
+                </div>
+                <p class="value-card__front-label">Docenti specializzati</p>
+                <p class="value-card__hint">scopri di più →</p>
+              </div>
+              <div class="value-card__back">
+                <div class="value-card__back-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                  </svg>
+                </div>
+                <h3 id="vc-3-title" class="value-card__title">Docenti specializzati</h3>
+                <p class="value-card__body">Un team qualificato in didattica bilingue che accompagna ogni ragazzo con competenza, rispettando i tempi e le inclinazioni di ciascuno.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Continuità -->
+          <article class="value-card fade-up" aria-labelledby="vc-4-title" role="button" tabindex="0" aria-expanded="false">
+            <div class="value-card__flipper">
+              <div class="value-card__front">
+                <div class="value-card__big-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/>
+                  </svg>
+                </div>
+                <p class="value-card__front-label">Una scuola che cresce con te</p>
+                <p class="value-card__hint">scopri di più →</p>
+              </div>
+              <div class="value-card__back">
+                <div class="value-card__back-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/>
+                  </svg>
+                </div>
+                <h3 id="vc-4-title" class="value-card__title">Una scuola che cresce con te</h3>
+                <p class="value-card__body">Da 6 a 14 anni un percorso coerente e progressivo, che valorizza ogni fase della crescita e prepara al futuro con continuità.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         5. IL METODO
+    ========================================================== -->
+    <section id="method" class="section section--white" aria-labelledby="method-title">
+      <div class="container">
+        <div class="method__layout">
+
+          <!-- Content -->
+          <div class="method__content fade-up">
+            <h2 id="method-title" class="section__title section__title--left">
+              Imparare usando l'inglese come&nbsp;strumento
+            </h2>
+
+            <p class="method__body">
+              In BBEducation Primary &amp; Middle School il metodo CLIL è&nbsp;al centro
+              del percorso educativo: geografia, scienze, storia — alcune materie vengono
+              insegnate anche in&nbsp;inglese, perché la lingua diventi un&nbsp;mezzo naturale
+              per pensare e&nbsp;comunicare.
+            </p>
+
+            <p class="method__body" style="font-weight: 700; color: var(--color-text);">
+              Ogni lezione diventa un'occasione per:
+            </p>
+
+            <ul class="method__features" aria-label="Cosa offre il percorso BBEducation PMS">
+              <li class="method__feature">
+                <span class="method__feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
+                </span>
+                <span>
+                  <strong>Acquisire</strong><br><span style="font-weight:400">contenuti disciplinari in&nbsp;un contesto bilingue stimolante.</span>
+                </span>
+              </li>
+              <li class="method__feature">
+                <span class="method__feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
+                </span>
+                <span>
+                  <strong>Sviluppare</strong><br><span style="font-weight:400">pensiero critico e&nbsp;autonomia nello studio.</span>
+                </span>
+              </li>
+              <li class="method__feature">
+                <span class="method__feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
+                </span>
+                <span>
+                  <strong>Prepararsi</strong><br><span style="font-weight:400">a certificazioni internazionali riconosciute.</span>
+                </span>
+              </li>
+              <li class="method__feature">
+                <span class="method__feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
+                </span>
+                <span>
+                  <strong>Crescere</strong><br><span style="font-weight:400">in&nbsp;un ambiente accogliente, sfidante e&nbsp;inclusivo.</span>
+                </span>
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- Media -->
+          <div class="method__media fade-up" aria-hidden="true">
+            <img
+              src="Foto primary/primary2.webp"
+              alt=""
+              class="method__image"
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            >
+            <div class="method__media-accent"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         6. OPEN DAY
+    ========================================================== -->
+    <section id="open-day" class="section section--blue open-day-section" aria-labelledby="open-day-title" tabindex="-1">
+      <span class="section__eyebrow" aria-hidden="true">Open Day</span>
+
+      <div class="container">
+
+        <!-- Header centrato -->
+        <div class="section__header fade-up">
+          <h2 id="open-day-title" class="section__title">
+            La scuola giusta si sceglie vivendola
+          </h2>
+          <p class="open-day__intro">
+            Leggere può raccontarti una scuola.<br>
+            <strong>Visitarla ti permette di capire se è quella giusta per tuo figlio.</strong>
+          </p>
+        </div>
+
+        <!-- Agenda: foto hero + badge sotto -->
+        <div class="open-day-agenda fade-up" aria-label="Cosa potrai fare durante l'Open Day">
+
+          <!-- Foto full-width -->
+          <div class="open-day-agenda__photo-hero">
+            <img src="Foto primary/primary3.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async">
+          </div>
+
+          <!-- Label + badge cards -->
+          <p class="open-day-agenda__label">Durante l'Open Day potrai:</p>
+          <div class="open-day-agenda__badges">
+            <div class="oda-badge">
+              <span class="oda-badge__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </span>
+              <span class="oda-badge__text">
+                <strong class="oda-badge__title">Visitare la scuola</strong>
+                <span class="oda-badge__body">Scoprire gli ambienti in cui i ragazzi studiano, crescono e si confrontano.</span>
+              </span>
+            </div>
+            <div class="oda-badge">
+              <span class="oda-badge__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </span>
+              <span class="oda-badge__text">
+                <strong class="oda-badge__title">Scoprire il metodo CLIL</strong>
+                <span class="oda-badge__body">Capire come l'inglese entra nelle materie e diventa strumento di apprendimento.</span>
+              </span>
+            </div>
+            <div class="oda-badge">
+              <span class="oda-badge__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+              </span>
+              <span class="oda-badge__text">
+                <strong class="oda-badge__title">Conoscere il team</strong>
+                <span class="oda-badge__body">Incontrare docenti e coordinatori che accompagneranno tuo figlio ogni giorno.</span>
+              </span>
+            </div>
+            <div class="oda-badge">
+              <span class="oda-badge__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </span>
+              <span class="oda-badge__text">
+                <strong class="oda-badge__title">Fare tutte le tue domande</strong>
+                <span class="oda-badge__body">Ricevere informazioni sul percorso accademico, le iscrizioni e il piano di studi.</span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Form prenotazione -->
+        <div class="open-day__form-photo fade-up">
+
+          <div class="open-day__form-col">
+
+            <!-- Nessuna data disponibile -->
+            <div class="no-dates-message" id="no-dates-message" role="status" aria-live="polite">
+              <p>
+                Al momento non ci sono nuove date disponibili.<br>
+                <strong>Lasciaci i tuoi dati e ti avviseremo appena apriremo il prossimo Open Day.</strong>
+              </p>
+              <a href="#info" class="btn btn-outline" style="margin-top: 1rem;">Avvisami per la prossima data</a>
+            </div>
+
+            <div
+              id="booking-form-section"
+              class="booking-form-wrapper"
+              aria-label="Modulo di prenotazione Open Day"
+            >
+          <h3 class="booking-form__heading">Scegli la data e vieni a conoscerci al centro</h3>
+          <span class="open-day__capacity">Massimo 15 famiglie per data</span>
+
+          <form
+            id="booking-form"
+            novalidate
+            aria-label="Modulo prenotazione Open Day"
+          >
+            <input type="hidden" id="booking-event-type" name="eventType" value="">
+            <input type="hidden" name="formType" value="openday">
+
+            <div class="form-grid">
+
+              <div class="form-field form-field--full">
+                <label class="form-label" for="booking-date-select">
+                  Data Open Day <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <select
+                  id="booking-date-select"
+                  name="eventId"
+                  class="form-select"
+                  required
+                  aria-required="true"
+                  aria-describedby="booking-date-select-error"
+                >
+                  <option value="" disabled selected>Seleziona una data…</option>
+                </select>
+                <span class="form-error" id="booking-date-select-error" role="alert" aria-live="assertive"></span>
+                <p class="open-school-note" role="note" id="open-school-note" style="display:none; margin-top: var(--space-1);">
+                  <strong>Open School</strong> — Visita più breve, formato informativo, per chi non può partecipare il sabato.
+                </p>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="booking-name">
+                  Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="booking-name"
+                  name="name"
+                  class="form-input"
+                  autocomplete="name"
+                  required
+                  aria-required="true"
+                  aria-describedby="booking-name-error"
+                  placeholder="es. Marco Rossi"
+                >
+                <span class="form-error" id="booking-name-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="booking-phone">
+                  Telefono <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="booking-phone"
+                  name="phone"
+                  class="form-input"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  required
+                  aria-required="true"
+                  aria-describedby="booking-phone-error"
+                  placeholder="es. 333 000 0000"
+                >
+                <span class="form-error" id="booking-phone-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="booking-email">
+                  Email <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="booking-email"
+                  name="email"
+                  class="form-input"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                  aria-describedby="booking-email-error"
+                  placeholder="es. marco@email.it"
+                >
+                <span class="form-error" id="booking-email-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="booking-child-age">
+                  Età del ragazzo <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <select
+                  id="booking-child-age"
+                  name="childAge"
+                  class="form-select"
+                  required
+                  aria-required="true"
+                  aria-describedby="booking-child-age-error"
+                  autocomplete="off"
+                >
+                  <option value="" disabled selected>Seleziona</option>
+                  <option value="6-7">6–7 anni (Primaria — 1°)</option>
+                  <option value="7-8">7–8 anni (Primaria — 2°)</option>
+                  <option value="8-9">8–9 anni (Primaria — 3°)</option>
+                  <option value="9-10">9–10 anni (Primaria — 4°)</option>
+                  <option value="10-11">10–11 anni (Primaria — 5°)</option>
+                  <option value="11-12">11–12 anni (Media — 1°)</option>
+                  <option value="12-13">12–13 anni (Media — 2°)</option>
+                  <option value="13-14">13–14 anni (Media — 3°)</option>
+                </select>
+                <span class="form-error" id="booking-child-age-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <!-- Privacy -->
+              <div class="form-field form-field--full">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    id="booking-privacy"
+                    name="privacy"
+                    required
+                    aria-required="true"
+                    aria-describedby="booking-privacy-error"
+                  >
+                  <label for="booking-privacy">
+                    Ho letto e accetto la
+                    <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                    di BBEducation e acconsento al trattamento dei dati per la gestione della prenotazione.
+                    <span class="required-marker" aria-hidden="true">*</span>
+                  </label>
+                </div>
+                <span class="form-error" id="booking-privacy-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+            </div>
+
+            <div class="form-submit-area">
+              <button type="submit" class="btn btn-primary btn--compact">
+                Prenota il tuo Open Day
+              </button>
+              <div class="form-status" role="status" aria-live="polite"></div>
+            </div>
+
+          </form>
+            </div><!-- /booking-form-wrapper -->
+          </div><!-- /open-day__form-col -->
+
+        </div><!-- /open-day__form-photo -->
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         8. FAQ
+    ========================================================== -->
+    <section id="faq" class="section" aria-labelledby="faq-title">
+      <div class="container">
+
+        <div class="section__header fade-up">
+          <span class="section__eyebrow">Domande frequenti</span>
+          <h2 id="faq-title" class="section__title">Prima di scegliere, è normale avere domande</h2>
+        </div>
+
+        <!-- Accordion generato da app.js tramite config-pms.js -->
+        <div id="faq-list" class="faq-list" role="list"></div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         9. FORM RICHIESTA INFORMAZIONI
+    ========================================================== -->
+    <section id="info" class="section section--white info-form-section" aria-labelledby="info-title">
+      <div class="container">
+
+        <div class="info-form-wrapper fade-up">
+          <div class="section__header section__header--left" style="margin-bottom: var(--space-4);">
+            <h2 id="info-title" class="section__title" style="font-size: var(--text-2xl);">
+              Non puoi venire alle date proposte?
+            </h2>
+            <p class="section__subtitle" style="margin-inline: 0; text-align: left; margin-top: var(--space-1);">
+              Lasciaci i tuoi dati, ti ricontattiamo noi.
+            </p>
+          </div>
+
+          <form
+            id="info-form"
+            novalidate
+            aria-label="Modulo richiesta informazioni"
+          >
+            <input type="hidden" name="formType" value="info">
+
+            <div class="form-grid">
+
+              <div class="form-field form-field--full">
+                <label class="form-label" for="info-name">
+                  Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="info-name"
+                  name="name"
+                  class="form-input"
+                  autocomplete="name"
+                  required
+                  aria-required="true"
+                  aria-describedby="info-name-error"
+                  placeholder="es. Marco Rossi"
+                >
+                <span class="form-error" id="info-name-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label class="form-label" for="info-phone">
+                  Telefono <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="info-phone"
+                  name="phone"
+                  class="form-input"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  required
+                  aria-required="true"
+                  aria-describedby="info-phone-error"
+                  placeholder="es. 333 000 0000"
+                >
+                <span class="form-error" id="info-phone-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label class="form-label" for="info-email">
+                  Email <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="info-email"
+                  name="email"
+                  class="form-input"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                  aria-describedby="info-email-error"
+                  placeholder="es. marco@email.it"
+                >
+                <span class="form-error" id="info-email-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label class="form-label" for="info-child-age">
+                  Età del ragazzo <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <select
+                  id="info-child-age"
+                  name="childAge"
+                  class="form-select"
+                  required
+                  aria-required="true"
+                  aria-describedby="info-child-age-error"
+                >
+                  <option value="" disabled selected>Seleziona</option>
+                  <option value="6-7">6–7 anni (Primaria — 1°)</option>
+                  <option value="7-8">7–8 anni (Primaria — 2°)</option>
+                  <option value="8-9">8–9 anni (Primaria — 3°)</option>
+                  <option value="9-10">9–10 anni (Primaria — 4°)</option>
+                  <option value="10-11">10–11 anni (Primaria — 5°)</option>
+                  <option value="11-12">11–12 anni (Media — 1°)</option>
+                  <option value="12-13">12–13 anni (Media — 2°)</option>
+                  <option value="13-14">13–14 anni (Media — 3°)</option>
+                </select>
+                <span class="form-error" id="info-child-age-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label class="form-label" for="info-message">
+                  Messaggio <span style="font-weight: 400; color: var(--color-text-muted);">(facoltativo)</span>
+                </label>
+                <textarea
+                  id="info-message"
+                  name="message"
+                  class="form-textarea"
+                  rows="3"
+                  autocomplete="off"
+                  placeholder="Raccontaci qualcosa di più sulla tua situazione o fai una domanda..."
+                ></textarea>
+              </div>
+
+              <div class="form-field form-field--full">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    id="info-privacy"
+                    name="privacy"
+                    required
+                    aria-required="true"
+                    aria-describedby="info-privacy-error"
+                  >
+                  <label for="info-privacy">
+                    Ho letto e accetto la
+                    <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                    di BBEducation e acconsento al trattamento dei dati per ricevere informazioni.
+                    <span class="required-marker" aria-hidden="true">*</span>
+                  </label>
+                </div>
+                <span class="form-error" id="info-privacy-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+            </div>
+
+            <div class="form-submit-area">
+              <button type="submit" class="btn btn-primary btn--compact">
+                Richiedi informazioni
+              </button>
+              <div class="form-status" role="status" aria-live="polite"></div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       10. FOOTER
+  ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <!-- CTA block -->
+      <div class="footer__cta-block fade-up">
+        <p class="footer__cta-headline">
+          Il futuro si costruisce già&nbsp;oggi
+        </p>
+        <a href="#open-day" class="btn btn-white">Prenota il tuo Open Day</a>
+        <p class="footer__cta-address">
+          Vi aspettiamo a Biassono, in Via Lega Lombarda n.11
+        </p>
+      </div>
+
+      <!-- Mappa sede BBEducation -->
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789.9836786737!2d9.201234!3d45.631234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786bbf3a2c5f4c1%3A0xde8fb0a3cf2f9a57!2sVia%20Lega%20Lombarda%2C%2011%2C%2020853%20Biassono%20MB%2C%20Italia!5e0!3m2!1sit!2sit!4v1700000000000"
+          width="100%"
+          height="320"
+          style="border:0; border-radius: var(--radius-lg, 16px);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Sede BBEducation — Via Lega Lombarda n.11, Biassono"
+        ></iframe>
+      </div>
+
+      <!-- Grid info -->
+      <div class="footer__grid">
+
+        <!-- Brand col -->
+        <div>
+          <img
+            src="logo/BBEbiancologofull.webp"
+            alt="BBEducation"
+            class="footer__logo"
+            width="216"
+            height="65"
+            loading="lazy"
+          >
+          <p class="footer__tagline">
+            Scuola Primaria e Media bilingue.<br>
+            Sede di Biassono, Brianza.
+          </p>
+        </div>
+
+        <!-- Contatti -->
+        <div>
+          <p class="footer__col-title">Contatti</p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            Via Lega Lombarda n.11, Biassono (MB)
+          </p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </span>
+            <a href="tel:+39039491864" style="color:inherit;text-decoration:none;">039 491 864</a>
+          </p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            <a href="mailto:info@bbeducation.it" style="color:inherit;text-decoration:none;">info@bbeducation.it</a>
+          </p>
+        </div>
+
+        <!-- Link -->
+        <div>
+          <p class="footer__col-title">Navigazione</p>
+          <nav aria-label="Link footer">
+            <div class="footer__nav-links" style="flex-direction: column;">
+              <a href="#why">Perché BBEducation</a>
+              <a href="#method">Il metodo</a>
+              <a href="#open-day">Open Day</a>
+              <a href="#faq">FAQ</a>
+              <a href="#info">Contatti</a>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Social -->
+        <div>
+          <p class="footer__col-title">Seguici</p>
+          <div class="footer__social-links">
+            <a
+              href="https://www.instagram.com/bb.education/"
+              class="footer__social-link"
+              aria-label="BBEducation su Instagram"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com/brianza.bilingual.education/?locale=it_IT"
+              class="footer__social-link"
+              aria-label="BBEducation su Facebook"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer__bottom">
+        <p class="footer__bottom-text">
+          © BBEducation — Brianza Bilingual Education. Tutti i diritti riservati.
+        </p>
+        <div class="footer__nav-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/config-pms.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Lazy map loader -->
+  <script>
+    function loadMap(el) {
+      var mapsUrl = (window.BBE_CONFIG && window.BBE_CONFIG.contact && window.BBE_CONFIG.contact.mapsUrl);
+      if (mapsUrl) {
+        var iframe = document.createElement("iframe");
+        iframe.src = mapsUrl;
+        iframe.width = "100%";
+        iframe.height = "100%";
+        iframe.style.border = "0";
+        iframe.allow = "fullscreen";
+        iframe.loading = "lazy";
+        iframe.title = "Mappa sede BBEducation Biassono";
+        el.parentNode.replaceChild(iframe, el);
+      } else {
+        el.setAttribute("aria-label", "Mappa non ancora disponibile — configurare mapsUrl in config.js");
+      }
+    }
+  </script>
+
+</body>
+</html>
