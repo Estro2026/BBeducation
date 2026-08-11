@@ -22,7 +22,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=22">
 
   <!-- Structured data: confermato — nessun dato inventato -->
   <script type="application/ld+json">
@@ -122,7 +122,7 @@
 
       <!-- CTA primaria -->
       <div class="header__cta">
-        <a href="#open-day" class="btn btn-primary">Prenota Open Day</a>
+        <a href="#open-day" class="btn btn-primary">Prenotazione Open Day</a>
       </div>
 
     </div>
@@ -142,12 +142,26 @@
       aria-labelledby="hero-h1"
     >
       <!--
-        Layout: column-reverse su mobile → immagine sopra, testo sotto.
-        flex-direction: row su desktop → testo sinistra, immagine destra.
+        Layout: column su mobile → immagine sopra (DOM first), testo sotto.
+        flex-direction: row su desktop → testo sinistra (order:-1), immagine destra.
       -->
       <div class="hero__inner">
 
-        <!-- Copy — sinistra su desktop, sotto immagine su mobile -->
+        <!-- Immagine — destra su desktop (order:1), sopra il copy su mobile (DOM first) -->
+        <div class="hero__media" aria-hidden="true">
+          <img
+            src="Foto/baby.webp"
+            alt=""
+            class="hero__image"
+            width="840"
+            height="960"
+            fetchpriority="high"
+            decoding="async"
+          >
+          <!-- hero__media-overlay rimosso -->
+        </div>
+
+        <!-- Copy — sinistra su desktop (order:-1), sotto immagine su mobile -->
         <div class="hero__copy">
           <p class="hero__eyebrow">Nido &amp; Scuola dell'Infanzia · Biassono</p>
 
@@ -195,20 +209,6 @@
               Metodo bilingue certificato
             </div>
           </div>
-        </div>
-
-        <!-- Immagine — destra su desktop, sopra il copy su mobile -->
-        <div class="hero__media" aria-hidden="true">
-          <img
-            src="Foto/baby.webp"
-            alt=""
-            class="hero__image"
-            width="840"
-            height="960"
-            fetchpriority="high"
-            decoding="async"
-          >
-          <!-- hero__media-overlay rimosso -->
         </div>
 
       </div>
@@ -427,7 +427,7 @@
           <div class="method__content fade-up">
             <span class="section__eyebrow">Il percorso educativo</span>
             <h2 id="method-title" class="section__title section__title--left">
-              Imparare attraverso ciò che&nbsp;si&nbsp;vive.
+              Imparare attraverso ciò che&nbsp;si&nbsp;vive
             </h2>
 
             <p class="method__body">
@@ -509,7 +509,7 @@
         <!-- Header centrato -->
         <div class="section__header fade-up">
           <h2 id="open-day-title" class="section__title">
-            La scuola giusta si sceglie vivendola.
+            La scuola giusta si sceglie vivendola
           </h2>
           <p class="open-day__intro">
             Leggere può raccontarti una scuola.<br>
@@ -588,7 +588,7 @@
               class="booking-form-wrapper"
               aria-label="Modulo di prenotazione Open Day"
             >
-          <h3 class="booking-form__heading">Scegli la data e vieni a conoscerci.</h3>
+          <h3 class="booking-form__heading">Scegli la data e vieni a conoscerci al centro</h3>
           <span class="open-day__capacity">Massimo 15 famiglie per data</span>
 
           <form
@@ -727,7 +727,7 @@
             </div>
 
             <div class="form-submit-area">
-              <button type="submit" class="btn btn-primary btn--full">
+              <button type="submit" class="btn btn-primary btn--compact">
                 Prenota il tuo Open Day
               </button>
               <div class="form-status" role="status" aria-live="polite"></div>
@@ -750,7 +750,7 @@
 
         <div class="section__header fade-up">
           <span class="section__eyebrow">Domande frequenti</span>
-          <h2 id="faq-title" class="section__title">Prima di scegliere, è normale avere domande.</h2>
+          <h2 id="faq-title" class="section__title">Prima di scegliere, è normale avere domande</h2>
         </div>
 
         <!-- Accordion generato da app.js -->
@@ -900,7 +900,7 @@
             </div>
 
             <div class="form-submit-area">
-              <button type="submit" class="btn btn-primary btn--full">
+              <button type="submit" class="btn btn-primary btn--compact">
                 Richiedi informazioni
               </button>
               <div class="form-status" role="status" aria-live="polite"></div>
@@ -923,7 +923,7 @@
       <!-- CTA block gradiente -->
       <div class="footer__cta-block fade-up">
         <p class="footer__cta-headline">
-          Il suo futuro comincia dalle prime esperienze.
+          Il suo futuro comincia dalle prime esperienze
         </p>
         <a href="#open-day" class="btn btn-white">Prenota il tuo Open Day</a>
         <p class="footer__cta-address">
