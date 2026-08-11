@@ -514,7 +514,14 @@ button {
     max-width: 46%;
     aspect-ratio: unset;
     max-height: none;
-    padding-bottom: var(--space-4);
+    padding-bottom: 0;
+    align-self: stretch;
+  }
+  .hero__media .hero__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .hero__media-overlay {
@@ -549,7 +556,8 @@ button {
   .hero__media {
     flex: 0 0 50%;
     max-width: 50%;
-    padding-bottom: var(--space-5);
+    padding-bottom: 0;
+    align-self: stretch;
   }
 
   .hero__headline {
@@ -1061,7 +1069,7 @@ button {
 @media (min-width: 768px) {
   .method__layout {
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     gap: var(--space-7);
   }
 
@@ -1071,7 +1079,8 @@ button {
 
   .method__media {
     flex: 0 0 48%;
-    aspect-ratio: 3/4;
+    aspect-ratio: unset;
+    align-self: stretch;
   }
 }
 

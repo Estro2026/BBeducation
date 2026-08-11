@@ -1,0 +1,183 @@
+/* ================================================================
+   BBEducation — Primary & Middle School
+   Override colori su base tokens.css + style.css
+   Colori principali: #FF788D (pink) → #FFAC59 (orange)
+   ================================================================ */
+
+/* --- Gradient overrides --- */
+:root {
+  --bbe-pms-gradient:     linear-gradient(90deg,  #FF788D 0%, #FFAC59 100%);
+  --bbe-pms-gradient-135: linear-gradient(135deg, #FF788D 0%, #FFAC59 100%);
+  --bbe-pms-gradient-180: linear-gradient(180deg, #FF788D 0%, #FFAC59 100%);
+
+  /* Override token baby → pms dove usati nei componenti */
+  --bbe-baby-gradient:     var(--bbe-pms-gradient);
+  --bbe-baby-gradient-135: var(--bbe-pms-gradient-135);
+  --bbe-baby-gradient-180: var(--bbe-pms-gradient-180);
+
+  /* Accent primario (usato da btn-primary, focus ring, border-baby, ecc.) */
+  --color-accent:        #FF788D;
+  --color-accent-hover:  #e86278;
+  --color-accent-2:      #FFAC59;
+
+  /* Border/bg tint adattati al rosa */
+  --color-border-baby:      rgba(255, 120, 141, 0.35);
+  --color-bg-baby-tint:     rgba(255, 120, 141, 0.05);
+  --shadow-card-hover:      0 8px 24px rgba(255, 120, 141, 0.18);
+  --focus-ring:             0 0 0 3px rgba(255, 120, 141, 0.4);
+  --focus-outline:          2px solid #FF788D;
+}
+
+/* --- Header --- */
+.site-header {
+  background: var(--bbe-pms-gradient);
+}
+
+/* --- Hero background gradient --- */
+.hero {
+  background: var(--bbe-pms-gradient-180);
+}
+
+/* --- Bottone primario --- */
+.btn-primary {
+  background: #FF788D;
+  border-color: transparent;
+  color: #ffffff;
+}
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: #e86278;
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Btn outline --- */
+.btn-outline {
+  border-color: #FF788D;
+  color: #FF788D;
+}
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  background: rgba(255, 120, 141, 0.08);
+}
+
+/* --- Btn white (footer CTA) --- */
+.btn-white {
+  color: #FF788D;
+}
+.btn-white:hover {
+  color: #e86278;
+}
+
+/* --- Hero eyebrow --- */
+.hero__eyebrow {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* --- Hero headline span underline --- */
+.hero__headline span {
+  background: linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0.15));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Proof badges --- */
+.proof-badge {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Section eyebrow --- */
+.section__eyebrow {
+  color: #FF788D;
+}
+
+/* --- Why section: value card stroke icons --- */
+.value-card__big-icon svg,
+.value-card__back-icon svg {
+  stroke: #FF788D;
+}
+
+/* --- Method section: check icons --- */
+.method__feature-icon svg circle {
+  fill: #FF788D;
+}
+
+/* --- Method accent blob --- */
+.method__media-accent {
+  background: var(--bbe-pms-gradient-135);
+}
+
+/* --- Open Day section background --- */
+.section--blue,
+.open-day-section {
+  background: linear-gradient(160deg, rgba(255,120,141,0.08) 0%, rgba(255,172,89,0.08) 100%);
+}
+
+/* --- Open Day badge icons --- */
+.oda-badge__icon {
+  background: rgba(255, 120, 141, 0.1);
+  color: #FF788D;
+}
+
+/* --- FAQ: open state marker --- */
+.faq-item[open] .faq-question {
+  color: #FF788D;
+}
+.faq-item[open] .faq-question::after {
+  color: #FF788D;
+}
+
+/* --- Info form wrapper tint --- */
+.info-form-section .info-form-wrapper {
+  background: rgba(255, 120, 141, 0.06);
+  border-color: rgba(255, 120, 141, 0.25);
+}
+
+/* --- Footer CTA block --- */
+.footer__cta-block {
+  background: var(--bbe-pms-gradient-135);
+}
+
+/* --- Footer --- */
+.site-footer {
+  background: #1a1a1a;
+}
+
+/* --- Review card border tint --- */
+.review-card {
+  border-color: rgba(255, 120, 141, 0.18);
+}
+
+/* --- Form focus states --- */
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: #FF788D;
+  box-shadow: 0 0 0 3px rgba(255, 120, 141, 0.15);
+  outline: none;
+}
+
+.form-check input[type="checkbox"]:checked {
+  accent-color: #FF788D;
+}
+
+/* --- Capacity badge --- */
+.open-day__capacity {
+  background: rgba(255, 120, 141, 0.12);
+  color: #c94d66;
+  border-color: rgba(255, 120, 141, 0.3);
+}
+
+/* --- Required marker --- */
+.required-marker {
+  color: #FF788D;
+}
+
+/* --- Marquee tint gradient masks --- */
+.reviews-marquee::before {
+  background: linear-gradient(to right, #fff9f9 0%, transparent 100%);
+}
+.reviews-marquee::after {
+  background: linear-gradient(to left, #fff9f9 0%, transparent 100%);
+}
