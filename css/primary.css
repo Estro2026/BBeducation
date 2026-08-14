@@ -63,24 +63,23 @@
   color: #e8607a;
 }
 
-/* ── Hero: stessa immagine di sfondo del Baby ────────────────── */
+/* ── Hero: pattern + colore chiaro #FF788D ────────────────────── */
+/*
+   Sfondo base = rosa chiaro (#FF788D a ~10% = #FFE9EC).
+   ::before = pattern webp a opacità ridotta, in mix-blend-mode
+   multiply, così il pattern "tinge" il rosa sottostante
+   e rimane il pattern riconoscibile ma in palette Primary.
+*/
+.hero {
+  background: #FFE9EC;
+}
 .hero::before {
   background: url('../gradientiepatternbaby/patterngradientebaby.webp') center / cover no-repeat;
+  opacity: 0.72;
+  mix-blend-mode: multiply;
 }
 
-/* Overlay gradiente primario per dare tono pink/orange */
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-    rgba(255,120,141,0.30) 0%,
-    rgba(255,172,89,0.22) 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ── Hero copy e media sopra l'overlay ───────────────────────── */
+/* copy e media sopra il pattern ───────────────────────────────── */
 .hero__inner { position: relative; z-index: 1; }
 
 /* ── Hero eyebrow ────────────────────────────────────────────── */
