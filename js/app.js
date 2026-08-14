@@ -32,6 +32,9 @@
     initStickyMobileCTA();
     initFadeUpObserver();
     initOpenDaySectionObserver();
+    initFormPanel();
+    initScrollStory();
+    initGiornataFilm();
   });
 
   /* ============================================================
@@ -561,6 +564,189 @@
     document.querySelectorAll(".fade-up").forEach(function (el) {
       observer.observe(el);
     });
+
+    // Continuità steps
+    var stepObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          stepObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll(".continuita-step--anim").forEach(function(el) {
+      stepObs.observe(el);
+    });
+
+    // Frecce: classe sul path quando il primo step è visibile
+    var path = document.querySelector(".continuita-path");
+    if (path) {
+      var pathObs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+          path.classList.add("path-in-view");
+          pathObs.disconnect();
+        }
+      }, { threshold: 0.3 });
+      pathObs.observe(path);
+    }
+  }
+
+  /* ============================================================
+     SCROLL STORY — carosello verticale sticky
+     ============================================================ */
+  /* ============================================================
+     FORM PANEL — slide-up dal basso su click CTA
+     ============================================================ */
+  function initFormPanel() {
+    var formPanel = document.getElementById("odaFormPanel");
+    var formClose = document.getElementById("odaFormClose");
+    if (!formPanel) return;
+
+    var originScrollY = 0;
+
+    function openFormFixed() {
+      originScrollY = window.scrollY;
+      formPanel.style.transform = "translateY(100%)";
+      formPanel.style.transition = "none";
+      formPanel.classList.add("is-fixed-open");
+      formPanel.offsetHeight;
+      formPanel.style.transition = "transform 0.65s cubic-bezier(0.32, 0, 0.16, 1)";
+      formPanel.style.transform = "translateY(0)";
+    }
+
+    function closeFormFixed() {
+      formPanel.style.transform = "translateY(100%)";
+      setTimeout(function() {
+        formPanel.classList.remove("is-fixed-open");
+        formPanel.style.transform = "";
+        formPanel.style.transition = "";
+        window.scrollTo({ top: originScrollY, behavior: "smooth" });
+      }, 650);
+    }
+
+    document.querySelectorAll('a[href="#booking-form-section"]').forEach(function(btn) {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        openFormFixed();
+      });
+    });
+
+    if (formClose) {
+      formClose.addEventListener("click", closeFormFixed);
+    }
+  }
+
+  function initScrollStory() {
+    var story = document.getElementById("scroll-story-baby");
+    if (!story || !("IntersectionObserver" in window)) return;
+
+    var panels  = story.querySelectorAll(".scroll-story__panel");
+    var imgInner = document.getElementById("ss-img-inner");
+    var dots    = story.querySelectorAll(".scroll-story__dot");
+
+    var current = 0;
+
+    function goTo(idx) {
+      if (idx === current) return;
+      current = idx;
+
+      /* sposta il track — 2 pannelli */
+      imgInner.classList.toggle("at-panel-1", idx === 1);
+
+      /* aggiorna dots */
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("is-active", i === idx);
+      });
+    }
+
+    var obs = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            goTo(parseInt(entry.target.dataset.ssIdx, 10));
+          }
+        });
+      },
+      { threshold: 0.45 }
+    );
+
+    panels.forEach(function (panel, i) {
+      panel.dataset.ssIdx = i;
+      obs.observe(panel);
+    });
+  }
+
+  /* ============================================================
+     GIORNATA FILM — slideshow cinematico auto-play
+     ============================================================ */
+  function initGiornataFilm() {
+    var stage    = document.getElementById("giornata-stage");
+    if (!stage) return;
+
+    var slides   = stage.querySelectorAll(".giornata-slide");
+    var steps    = document.querySelectorAll(".giornata-film__step");
+    var fill     = document.getElementById("giornata-progress-fill");
+    var total    = slides.length;
+    var current  = 0;
+    var timer    = null;
+    var INTERVAL = 4000;
+    var paused   = false;
+
+    function goTo(idx) {
+      slides[current].classList.remove("is-active");
+      steps[current].classList.remove("is-active");
+      steps[current].setAttribute("aria-selected", "false");
+
+      current = (idx + total) % total;
+
+      slides[current].classList.add("is-active");
+      steps[current].classList.add("is-active");
+      steps[current].setAttribute("aria-selected", "true");
+
+      if (fill) {
+        fill.style.width = ((current + 1) / total * 100) + "%";
+      }
+    }
+
+    function next() { goTo(current + 1); }
+
+    function startTimer() {
+      clearInterval(timer);
+      if (!paused) timer = setInterval(next, INTERVAL);
+    }
+
+    /* click sui bottoni step */
+    steps.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        goTo(parseInt(btn.dataset.goto, 10));
+        startTimer();
+      });
+    });
+
+    /* pausa su hover */
+    stage.addEventListener("mouseenter", function () { paused = true;  clearInterval(timer); });
+    stage.addEventListener("mouseleave", function () { paused = false; startTimer(); });
+
+    /* swipe touch */
+    var touchX = 0;
+    stage.addEventListener("touchstart", function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend",   function (e) {
+      var dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) { goTo(dx < 0 ? current + 1 : current - 1); startTimer(); }
+    }, { passive: true });
+
+    /* avvia solo quando la sezione è in view */
+    if ("IntersectionObserver" in window) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { paused = false; startTimer(); }
+          else                  { paused = true;  clearInterval(timer); }
+        });
+      }, { threshold: 0.25 });
+      obs.observe(stage);
+    } else {
+      startTimer();
+    }
   }
 
   /* ============================================================
@@ -583,6 +769,21 @@
     }, { threshold: 0.2 });
 
     observer.observe(section);
+
+
+    // Reveal drammatico del form
+    var formReveal = document.querySelectorAll(".form-reveal");
+    if (formReveal.length) {
+      var revealObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            revealObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      formReveal.forEach(function(el) { revealObs.observe(el); });
+    }
   }
 
   /* ---------------------------------------------------------------
