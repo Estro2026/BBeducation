@@ -1652,15 +1652,17 @@ button {
   padding-bottom: var(--space-8);
 }
 
-/* Quando aperto via CTA: fixed, copre tutta la viewport sotto l'header */
+/* Quando aperto via CTA: fixed, intera viewport scrollabile */
 .oda-panel--form.is-fixed-open {
   position: fixed;
   top: var(--header-height, 72px);
   left: 0;
   right: 0;
-  bottom: 0;
+  height: calc(100dvh - var(--header-height, 72px));
   z-index: 100;
-  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .open-day__agenda-label {

@@ -604,11 +604,21 @@
 
     var originScrollY = 0;
 
+    function blockBodyScroll(e) {
+      // Permetti scroll solo all'interno del formPanel
+      if (!formPanel.contains(e.target)) e.preventDefault();
+    }
+
     function openFormFixed() {
       originScrollY = window.scrollY;
       formPanel.style.transform = "translateY(100%)";
       formPanel.style.transition = "none";
       formPanel.classList.add("is-fixed-open");
+      formPanel.scrollTop = 0;
+      // Desktop: overflow hidden sul body
+      document.body.style.overflow = "hidden";
+      // Mobile: blocca touchmove sul body, lascia passare quello sul panel
+      document.addEventListener("touchmove", blockBodyScroll, { passive: false });
       formPanel.offsetHeight;
       formPanel.style.transition = "transform 0.65s cubic-bezier(0.32, 0, 0.16, 1)";
       formPanel.style.transform = "translateY(0)";
@@ -616,11 +626,13 @@
 
     function closeFormFixed() {
       formPanel.style.transform = "translateY(100%)";
+      document.body.style.overflow = "";
+      document.removeEventListener("touchmove", blockBodyScroll);
       setTimeout(function() {
         formPanel.classList.remove("is-fixed-open");
         formPanel.style.transform = "";
         formPanel.style.transition = "";
-        window.scrollTo({ top: originScrollY, behavior: "smooth" });
+        window.scrollTo({ top: originScrollY, behavior: "instant" });
       }, 650);
     }
 
