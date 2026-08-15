@@ -18,7 +18,122 @@
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/style.css?v=77">
-  <link rel="stylesheet" href="css/primary.css?v=1">
+  <link rel="stylesheet" href="css/primary.css?v=4">
+  <style>
+    /* PRIMARY HERO — immagine gradiente come sfondo diretto */
+    .hero {
+      background: url('gradientiepatternbaby/patterngradientefucsiaarancione.webp') center / cover no-repeat !important;
+      position: relative !important;
+    }
+    /* Header nav — hover rosa chiaro (stessa radius del Baby: var(--radius-pill)) */
+    .header__nav a:hover { background: rgba(255,120,141,0.12) !important; color: #FF788D !important; }
+    .hero::before { display: none !important; }
+    .hero::after { display: none !important; }
+    .hero__inner { position: relative !important; z-index: 2 !important; }
+    /* #why — sfondo bianco */
+    #why { background: #ffffff !important; }
+    /* Intera scroll story — solo il contenitore madre ha il rosa chiaro */
+    #scroll-story-baby { background: rgba(255,120,141,0.07) !important; }
+    #scroll-story-baby .scroll-story__panel,
+    #scroll-story-baby .scroll-story__sticky { background: transparent !important; }
+    /* Capacity badge — rosa chiaro */
+    .open-day__capacity { background: rgba(255,120,141,0.12) !important; color: #FF788D !important; border-radius: 999px !important; }
+    /* FAQ — sfondo rosa chiaro + rimozione azzurro, sostituzione con rosa/arancio */
+    #faq { background: rgba(255,120,141,0.07) !important; }
+    .faq-item { box-shadow: 0 2px 12px rgba(255,120,141,0.10) !important; }
+    .faq-item::before { background: conic-gradient(from -90deg, #FF788D 0%, #FFAC59 100%, transparent 100%) !important; }
+    .faq-item:has(.faq-trigger[aria-expanded="true"]) { box-shadow: 0 4px 24px rgba(255,120,141,0.22) !important; }
+    .faq-trigger:hover { background: rgba(255,120,141,0.05) !important; }
+    .faq-trigger[aria-expanded="true"] { color: #FF788D !important; background: rgba(255,120,141,0.06) !important; }
+    .faq-trigger[aria-expanded="true"] .faq-icon { background: #FF788D !important; color: #fff !important; }
+    .faq-icon { background: rgba(255,120,141,0.15) !important; color: #FF788D !important; }
+    /* Continuità — badge e step attivo in rosa/arancio */
+    .continuita-step__badge { color: #FF788D !important; background: rgba(255,120,141,0.10) !important; }
+    .continuita-step--active .continuita-step__badge { background: linear-gradient(90deg, #FF788D, #FFAC59) !important; color: #fff !important; }
+    .continuita-step--active .continuita-step__label { color: #FF788D !important; }
+    /* Continuità — linea orizzontale principale */
+    .continuita-path::before { background: linear-gradient(90deg, #FF788D, #FFAC59) !important; }
+    /* Continuità — connettori verticali */
+    .continuita-step::before { background: linear-gradient(to bottom, rgba(255,120,141,0.6), rgba(255,120,141,0.1)) !important; }
+    /* Continuità — bordo e ombra card */
+    .continuita-step { border-color: rgba(255,120,141,0.22) !important; box-shadow: 0 4px 20px rgba(255,120,141,0.10) !important; }
+    /* Continuità — stroke animato on hover */
+    #continuita .continuita-step::after { background: conic-gradient(from -90deg, #FF788D 0%, #FFAC59 var(--ct-sweep), transparent var(--ct-sweep)) !important; }
+
+    /* FAMIGLIE — card stile FAQ (opacity stroke, stessa ombra) con colori rosa */
+    #famiglie .open-day-agenda__badges { grid-template-columns: 1fr !important; }
+    #famiglie .oda-badge {
+      box-shadow: 0 4px 16px rgba(255,120,141,0.12) !important;
+      padding: 1.4rem 1.5rem !important;
+      transition: box-shadow 0.25s ease !important;
+    }
+    #famiglie .oda-badge:hover {
+      box-shadow: 0 6px 24px rgba(255,120,141,0.22) !important;
+    }
+    #famiglie .oda-badge::before {
+      background: conic-gradient(from -90deg, #FF788D 0%, #FFAC59 var(--oda-sweep), transparent var(--oda-sweep)) !important;
+      --oda-sweep: 0%;
+      transition: --oda-sweep 0.75s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    #famiglie .oda-badge:hover::before { --oda-sweep: 100%; }
+    #famiglie .oda-badge__icon {
+      background: rgba(255,120,141,0.13) !important;
+      color: #FF788D !important;
+    }
+    /* Titolo famiglie — underline rosa/arancio largo quanto il testo */
+    #famiglie .section__title {
+      position: relative !important;
+      display: inline-block !important;
+      align-self: flex-start !important;
+      margin-bottom: var(--space-4) !important;
+    }
+    #famiglie .section__title::after {
+      content: '' !important;
+      position: absolute !important;
+      bottom: -8px !important; left: 0 !important;
+      width: 100% !important; height: 3px !important;
+      background: linear-gradient(90deg, #FF788D, #FFAC59) !important;
+      border-radius: 2px !important;
+      transform: scaleX(0) !important;
+      transform-origin: left center !important;
+      transition: transform 0.7s 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    #famiglie .fade-up.in-view .section__title::after {
+      transform: scaleX(1) !important;
+    }
+    /* Capacity badge — stroke rosa */
+    .open-day__capacity { border: 1.5px solid #FF788D !important; }
+    /* Form "Non puoi venire" — sezione bianca, form rosa chiaro */
+    #info.info-form-section { background: #ffffff !important; }
+    #info .info-form-wrapper { background: rgba(255,120,141,0.07) !important; }
+    /* Footer — immagine pura senza overlay */
+    .site-footer { background: url('gradientiepatternbaby/patterngradientefucsiaarancione.webp') center/cover no-repeat !important; }
+    /* VALUE CARDS — identiche al Baby ma arancio(verde) → rosa(blu) */
+    .value-card__front,
+    .value-card__back {
+      background: linear-gradient(135deg, #FFAC59 0%, #FF788D 100%) !important;
+      background-size: 220% 220% !important;
+      background-position: 0% 0% !important;
+      box-shadow: 0 4px 20px rgba(255,172,89,0.25) !important;
+      transition: background-position 0.65s ease, box-shadow 0.3s ease !important;
+    }
+    .value-card:hover .value-card__front,
+    .value-card:hover .value-card__back {
+      background-position: 100% 100% !important;
+      box-shadow: 0 8px 32px rgba(255,120,141,0.40) !important;
+    }
+    /* Hover card: solo cambio colore, nessun lift né scale */
+    #why .why-grid .fade-up.in-view.value-card:hover,
+    #why .why-grid .value-card:hover {
+      transform: none !important;
+      box-shadow: 0 4px 20px rgba(255,120,141,0.22) !important;
+    }
+    /* Icone: bianco puro — massimo contrasto su arancio/rosa */
+    .value-card__big-icon svg,
+    .value-card__back-icon svg {
+      stroke: #ffffff !important;
+    }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -92,14 +207,16 @@
     <div class="container header__inner">
       <a href="#" class="header__brand" aria-label="BBEducation — torna all'inizio della pagina">
         <img src="logo/BBEnormalelogofull.webp" alt="BBEducation logo" class="header__logo" width="315" height="90">
-        <span class="header__label">Scuola Primaria Bilingue</span>
+        <span class="header__label">Scuola elementare Bilingue</span>
       </a>
       <nav class="header__nav" aria-label="Navigazione principale">
         <ul>
           <li><a href="#method">Metodo</a></li>
-          <li><a href="#bilinguismo">Bilinguismo</a></li>
           <li><a href="#continuita">Percorso</a></li>
+          <li><a href="#famiglie">Relazione con la famiglia</a></li>
+          <li><a href="#testimonianze">Testimonianze</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="#info">Contatti</a></li>
         </ul>
       </nav>
       <div class="header__cta">
@@ -118,10 +235,11 @@
 
         <div class="hero__media" aria-hidden="true">
           <img
-            src="Foto primary/primary.webp"
+            src="Foto primary/primary3.webp"
             alt=""
             class="hero__image"
-            width="840" height="960"
+            width="600" height="900"
+            style="object-position: center center;"
             fetchpriority="high"
             decoding="async"
           >
@@ -258,7 +376,7 @@
     <!-- ==========================================================
          03 + 04 — SCROLL STORY: Metodo + Bilinguismo
     ========================================================== -->
-    <div class="scroll-story" id="scroll-story-primary">
+    <div class="scroll-story" id="scroll-story-baby">
       <div class="scroll-story__frame">
 
         <div class="scroll-story__panels">
@@ -297,7 +415,7 @@
                   </li>
                 </ul>
                 <p class="method__body" style="font-weight:700;color:#FF788D;margin-top:0.25rem;margin-bottom:0.25rem;">
-                  Perché le competenze vere si costruiscono con l'esperienza.
+                  Perché le competenze vere si costruiscono<br>con l'esperienza.
                 </p>
                 <a href="#booking-form-section" class="btn btn-primary" style="margin-top:0.25rem;align-self:flex-start;">Vieni a conoscerci</a>
               </div>
@@ -312,11 +430,10 @@
             <div class="scroll-story__panel-inner">
               <div class="method__content fade-up">
                 <h2 id="bilinguismo-title" class="section__title section__title--left">
-                  L'inglese<br>nella quotidianità
+                  Il bilinguismo nella quotidianità
                 </h2>
                 <p class="method__body">
-                  Non "studiare inglese". Vivere l'inglese come strumento
-                  di apprendimento e comunicazione reale, ogni giorno.
+                  Non "studiare inglese", ma <strong>vivere l'inglese come strumento di apprendimento e comunicazione.</strong>
                 </p>
                 <p class="method__body">
                   Alcune materie vengono insegnate in inglese da docenti
@@ -324,9 +441,47 @@
                   del pensiero, non una traduzione mentale.
                 </p>
                 <p class="method__body">
-                  Il risultato è un bilinguismo autentico — non accademico —
+                  Il risultato è un bilinguismo autentico, non accademico,
                   che i bambini portano con sé per tutta la vita.
                 </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 05: IL BAMBINO AL CENTRO -->
+          <section id="bambino" class="scroll-story__panel ss-panel--white" aria-labelledby="bambino-title">
+            <div class="scroll-story__mob-img" aria-hidden="true">
+              <img src="Foto primary/primary3.webp" alt="" width="600" height="450" loading="lazy" decoding="async" class="method__image">
+            </div>
+            <div class="scroll-story__panel-inner">
+              <div class="method__content fade-up">
+                <h2 id="bambino-title" class="section__title section__title--left">
+                  Il bambino al centro
+                </h2>
+                <p class="method__body">
+                  In una classe grande ogni bambino rischia di perdersi.
+                  Alla Primary BBEducation le classi sono contenute per scelta,
+                  perché ogni bambino possa essere visto, supportato e valorizzato.
+                </p>
+                <ul class="centro-list">
+                  <li>
+                    <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Classi contenute:</strong> spazio per ogni personalità e ogni ritmo di apprendimento</span>
+                  </li>
+                  <li>
+                    <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Docenti italiani e madrelingua:</strong> figure complementari che si integrano ogni giorno</span>
+                  </li>
+                  <li>
+                    <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Attenzione individuale:</strong> il percorso di ogni bambino viene seguito con cura</span>
+                  </li>
+                  <li>
+                    <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Ambiente sereno:</strong> perché il benessere è la prima condizione per imparare</span>
+                  </li>
+                </ul>
+                <a href="#booking-form-section" class="btn btn-primary" style="margin-top:var(--space-3);align-self:flex-start;">Prenota una visita</a>
               </div>
             </div>
           </section>
@@ -338,166 +493,18 @@
             <div class="scroll-story__img-inner" id="ss-img-inner">
               <img src="Foto primary/primary2.webp" class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
               <img src="Foto primary/primary.webp"  class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
+              <img src="Foto primary/primary3.webp" class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
             </div>
           </div>
           <div class="scroll-story__dots" aria-hidden="true">
             <span class="scroll-story__dot is-active"></span>
+            <span class="scroll-story__dot"></span>
             <span class="scroll-story__dot"></span>
           </div>
         </div>
 
       </div>
     </div>
-
-    <!-- ==========================================================
-         05 — UNA GIORNATA ALLA PRIMARY
-    ========================================================== -->
-    <section id="giornata" class="giornata-film" aria-labelledby="giornata-title">
-
-      <div class="giornata-film__header fade-up">
-        <h2 id="giornata-title" class="section__title">Una giornata alla Primary</h2>
-        <p class="section__subtitle">Scorri per scoprire come si impara ogni giorno.</p>
-      </div>
-
-      <div class="giornata-film__stage" id="giornata-stage" aria-live="polite">
-
-        <div class="giornata-slide is-active" data-slide="0">
-          <img src="Foto primary/primary.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
-          <div class="giornata-slide__overlay">
-            <span class="giornata-slide__num" aria-hidden="true">01</span>
-            <strong class="giornata-slide__name">Accoglienza</strong>
-            <p class="giornata-slide__desc">La giornata inizia con un momento di incontro tra compagni e insegnanti. Un rituale che crea senso di appartenenza.</p>
-          </div>
-        </div>
-
-        <div class="giornata-slide" data-slide="1">
-          <img src="Foto primary/primary2.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
-          <div class="giornata-slide__overlay">
-            <span class="giornata-slide__num" aria-hidden="true">02</span>
-            <strong class="giornata-slide__name">Lezione + esplorazione</strong>
-            <p class="giornata-slide__desc">Le discipline si intrecciano in unità esperienziali. I bambini fanno domande, cercano risposte, costruiscono conoscenza.</p>
-          </div>
-        </div>
-
-        <div class="giornata-slide" data-slide="2">
-          <img src="Foto primary/primary3.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
-          <div class="giornata-slide__overlay">
-            <span class="giornata-slide__num" aria-hidden="true">03</span>
-            <strong class="giornata-slide__name">Progetto in inglese</strong>
-            <p class="giornata-slide__desc">Scienze, storia o arte in inglese: la lingua diventa strumento, non ostacolo. I bambini imparano facendo e comunicando.</p>
-          </div>
-        </div>
-
-        <div class="giornata-slide" data-slide="3">
-          <img src="Foto primary/primary.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
-          <div class="giornata-slide__overlay">
-            <span class="giornata-slide__num" aria-hidden="true">04</span>
-            <strong class="giornata-slide__name">Lavoro di gruppo</strong>
-            <p class="giornata-slide__desc">Collaborare è una competenza. I bambini imparano a confrontarsi, rispettare i turni e costruire insieme un risultato.</p>
-          </div>
-        </div>
-
-        <div class="giornata-slide" data-slide="4">
-          <img src="Foto primary/primary2.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
-          <div class="giornata-slide__overlay">
-            <span class="giornata-slide__num" aria-hidden="true">05</span>
-            <strong class="giornata-slide__name">Creatività</strong>
-            <p class="giornata-slide__desc">Arte, musica, scrittura creativa: spazio all'espressione individuale, ogni giorno.</p>
-          </div>
-        </div>
-
-        <div class="giornata-slide" data-slide="5">
-          <img src="Foto primary/primary3.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
-          <div class="giornata-slide__overlay">
-            <span class="giornata-slide__num" aria-hidden="true">06</span>
-            <strong class="giornata-slide__name">Relazione</strong>
-            <p class="giornata-slide__desc">In classi contenute ogni bambino è visto davvero. L'insegnante conosce il suo ritmo, le sue forze e le sue difficoltà.</p>
-          </div>
-        </div>
-
-        <div class="giornata-slide" data-slide="6">
-          <img src="Foto primary/primary.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
-          <div class="giornata-slide__overlay">
-            <span class="giornata-slide__num" aria-hidden="true">07</span>
-            <strong class="giornata-slide__name">Outdoor</strong>
-            <p class="giornata-slide__desc">L'apprendimento non si ferma tra le mura. Spazio, movimento e natura fanno parte del metodo.</p>
-          </div>
-        </div>
-
-        <div class="giornata-slide" data-slide="7">
-          <img src="Foto primary/primary3.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
-          <div class="giornata-slide__overlay">
-            <span class="giornata-slide__num" aria-hidden="true">08</span>
-            <strong class="giornata-slide__name">Fine giornata</strong>
-            <p class="giornata-slide__desc">Il bambino torna a casa con qualcosa di nuovo: un'idea, una parola in inglese, una domanda da portare a tavola.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="giornata-film__nav" aria-label="Navigazione momenti">
-        <div class="giornata-film__progress" id="giornata-progress" aria-hidden="true">
-          <div class="giornata-film__progress-fill" id="giornata-progress-fill"></div>
-        </div>
-        <div class="giornata-film__steps" role="tablist">
-          <button class="giornata-film__step is-active" data-goto="0" role="tab" aria-selected="true">Accoglienza</button>
-          <button class="giornata-film__step" data-goto="1" role="tab" aria-selected="false">Lezione</button>
-          <button class="giornata-film__step" data-goto="2" role="tab" aria-selected="false">In inglese</button>
-          <button class="giornata-film__step" data-goto="3" role="tab" aria-selected="false">Gruppo</button>
-          <button class="giornata-film__step" data-goto="4" role="tab" aria-selected="false">Creatività</button>
-          <button class="giornata-film__step" data-goto="5" role="tab" aria-selected="false">Relazione</button>
-          <button class="giornata-film__step" data-goto="6" role="tab" aria-selected="false">Outdoor</button>
-          <button class="giornata-film__step" data-goto="7" role="tab" aria-selected="false">Fine giornata</button>
-        </div>
-        <div style="text-align:center;padding-top:var(--space-5);">
-          <a href="#booking-form-section" class="btn btn-primary">Partecipa all'Open Day</a>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ==========================================================
-         05b — IL BAMBINO AL CENTRO
-    ========================================================== -->
-    <section id="bambino" class="section section--accent" aria-labelledby="bambino-title">
-      <div class="container">
-
-        <div class="centro-grid">
-          <div class="centro-grid__img fade-up">
-            <img src="Foto primary/primary2.webp" alt="Bambini in classe alla Primary BBEducation" loading="lazy" width="600" height="450">
-          </div>
-          <div class="fade-up">
-            <h2 id="bambino-title" class="section__title section__title--left">
-              Il bambino al&nbsp;centro, ogni giorno
-            </h2>
-            <p class="method__body">
-              In una classe grande ogni bambino rischia di perdersi.
-              Alla Primary BBEducation le classi sono contenute per scelta,
-              perché ogni bambino possa essere visto, supportato e valorizzato.
-            </p>
-            <ul class="centro-list">
-              <li>
-                <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span><strong>Classi contenute</strong> — spazio per ogni personalità e ogni ritmo di apprendimento</span>
-              </li>
-              <li>
-                <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span><strong>Docenti italiani e madrelingua</strong> — figure complementari che si integrano ogni giorno</span>
-              </li>
-              <li>
-                <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span><strong>Attenzione individuale</strong> — il percorso di ogni bambino viene seguito con cura</span>
-              </li>
-              <li>
-                <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span><strong>Ambiente sereno</strong> — perché il benessere è la prima condizione per imparare</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </section>
 
     <!-- ==========================================================
          06 — UNA SCUOLA, UN PERCORSO
@@ -508,8 +515,7 @@
         <div class="section__header fade-up">
           <h2 id="continuita-title" class="section__title">Una scuola, un percorso</h2>
           <p class="section__subtitle">
-            Il valore di BBEducation non è solo la Primary: è la continuità.
-            Stessa filosofia, stesso metodo, stesso ambiente di fiducia — dal Nido alla Middle School.
+            Il valore della continuità dal Nido alla Primary e verso la futura Middle School.
           </p>
         </div>
 
@@ -549,33 +555,33 @@
     <section id="famiglie" class="section" aria-labelledby="famiglie-title">
       <div class="container">
 
-        <div class="famiglie-grid">
-          <div class="fade-up">
+        <div class="famiglie-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-6); align-items:stretch;">
+          <div class="fade-up" style="display:flex; flex-direction:column;">
             <h2 id="famiglie-title" class="section__title section__title--left">
-              Scuola e famiglia: una relazione, non una comunicazione
+              La relazione con le famiglie
             </h2>
             <p class="method__body">
               BBEducation non è una scuola dove i genitori ricevono pagelle.
               È una comunità dove la famiglia è parte del percorso educativo
               del proprio figlio.
             </p>
-            <div class="open-day-agenda__badges badge-list" style="max-width: 100%; margin-top: var(--space-3);">
-              <div class="oda-badge fade-up">
-                <span class="oda-badge__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                </span>
-                <span class="oda-badge__text">
-                  <strong class="oda-badge__title">Confronti strutturati con i docenti</strong>
-                  <span class="oda-badge__body">Non solo il colloquio di fine trimestre: momenti di dialogo pensati per costruire insieme il percorso del bambino.</span>
-                </span>
-              </div>
+            <div class="open-day-agenda__badges" style="margin-top:var(--space-3); flex:1;">
               <div class="oda-badge fade-up">
                 <span class="oda-badge__icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
                 </span>
                 <span class="oda-badge__text">
-                  <strong class="oda-badge__title">Canale diretto con la scuola</strong>
-                  <span class="oda-badge__body">Aggiornamenti, comunicazioni e contatti chiari. La famiglia è sempre informata su cosa vive il figlio a scuola.</span>
+                  <strong class="oda-badge__title">Confronto con le educatrici</strong>
+                  <span class="oda-badge__body">Momenti dedicati per raccontare come cresce tuo figlio, giorno dopo giorno.</span>
+                </span>
+              </div>
+              <div class="oda-badge fade-up">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Comunicazione con le famiglie</strong>
+                  <span class="oda-badge__body">La famiglia è sempre aggiornata su ciò che vive il bambino a scuola.</span>
                 </span>
               </div>
               <div class="oda-badge fade-up">
@@ -583,15 +589,73 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 </span>
                 <span class="oda-badge__text">
-                  <strong class="oda-badge__title">Progetto educativo condiviso</strong>
-                  <span class="oda-badge__body">Il percorso di ogni bambino viene costruito insieme, nel rispetto dei suoi tempi e delle sue inclinazioni.</span>
+                  <strong class="oda-badge__title">Condivisione del percorso del bambino</strong>
+                  <span class="oda-badge__body">Il progetto educativo di ogni bambino viene costruito insieme, con attenzione alle sue esigenze individuali.</span>
                 </span>
               </div>
             </div>
           </div>
-          <div class="famiglie-grid__img fade-up">
-            <img src="Foto primary/primary3.webp" alt="Bambini Primary BBEducation" loading="lazy" width="600" height="450">
+          <div class="fade-up" style="border-radius:var(--radius-md); overflow:hidden;">
+            <img src="Foto primary/primary3.webp" alt="Bambini Primary BBEducation" loading="lazy" width="600" height="900" style="width:100%; height:100%; object-fit:cover; display:block;">
           </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         07b — PROVA A CONOSCERCI (testimonianze)
+    ========================================================== -->
+    <section id="testimonianze" class="section section--white" aria-labelledby="testimonianze-title">
+      <div class="container">
+
+        <div class="section__header fade-up">
+          <span class="section__eyebrow">Le famiglie raccontano</span>
+          <h2 id="testimonianze-title" class="section__title">Prova a conoscerci</h2>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4); margin-top:var(--space-5);">
+
+          <div class="fade-up" style="border-left:4px solid #FF788D; padding:var(--space-4); background:rgba(255,120,141,0.04); border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <p style="font-size:var(--text-base); line-height:1.7; color:var(--color-text); font-style:italic; margin:0 0 var(--space-3);">
+              "Siamo arrivati all'Open Day con molti dubbi e siamo usciti con una certezza. Il modo in cui i bambini vivono la scuola si vede subito: sono curiosi, coinvolti, a loro agio."
+            </p>
+            <p style="font-size:var(--text-sm); font-weight:700; color:#FF788D; margin:0;">
+              Famiglia M. — mamma di Lorenzo, 2ª elementare
+            </p>
+          </div>
+
+          <div class="fade-up" style="border-left:4px solid #FFAC59; padding:var(--space-4); background:rgba(255,172,89,0.06); border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <p style="font-size:var(--text-base); line-height:1.7; color:var(--color-text); font-style:italic; margin:0 0 var(--space-3);">
+              "Nostro figlio non aveva mai amato la scuola. Dalla Primary è cambiato tutto: torna a casa e ci racconta quello che ha fatto con entusiasmo. L'inglese lo usa senza pensarci."
+            </p>
+            <p style="font-size:var(--text-sm); font-weight:700; color:#FFAC59; margin:0;">
+              Famiglia R. — papà di Tommaso, 4ª elementare
+            </p>
+          </div>
+
+          <div class="fade-up" style="border-left:4px solid #FFAC59; padding:var(--space-4); background:rgba(255,172,89,0.06); border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <p style="font-size:var(--text-base); line-height:1.7; color:var(--color-text); font-style:italic; margin:0 0 var(--space-3);">
+              "Ciò che ci ha convinto è la relazione con gli insegnanti. Ci conoscono, ci aggiornano, ci coinvolgono. Sentiamo davvero di fare parte di una comunità."
+            </p>
+            <p style="font-size:var(--text-sm); font-weight:700; color:#FFAC59; margin:0;">
+              Famiglia B. — genitori di Sofia, 1ª elementare
+            </p>
+          </div>
+
+          <div class="fade-up" style="border-left:4px solid #FF788D; padding:var(--space-4); background:rgba(255,120,141,0.04); border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <p style="font-size:var(--text-base); line-height:1.7; color:var(--color-text); font-style:italic; margin:0 0 var(--space-3);">
+              "Il primo giorno eravamo emozionati noi, non lei. Ha trovato il suo posto subito. La classe piccola fa la differenza: ogni bambino è davvero visto."
+            </p>
+            <p style="font-size:var(--text-sm); font-weight:700; color:#FF788D; margin:0;">
+              Famiglia C. — mamma di Ginevra, 3ª elementare
+            </p>
+          </div>
+
+        </div>
+
+        <div class="section__cta fade-up" style="text-align:center; margin-top:var(--space-5);">
+          <a href="#booking-form-section" class="btn btn-primary">Prenota una visita</a>
         </div>
 
       </div>
@@ -613,7 +677,7 @@
 
           <div class="open-day-agenda fade-up">
             <div class="open-day-agenda__photo-hero">
-              <img src="Foto primary/primary2.webp" class="open-day-agenda__photo-img" alt="Open Day BBEducation Primary" loading="lazy" width="600" height="400">
+              <img src="Foto primary/primary2.webp" class="open-day-agenda__photo-img" alt="Open Day BBEducation Primary" loading="lazy" width="600" height="400" style="object-position: center 25%;">
             </div>
             <p class="open-day__agenda-label fade-up">Durante l'Open Day:</p>
             <div class="open-day-agenda__badges">
@@ -662,8 +726,8 @@
         <div class="container">
 
           <div class="section__header fade-up">
-            <h2 class="section__title" id="oda-form-title">Vieni a conoscere BBEducation.</h2>
-            <p class="section__subtitle">Visita la scuola, incontra il team e scopri il percorso Primary per bambini da 6 a 11 anni.</p>
+            <h2 class="section__title" id="oda-form-title">Prenota il tuo Open Day alla Primary.</h2>
+            <p class="section__subtitle">Visita la scuola, incontra il team e scopri il percorso Primary<br>per bambini da 6 a 11 anni.</p>
           </div>
 
           <div class="open-day__form-photo">
@@ -679,7 +743,7 @@
 
               <div id="booking-form-section" class="booking-form-wrapper" aria-label="Modulo di prenotazione Open Day Primary">
                 <h3 class="booking-form__heading">Scegli la data dell'Open Day</h3>
-                <span class="open-day__capacity">Massimo 15 famiglie per data</span>
+                <span class="open-day__capacity">Massimo 20 famiglie per data</span>
 
                 <form id="booking-form" novalidate aria-label="Modulo prenotazione Open Day Primary">
                   <input type="hidden" id="booking-event-type" name="eventType" value="">
@@ -796,10 +860,10 @@
         <div class="info-form-wrapper fade-up">
           <div class="section__header section__header--left" style="margin-bottom: var(--space-4);">
             <h2 id="info-title" class="section__title" style="font-size: var(--text-2xl);">
-              Vuoi conoscere meglio la Primary?
+              Non puoi venire alle date proposte?
             </h2>
             <p class="section__subtitle" style="margin-inline: 0; text-align: left; margin-top: var(--space-1);">
-              Prenota una visita individuale o lasciaci i tuoi dati: ti ricontattiamo noi.
+              Lasciaci i tuoi dati, ti ricontattiamo noi.
             </p>
           </div>
 
@@ -881,50 +945,134 @@
        FOOTER
   ============================================================ -->
   <footer class="site-footer" role="contentinfo">
-    <div class="footer__cta-band">
-      <p class="footer__cta-headline">Qui ogni bambino impara facendo.</p>
-      <p class="footer__cta-sub">Vieni a scoprire la Primary BBEducation. Porta tuo figlio.</p>
-      <a href="#booking-form-section" class="btn btn-white">Prenota il tuo Open Day</a>
-      <p class="footer__cta-address">Vi aspettiamo a Biassono, in Via Lega Lombarda n.11</p>
-    </div>
-    <div class="container footer__grid">
-      <div>
-        <a href="#" aria-label="BBEducation — torna all'inizio della pagina">
-          <img src="logo/BBEbiancologofull.webp" alt="BBEducation" class="footer__logo" width="216" height="65" loading="lazy">
-        </a>
-        <p class="footer__tagline">Scuola Primaria bilingue.<br>Sede di Biassono, Brianza.</p>
+    <div class="container">
+
+      <!-- CTA block con pattern di sfondo -->
+      <div class="footer__cta-block fade-up" style="position:relative; overflow:hidden; background:none !important;">
+        <div style="position:relative;z-index:1;">
+          <p class="footer__cta-headline">Vuoi conoscere meglio la Primary?</p>
+          <a href="#booking-form-section" class="btn btn-white">Prenota una visita</a>
+          <p class="footer__cta-address">Vi aspettiamo a Cesano Maderno, in Via San Bernardo ang. Via Diaz.</p>
+        </div>
       </div>
-      <div>
-        <p class="footer__col-title">Contatti</p>
-        <p class="footer__contact-item">
-          <span class="footer__contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          Via Lega Lombarda n.11, Biassono (MB)
-        </p>
-        <p class="footer__contact-item">
-          <span class="footer__contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
-          <a href="tel:+39039491864" style="color:inherit;text-decoration:none;">039 491 864</a>
-        </p>
+
+      <!-- Mappa sede Primary -->
+      <div class="map-container">
+        <iframe
+          src="https://maps.google.com/maps?q=Via+San+Bernardo,+Cesano+Maderno+MB,+Italia&output=embed&z=16"
+          width="100%"
+          height="320"
+          style="border:0; border-radius: var(--radius-lg, 16px);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Sede Primary BBEducation — Via San Bernardo ang. Via Diaz, Cesano Maderno"
+        ></iframe>
       </div>
-      <div>
-        <p class="footer__col-title">Navigazione</p>
-        <nav aria-label="Link footer">
-          <div class="footer__nav-links" style="flex-direction:column;">
-            <a href="#method">Il metodo</a>
-            <a href="#bilinguismo">Il bilinguismo</a>
-            <a href="#continuita">Il percorso</a>
-            <a href="#famiglie">Scuola &amp; famiglia</a>
-            <a href="#faq">FAQ</a>
-            <a href="#booking-form-section">Prenota una visita</a>
+
+      <!-- Grid info -->
+      <div class="footer__grid">
+
+        <div>
+          <a href="#" aria-label="BBEducation — torna all'inizio della pagina">
+            <img src="logo/BBEbiancologofull.webp" alt="BBEducation" class="footer__logo" width="216" height="65" loading="lazy">
+          </a>
+          <p class="footer__tagline">Scuola elementare bilingue.<br>Sede di Cesano Maderno, Brianza.</p>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Contatti</p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            Via San Bernardo ang. Via Diaz, Cesano Maderno (MB)
+          </p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
+            <a href="tel:+39039491864" style="color:inherit;text-decoration:none;">039 491 864</a>
+          </p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <a href="mailto:info@bbeducation.it" style="color:inherit;text-decoration:none;">info@bbeducation.it</a>
+          </p>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Navigazione</p>
+          <nav aria-label="Link footer">
+            <div class="footer__nav-links" style="flex-direction:column;">
+              <a href="#method">Metodo</a>
+              <a href="#continuita">Percorso</a>
+              <a href="#famiglie">Relazione con la famiglia</a>
+              <a href="#testimonianze">Testimonianze</a>
+              <a href="#faq">FAQ</a>
+              <a href="#info">Contatti</a>
+            </div>
+          </nav>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Seguici</p>
+          <div class="footer__social-links">
+            <a href="https://www.instagram.com/bb.education/" class="footer__social-link" aria-label="BBEducation su Instagram" rel="noopener noreferrer" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/brianza.bilingual.education/?locale=it_IT" class="footer__social-link" aria-label="BBEducation su Facebook" rel="noopener noreferrer" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
           </div>
-        </nav>
+        </div>
+
       </div>
-    </div>
-    <div class="footer__bottom">
-      <p class="footer__legal">© 2025 BBEducation S.r.l. — P.IVA 00000000000 — <a href="#">Privacy Policy</a></p>
+
+      <div class="footer__bottom">
+        <p class="footer__bottom-text">© BBEducation — Brianza Bilingual Education. Tutti i diritti riservati.</p>
+        <p class="footer__bottom-text"><a href="#">Privacy Policy</a> &nbsp; <a href="#">Cookie Policy</a></p>
+      </div>
+
     </div>
   </footer>
 
   <script src="js/config.js"></script>
+  <script>
+    /* Date Open Day Primary — sovrascrive quelle del config.js condiviso */
+    window.BBE_CONFIG.openDayEvents = [
+      { id: "od-p-1", type: "open-day", dayLabel: "Sabato", dateLabel: "3 ottobre",   time: "10:00", capacity: 20, status: "available", spotsRemaining: null },
+      { id: "od-p-2", type: "open-day", dayLabel: "Sabato", dateLabel: "17 ottobre",  time: "15:00", capacity: 20, status: "available", spotsRemaining: null },
+      { id: "od-p-3", type: "open-day", dayLabel: "Sabato", dateLabel: "14 novembre", time: "15:00", capacity: 20, status: "available", spotsRemaining: null },
+      { id: "od-p-4", type: "open-day", dayLabel: "Sabato", dateLabel: "28 novembre", time: "10:00", capacity: 20, status: "available", spotsRemaining: null },
+    ];
+    window.BBE_CONFIG.openSchoolEvents = [
+      { id: "os-p-1", type: "open-school", dayLabel: "Martedì", dateLabel: "27 ottobre", time: "10:00", capacity: 20, status: "available", spotsRemaining: null },
+    ];
+
+    /* FAQ specifiche della Primary — sovrascrive quelle del config.js condiviso */
+    window.BBE_CONFIG.faqs = [
+      {
+        id: "faq-p-1",
+        question: "Dove si svolge l'Open Day?",
+        body: "L'Open Day si svolge presso la sede BBEducation di Cesano Maderno.",
+        placeholderText: null,
+      },
+      {
+        id: "faq-p-2",
+        question: "Quando aprirà il nuovo Campus di Seveso?",
+        body: "Il nuovo Campus sarà operativo dal 2027 e ospiterà i percorsi Primary e Middle School.",
+        placeholderText: null,
+      },
+      {
+        id: "faq-p-3",
+        question: "Cosa succederà alla sede di Cesano Maderno?",
+        body: "Dal 2027 il percorso Primary sarà trasferito nel nuovo Campus di Seveso.",
+        placeholderText: null,
+      },
+      {
+        id: "faq-p-4",
+        question: "Posso conoscere il progetto 2027 durante l'Open Day?",
+        body: "Sì. Durante l'Open Day potrai conoscere il percorso attuale e scoprire anche le novità che accompagneranno l'evoluzione di BBEducation.",
+        placeholderText: null,
+      },
+    ];
+  </script>
   <script src="js/app.js"></script>
 
 </body>
