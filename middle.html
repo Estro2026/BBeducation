@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Middle School Bilingue a Seveso | BBEducation</title>
+  <meta name="description" content="La Middle School BBEducation: un percorso bilingue e innovativo per ragazzi dagli 11 ai 14 anni. Inquiry Based Learning, Gameful Learning e continuità educativa nel nuovo Campus di Seveso.">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Middle School Bilingue a Seveso | BBEducation">
+  <meta property="og:description" content="Il futuro di tuo figlio non è ancora scritto. Possiamo però iniziare a costruirlo insieme. Scopri la Middle School BBEducation.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+
+  <link rel="preload" href="Font/Nunito-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="Foto primary/primary.webp" as="image">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/style.css?v=77">
+  <link rel="stylesheet" href="css/middle.css?v=1">
+  <style>
+    /* MIDDLE HERO — pattern gradiente multicolore */
+    .hero { background: url('gradientiepatternbaby/patterngradiente.webp') center / 100% 100% no-repeat !important; position: relative !important; }
+    .hero::before { display: none !important; }
+    .hero::after  { display: none !important; }
+    .hero__inner  { position: relative !important; z-index: 2 !important; }
+
+    /* Header nav hover arancio */
+    .header__nav a:hover { background: rgba(255,172,89,0.12) !important; color: #FFAC59 !important; }
+
+    /* #why — sfondo bianco */
+    #why { background: #ffffff !important; }
+
+    /* Scroll story */
+    #scroll-story-baby { background: rgba(255,172,89,0.07) !important; }
+    #scroll-story-baby .scroll-story__panel,
+    #scroll-story-baby .scroll-story__sticky { background: transparent !important; }
+
+    /* Capacity badge */
+    .open-day__capacity { background: rgba(255,172,89,0.12) !important; color: #FFAC59 !important; border-radius: 999px !important; border: 1.5px solid #FFAC59 !important; }
+
+    /* FAQ */
+    #faq { background: rgba(255,172,89,0.07) !important; }
+    .faq-item { box-shadow: 0 2px 12px rgba(255,172,89,0.10) !important; }
+    .faq-item::before { background: conic-gradient(from -90deg, #FFAC59 0%, #FF788D 100%, transparent 100%) !important; }
+    .faq-item:has(.faq-trigger[aria-expanded="true"]) { box-shadow: 0 4px 24px rgba(255,172,89,0.22) !important; }
+    .faq-trigger:hover { background: rgba(255,172,89,0.05) !important; }
+    .faq-trigger[aria-expanded="true"] { color: #FFAC59 !important; background: rgba(255,172,89,0.06) !important; }
+    .faq-trigger[aria-expanded="true"] .faq-icon { background: #FFAC59 !important; color: #fff !important; }
+    .faq-icon { background: rgba(255,172,89,0.15) !important; color: #FFAC59 !important; }
+
+    /* Continuità */
+    .continuita-step__badge { color: #FFAC59 !important; background: rgba(255,172,89,0.10) !important; }
+    .continuita-step--active .continuita-step__badge { background: linear-gradient(90deg, #FFAC59, #FF788D) !important; color: #fff !important; }
+    .continuita-step--active .continuita-step__label { color: #FFAC59 !important; }
+    .continuita-path::before { background: linear-gradient(90deg, #FFAC59, #FF788D) !important; }
+    .continuita-step::before { background: linear-gradient(to bottom, rgba(255,172,89,0.6), rgba(255,172,89,0.1)) !important; }
+    .continuita-step { border-color: rgba(255,172,89,0.22) !important; box-shadow: 0 4px 20px rgba(255,172,89,0.10) !important; }
+    #continuita .continuita-step::after { background: conic-gradient(from -90deg, #FFAC59 0%, #FF788D var(--ct-sweep), transparent var(--ct-sweep)) !important; }
+
+    /* Famiglie — oda-badge arancio */
+    #famiglie .open-day-agenda__badges { grid-template-columns: 1fr !important; }
+    #famiglie .oda-badge { box-shadow: 0 4px 16px rgba(255,172,89,0.12) !important; padding: 1.4rem 1.5rem !important; transition: box-shadow 0.25s ease !important; }
+    #famiglie .oda-badge:hover { box-shadow: 0 6px 24px rgba(255,172,89,0.22) !important; }
+    #famiglie .oda-badge::before {
+      background: conic-gradient(from -90deg, #FFAC59 0%, #FF788D var(--oda-sweep), transparent var(--oda-sweep)) !important;
+      --oda-sweep: 0%;
+      transition: --oda-sweep 0.75s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    #famiglie .oda-badge:hover::before { --oda-sweep: 100%; }
+    #famiglie .oda-badge__icon { background: rgba(255,172,89,0.13) !important; color: #FFAC59 !important; }
+    #famiglie .section__title { position: relative !important; display: inline-block !important; align-self: flex-start !important; }
+    #famiglie .section__title::after {
+      content: '' !important; position: absolute !important; bottom: -8px !important; left: 0 !important;
+      width: 100% !important; height: 3px !important;
+      background: linear-gradient(90deg, #FFAC59, #FF788D) !important;
+      border-radius: 2px !important; transform: scaleX(0) !important; transform-origin: left center !important;
+      transition: transform 0.7s 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    #famiglie .fade-up.in-view .section__title::after { transform: scaleX(1) !important; }
+
+    /* Value cards */
+    .value-card__front, .value-card__back {
+      background: linear-gradient(135deg, #FFAC59 0%, #FF788D 100%) !important;
+      background-size: 220% 220% !important; background-position: 0% 0% !important;
+      box-shadow: 0 4px 20px rgba(255,172,89,0.25) !important;
+      transition: background-position 0.65s ease, box-shadow 0.3s ease !important;
+    }
+    .value-card:hover .value-card__front, .value-card:hover .value-card__back {
+      background-position: 100% 100% !important; box-shadow: 0 8px 32px rgba(255,120,141,0.40) !important;
+    }
+    #why .why-grid .fade-up.in-view.value-card:hover, #why .why-grid .value-card:hover { transform: none !important; box-shadow: 0 4px 20px rgba(255,172,89,0.22) !important; }
+    .value-card__big-icon svg, .value-card__back-icon svg { stroke: #ffffff !important; }
+
+    /* Centro-list — allineamento sinistra */
+    .centro-list li { text-align: left !important; display: flex; align-items: flex-start; gap: 0.5rem; }
+    .centro-list li span:last-child { text-align: left !important; }
+
+    /* Discover the Future — prevent text clipping */
+    #open-day .oda-panel--agenda { overflow: visible !important; }
+    #open-day .section__eyebrow { overflow: visible !important; white-space: normal !important; }
+
+    /* Form info */
+    #info.info-form-section { background: #ffffff !important; }
+    #info .info-form-wrapper { background: rgba(255,172,89,0.07) !important; }
+
+    /* Footer */
+    .site-footer { background: url('gradientiepatternbaby/patterngradiente.webp') center/100% 100% no-repeat !important; }
+
+    /* Competenze section */
+    #competenze { background: rgba(255,172,89,0.07); }
+
+    /* Titolo competenze — underline animato */
+    #competenze .section__title { position: relative !important; display: inline-block !important; align-self: flex-start !important; }
+    #competenze .section__title::after {
+      content: '' !important; position: absolute !important; bottom: -8px !important; left: 0 !important;
+      width: 100% !important; height: 3px !important;
+      background: linear-gradient(90deg, #FFAC59, #FF788D) !important;
+      border-radius: 2px !important; transform: scaleX(0) !important; transform-origin: left center !important;
+      transition: transform 0.7s 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    #competenze .section__header.fade-up.in-view .section__title::after { transform: scaleX(1) !important; }
+
+    /* Comunità educativa — sfondo arancio chiaro */
+    #famiglie { background: rgba(255,172,89,0.07) !important; }
+
+    /* Competenze grid — stile oda-badge */
+    .competenze-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-5); }
+    @media (min-width: 540px) { .competenze-grid { grid-template-columns: 1fr 1fr; } }
+    .competenza-card {
+      background: #fff; border-radius: var(--radius-md); padding: 1.4rem 1.5rem;
+      box-shadow: 0 4px 16px rgba(255,172,89,0.12);
+      display: flex; flex-direction: row; align-items: flex-start;
+      gap: var(--space-3); position: relative;
+      transition: box-shadow 0.25s ease;
+    }
+    .competenza-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: var(--radius-md);
+      padding: 2px; pointer-events: none;
+      background: conic-gradient(from -90deg, #FFAC59 0%, #FF788D var(--oda-sweep), transparent var(--oda-sweep));
+      --oda-sweep: 0%;
+      transition: --oda-sweep 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    .competenza-card:hover::before { --oda-sweep: 100%; }
+    .competenza-card:hover { box-shadow: 0 6px 24px rgba(255,172,89,0.22); }
+    .competenza-card__icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,172,89,0.13); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .competenza-card__icon svg { stroke: #FFAC59; }
+    .competenza-card__text { display: flex; flex-direction: column; gap: 0.3rem; }
+    .competenza-card__title { font-weight: 700; font-size: var(--text-base); color: var(--color-text); }
+    .competenza-card__body { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.55; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "BBEducation Middle School",
+        "description": "Middle School bilingue a Seveso per ragazzi dagli 11 ai 14 anni.",
+        "address": { "@type": "PostalAddress", "addressLocality": "Seveso", "addressRegion": "MB", "addressCountry": "IT" },
+        "areaServed": "Brianza",
+        "knowsLanguage": ["it", "en"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "La Middle School è una novità?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. La Middle School rappresenta la nuova fase del progetto BBEducation." } },
+          { "@type": "Question", "name": "Mio figlio deve conoscere già l'inglese per iscriversi?", "acceptedAnswer": { "@type": "Answer", "text": "No. Il percorso BBEducation è progettato per accompagnare ogni studente nel bilinguismo in modo progressivo e naturale." } },
+          { "@type": "Question", "name": "Quando aprirà il nuovo Campus di Seveso?", "acceptedAnswer": { "@type": "Answer", "text": "Il nuovo Campus sarà operativo dal 2027 e ospiterà i percorsi Primary e Middle School." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Vai al contenuto principale</a>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container header__inner">
+      <a href="#" class="header__brand" aria-label="BBEducation — torna all'inizio della pagina">
+        <img src="logo/BBEnormalelogofull.webp" alt="BBEducation logo" class="header__logo" width="315" height="90">
+        <span class="header__label">Scuola Secondaria di Primo Grado Bilingue</span>
+      </a>
+      <nav class="header__nav" aria-label="Navigazione principale">
+        <ul>
+          <li><a href="#metodo">Metodo</a></li>
+          <li><a href="#continuita">Percorso</a></li>
+          <li><a href="#famiglie">Comunità</a></li>
+          <li><a href="#testimonianze">Testimonianze</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#info">Contatti</a></li>
+        </ul>
+      </nav>
+      <div class="header__cta">
+        <a href="#booking-form-section" class="btn btn-primary">Discover the Future</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- 01 — HERO -->
+    <section id="hero" class="hero pattern-bg" aria-labelledby="hero-h1">
+      <div class="hero__inner">
+
+        <div class="hero__media" aria-hidden="true">
+          <img
+            src="Foto primary/primary.webp"
+            alt=""
+            class="hero__image"
+            width="840" height="960"
+            style="object-position: center center;"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </div>
+
+        <div class="hero__copy">
+          <p class="hero__eyebrow">Scuola Secondaria di Primo Grado Bilingue · Campus Seveso 2027</p>
+          <h1 id="hero-h1" class="hero__h1">
+            Middle School bilingue a&nbsp;Seveso
+          </h1>
+          <p class="hero__headline">
+            Il futuro di tuo figlio<br>
+            si costruisce adesso.<br>
+            <span>Iniziamo insieme.</span>
+          </p>
+          <p class="hero__subtitle">
+            Un percorso innovativo per ragazzi dagli 11 ai 14 anni. Inquiry Based Learning,
+            Gameful Learning e&nbsp;continuità educativa nel nuovo Campus di Seveso.
+          </p>
+          <div class="hero__cta-group">
+            <a href="#booking-form-section" class="btn btn-primary">Partecipa al Discover the Future</a>
+            <a href="#why" class="btn btn-outline">Scopri la Middle School</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 02 — PERCHÉ LA MIDDLE SCHOOL -->
+    <section id="why" class="section" aria-labelledby="why-title">
+      <div class="container">
+
+        <div class="section__header fade-up">
+          <h2 id="why-title" class="section__title">Perché scegliere questa Middle School</h2>
+          <p class="section__subtitle">
+            Una scuola media pensata per accompagnare i ragazzi
+            nella fase più delicata della crescita, con metodo, relazione e&nbsp;visione.
+          </p>
+        </div>
+
+        <div class="why-grid">
+
+          <article class="value-card fade-up" aria-labelledby="vc-1-title" role="button" tabindex="0" aria-expanded="false">
+            <div class="value-card__flipper">
+              <div class="value-card__front">
+                <div class="value-card__big-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <p class="value-card__front-label">Metodo innovativo</p>
+                <p class="value-card__hint">scopri di più →</p>
+              </div>
+              <div class="value-card__back">
+                <div class="value-card__back-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3 id="vc-1-title" class="value-card__title">Metodo innovativo</h3>
+                <p class="value-card__body">Inquiry Based Learning e&nbsp;Gameful Learning per stimolare curiosità, pensiero critico e&nbsp;partecipazione attiva.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="value-card fade-up" aria-labelledby="vc-2-title" role="button" tabindex="0" aria-expanded="false">
+            <div class="value-card__flipper">
+              <div class="value-card__front">
+                <div class="value-card__big-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <p class="value-card__front-label">Bilinguismo autentico</p>
+                <p class="value-card__hint">scopri di più →</p>
+              </div>
+              <div class="value-card__back">
+                <div class="value-card__back-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <h3 id="vc-2-title" class="value-card__title">Bilinguismo autentico</h3>
+                <p class="value-card__body">Non un semplice potenziamento dell'inglese, ma un percorso immersivo che prepara a un futuro internazionale.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="value-card fade-up" aria-labelledby="vc-3-title" role="button" tabindex="0" aria-expanded="false">
+            <div class="value-card__flipper">
+              <div class="value-card__front">
+                <div class="value-card__big-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <p class="value-card__front-label">Classi contenute</p>
+                <p class="value-card__hint">scopri di più →</p>
+              </div>
+              <div class="value-card__back">
+                <div class="value-card__back-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <h3 id="vc-3-title" class="value-card__title">Classi contenute</h3>
+                <p class="value-card__body">Ogni studente è visto come individuo. Classi piccole per garantire attenzione, relazione e&nbsp;crescita personale.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="value-card fade-up" aria-labelledby="vc-4-title" role="button" tabindex="0" aria-expanded="false">
+            <div class="value-card__flipper">
+              <div class="value-card__front">
+                <div class="value-card__big-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <p class="value-card__front-label">Continuità educativa</p>
+                <p class="value-card__hint">scopri di più →</p>
+              </div>
+              <div class="value-card__back">
+                <div class="value-card__back-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h3 id="vc-4-title" class="value-card__title">Continuità educativa</h3>
+                <p class="value-card__body">Un percorso coerente dal Baby alla Middle School: stessi valori, stesso metodo, stessa attenzione alla persona.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="section__cta fade-up" style="text-align:center; margin-top: var(--space-5);">
+          <a href="#booking-form-section" class="btn btn-primary">Partecipa al Discover the Future</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 03+04+05 — SCROLL STORY: Metodo -->
+    <div class="scroll-story" id="scroll-story-baby">
+      <div class="scroll-story__frame">
+
+        <div class="scroll-story__panels">
+
+          <section id="metodo" class="scroll-story__panel ss-panel--white" aria-labelledby="metodo-title">
+            <div class="scroll-story__mob-img" aria-hidden="true">
+              <img src="Foto primary/primary2.webp" alt="" width="600" height="450" loading="lazy" decoding="async" class="method__image">
+            </div>
+            <div class="scroll-story__panel-inner">
+              <div class="method__content fade-up">
+                <h2 id="metodo-title" class="section__title section__title--left">Inquiry Based Learning</h2>
+                <p class="method__body">
+                  I ragazzi partono da domande reali, esplorano, analizzano e&nbsp;costruiscono la propria conoscenza attraverso la ricerca.<br>
+                  Un metodo che sviluppa pensiero critico, autonomia e&nbsp;curiosità autentica.
+                </p>
+                <p class="method__body" style="font-weight:700;color:var(--color-text);">
+                  Ogni lezione è un'occasione per:
+                </p>
+                <ul class="method__features">
+                  <li class="method__feature">
+                    <span class="method__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Investigare</strong><br><span style="font-weight:400">Partendo da domande reali e sfide concrete.</span></span>
+                  </li>
+                  <li class="method__feature">
+                    <span class="method__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Costruire</strong><br><span style="font-weight:400">Conoscenza attraverso la ricerca e la sperimentazione.</span></span>
+                  </li>
+                  <li class="method__feature">
+                    <span class="method__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Argomentare</strong><br><span style="font-weight:400">Sviluppando pensiero critico e capacità di comunicare le proprie idee.</span></span>
+                  </li>
+                </ul>
+                <p class="method__body" style="font-weight:700;color:#FFAC59;margin-top:0.25rem;margin-bottom:0.25rem;">
+                  Perché imparare a pensare è più importante<br>che imparare a rispondere.
+                </p>
+                <a href="#booking-form-section" class="btn btn-primary" style="margin-top:0.25rem;align-self:flex-start;">Scopri il metodo</a>
+              </div>
+            </div>
+          </section>
+
+          <section id="gameful" class="scroll-story__panel ss-panel--white" aria-labelledby="gameful-title">
+            <div class="scroll-story__mob-img" aria-hidden="true">
+              <img src="Foto primary/primary.webp" alt="" width="600" height="450" loading="lazy" decoding="async" class="method__image">
+            </div>
+            <div class="scroll-story__panel-inner">
+              <div class="method__content fade-up">
+                <h2 id="gameful-title" class="section__title section__title--left">Gameful Learning</h2>
+                <p class="method__body">
+                  Le dinamiche del gioco entrano nell'apprendimento: sfida, collaborazione,
+                  progressione e&nbsp;soddisfazione diventano motori autentici della crescita.
+                  La scuola diventa un luogo dove vale la pena impegnarsi.
+                </p>
+                <p class="method__body">
+                  I ragazzi imparano a <strong>gestire l'errore come parte del&nbsp;processo</strong>,
+                  a collaborare sotto pressione e&nbsp;a trovare soluzioni creative a problemi reali.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="progetti" class="scroll-story__panel ss-panel--white" aria-labelledby="progetti-title">
+            <div class="scroll-story__mob-img" aria-hidden="true">
+              <img src="Foto primary/primary3.webp" alt="" width="600" height="450" loading="lazy" decoding="async" class="method__image">
+            </div>
+            <div class="scroll-story__panel-inner">
+              <div class="method__content fade-up">
+                <h2 id="progetti-title" class="section__title section__title--left">Progetti interdisciplinari</h2>
+                <p class="method__body">
+                  La conoscenza non vive in compartimenti stagni. I progetti interdisciplinari
+                  collegano materie diverse attraverso esperienze concrete, avvicinando i ragazzi
+                  alla complessità del mondo reale.
+                </p>
+                <ul class="centro-list" style="text-align:left; list-style:none; padding:0;">
+                  <li>
+                    <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span style="text-align:left;"><strong>Connessioni tra discipline diverse:</strong> scienze, storia, arte, tecnologia</span>
+                  </li>
+                  <li>
+                    <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span style="text-align:left;"><strong>Esperienze concrete</strong> e&nbsp;applicazione pratica delle conoscenze</span>
+                  </li>
+                  <li>
+                    <span class="centro-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><polyline points="6 10 10 14 18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span style="text-align:left;"><strong>Preparazione alla complessità</strong> del futuro professionale e&nbsp;personale</span>
+                  </li>
+                </ul>
+                <a href="#booking-form-section" class="btn btn-primary" style="margin-top:var(--space-3);align-self:flex-start;">Partecipa al Discover the Future</a>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="scroll-story__sticky" aria-hidden="true">
+          <div class="scroll-story__img-track">
+            <div class="scroll-story__img-inner" id="ss-img-inner">
+              <img src="Foto primary/primary2.webp" class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
+              <img src="Foto primary/primary.webp"  class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
+              <img src="Foto primary/primary3.webp" class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
+            </div>
+          </div>
+          <div class="scroll-story__dots" aria-hidden="true">
+            <span class="scroll-story__dot is-active"></span>
+            <span class="scroll-story__dot"></span>
+            <span class="scroll-story__dot"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 06 — LE COMPETENZE PER IL FUTURO -->
+    <section id="competenze" class="section" aria-labelledby="competenze-title">
+      <div class="container">
+        <div class="section__header fade-up">
+          <h2 id="competenze-title" class="section__title">Le competenze per il futuro</h2>
+          <p class="section__subtitle">
+            La Middle School BBEducation punta a sviluppare le capacità
+            che serviranno davvero: pensiero critico, collaborazione, comunicazione e&nbsp;adattabilità.
+          </p>
+        </div>
+        <div class="competenze-grid">
+          <div class="competenza-card fade-up">
+            <span class="competenza-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+            <div class="competenza-card__text">
+              <strong class="competenza-card__title">Pensiero critico</strong>
+              <p class="competenza-card__body">Analizzare, valutare e&nbsp;argomentare. Ragazzi capaci di ragionare in&nbsp;autonomia e&nbsp;formarsi un'opinione fondata.</p>
+            </div>
+          </div>
+          <div class="competenza-card fade-up">
+            <span class="competenza-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span>
+            <div class="competenza-card__text">
+              <strong class="competenza-card__title">Collaborazione</strong>
+              <p class="competenza-card__body">Lavorare in&nbsp;team, ascoltare, contribuire e&nbsp;costruire qualcosa insieme. Competenza fondamentale in&nbsp;ogni contesto futuro.</p>
+            </div>
+          </div>
+          <div class="competenza-card fade-up">
+            <span class="competenza-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
+            <div class="competenza-card__text">
+              <strong class="competenza-card__title">Comunicazione</strong>
+              <p class="competenza-card__body">Esprimersi con chiarezza in&nbsp;italiano e&nbsp;in&nbsp;inglese, per contesti accademici e&nbsp;professionali.</p>
+            </div>
+          </div>
+          <div class="competenza-card fade-up">
+            <span class="competenza-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+            <div class="competenza-card__text">
+              <strong class="competenza-card__title">Adattabilità</strong>
+              <p class="competenza-card__body">Affrontare l'incertezza con flessibilità e&nbsp;resilienza. Ragazzi pronti a&nbsp;navigare un mondo in&nbsp;continuo cambiamento.</p>
+            </div>
+          </div>
+          <div class="competenza-card fade-up">
+            <span class="competenza-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+            <div class="competenza-card__text">
+              <strong class="competenza-card__title">Cittadinanza globale</strong>
+              <p class="competenza-card__body">Apertura al mondo, rispetto per le diversità e&nbsp;consapevolezza del&nbsp;proprio ruolo nella comunità globale.</p>
+            </div>
+          </div>
+          <div class="competenza-card fade-up">
+            <span class="competenza-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 006 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span>
+            <div class="competenza-card__text">
+              <strong class="competenza-card__title">Autonomia</strong>
+              <p class="competenza-card__body">Gestire il tempo, i progetti e&nbsp;le responsabilità. Ragazzi che imparano a&nbsp;guidare il proprio percorso con consapevolezza crescono ovunque.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 — UN PERCORSO UNICO -->
+    <section id="continuita" class="section section--white" aria-labelledby="continuita-title">
+      <div class="container">
+
+        <div class="section__header fade-up">
+          <h2 id="continuita-title" class="section__title">Un percorso unico, dalla nascita ai&nbsp;14 anni</h2>
+          <p class="section__subtitle">
+            BBEducation accompagna ogni studente lungo un cammino coerente e&nbsp;continuo.
+            Stessi valori, stesso metodo, stessa attenzione alla&nbsp;persona.
+          </p>
+        </div>
+
+        <div class="continuita-path">
+          <div class="continuita-step continuita-step--anim">
+            <div class="continuita-step__img-wrap">
+              <img src="Foto/baby.webp" alt="Baby BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
+            </div>
+            <span class="continuita-step__badge">0–6</span>
+            <strong class="continuita-step__label">Baby</strong>
+            <span class="continuita-step__desc">Nido e Scuola dell'Infanzia</span>
+          </div>
+          <div class="continuita-step continuita-step--anim" style="--step-delay:0.28s">
+            <div class="continuita-step__img-wrap">
+              <img src="Foto primary/primary.webp" alt="Primary BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
+            </div>
+            <span class="continuita-step__badge">6–11</span>
+            <strong class="continuita-step__label">Primary</strong>
+            <span class="continuita-step__desc">Scuola Primaria Bilingue</span>
+          </div>
+          <div class="continuita-step continuita-step--active continuita-step--anim" style="--step-delay:0.52s">
+            <div class="continuita-step__img-wrap">
+              <img src="Foto primary/primary3.webp" alt="Middle School BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
+            </div>
+            <span class="continuita-step__badge">11–14</span>
+            <strong class="continuita-step__label">Middle School</strong>
+            <span class="continuita-step__desc">Scuola Secondaria di primo grado</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 08 — LA COMUNITÀ EDUCATIVA -->
+    <section id="famiglie" class="section" aria-labelledby="famiglie-title">
+      <div class="container">
+
+        <div class="famiglie-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-6); align-items:stretch;">
+          <div class="fade-up" style="display:flex; flex-direction:column;">
+            <h2 id="famiglie-title" class="section__title section__title--left">
+              La comunità educativa
+            </h2>
+            <p class="method__body" style="margin-top: var(--space-2);">
+              La Middle School è una comunità in cui insegnanti, studenti
+              e famiglie costruiscono insieme un percorso di crescita autentico,
+              fatto di relazione, fiducia e&nbsp;visione condivisa.
+            </p>
+            <div class="open-day-agenda__badges" style="margin-top:var(--space-3); flex:1;">
+              <div class="oda-badge fade-up">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Docenti internazionali</strong>
+                  <span class="oda-badge__body">Un team multiculturale e&nbsp;altamente qualificato, con background accademici diversi e&nbsp;passione per l'educazione.</span>
+                </span>
+              </div>
+              <div class="oda-badge fade-up">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Dialogo con le famiglie</strong>
+                  <span class="oda-badge__body">Aggiornamenti continui, momenti di confronto strutturati e&nbsp;un canale diretto con&nbsp;la scuola.</span>
+                </span>
+              </div>
+              <div class="oda-badge fade-up">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">I ragazzi al centro</strong>
+                  <span class="oda-badge__body">Ogni studente è visto nella propria unicità. Il percorso viene costruito rispettando tempi, inclinazioni e&nbsp;potenzialità di ciascuno.</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="fade-up" style="border-radius:var(--radius-md); overflow:hidden;">
+            <img src="Foto primary/primary3.webp" alt="Comunità educativa BBEducation" loading="lazy" width="600" height="900" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 09 — TESTIMONIANZE -->
+    <section id="testimonianze" class="section section--white" aria-labelledby="testimonianze-title">
+      <div class="container">
+
+        <div class="section__header fade-up">
+          <span class="section__eyebrow">Le famiglie raccontano</span>
+          <h2 id="testimonianze-title" class="section__title">Prova a conoscerci</h2>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4); margin-top:var(--space-5);">
+
+          <div class="fade-up" style="border-left:4px solid #FFAC59; padding:var(--space-4); background:rgba(255,172,89,0.06); border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <p style="font-size:var(--text-base); line-height:1.7; color:var(--color-text); font-style:italic; margin:0 0 var(--space-3);">
+              "Cercavamo qualcosa di diverso per nostro figlio. Alla Middle School BBEducation abbiamo trovato un progetto educativo che lo prepara davvero al futuro, non soltanto al programma ministeriale."
+            </p>
+            <p style="font-size:var(--text-sm); font-weight:700; color:#FFAC59; margin:0;">
+              Famiglia M. — genitori di Lorenzo, 12 anni
+            </p>
+          </div>
+
+          <div class="fade-up" style="border-left:4px solid #FF788D; padding:var(--space-4); background:rgba(255,120,141,0.04); border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <p style="font-size:var(--text-base); line-height:1.7; color:var(--color-text); font-style:italic; margin:0 0 var(--space-3);">
+              "Nostra figlia tornava a casa entusiasta di quello che aveva fatto. L'inglese è diventato naturale, e la sua autonomia nel gestire i progetti ci ha stupiti."
+            </p>
+            <p style="font-size:var(--text-sm); font-weight:700; color:#FF788D; margin:0;">
+              Famiglia R. — mamma di Giorgia, 13 anni
+            </p>
+          </div>
+
+          <div class="fade-up" style="border-left:4px solid #FF788D; padding:var(--space-4); background:rgba(255,120,141,0.04); border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <p style="font-size:var(--text-base); line-height:1.7; color:var(--color-text); font-style:italic; margin:0 0 var(--space-3);">
+              "Ciò che ci ha convinto è la relazione con i docenti. Ci conoscono, ci aggiornano, ci coinvolgono. Sentiamo davvero di fare parte di una comunità."
+            </p>
+            <p style="font-size:var(--text-sm); font-weight:700; color:#FF788D; margin:0;">
+              Famiglia B. — genitori di Sofia, 11 anni
+            </p>
+          </div>
+
+          <div class="fade-up" style="border-left:4px solid #FFAC59; padding:var(--space-4); background:rgba(255,172,89,0.06); border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <p style="font-size:var(--text-base); line-height:1.7; color:var(--color-text); font-style:italic; margin:0 0 var(--space-3);">
+              "Il metodo li coinvolge, li responsabilizza, li fa crescere come persone. Abbiamo visto nostro figlio cambiare in modo straordinario nel giro di pochi mesi."
+            </p>
+            <p style="font-size:var(--text-sm); font-weight:700; color:#FFAC59; margin:0;">
+              Famiglia C. — papà di Marco, 12 anni
+            </p>
+          </div>
+
+        </div>
+
+        <div class="section__cta fade-up" style="text-align:center; margin-top:var(--space-5);">
+          <a href="#booking-form-section" class="btn btn-primary">Partecipa al Discover the Future</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 10 — DISCOVER THE FUTURE -->
+    <section id="open-day" class="open-day-section" aria-labelledby="open-day-title" tabindex="-1">
+
+      <div class="oda-panel oda-panel--agenda">
+        <span class="section__eyebrow" aria-hidden="true">Orientamento</span>
+        <div class="container">
+
+          <div class="section__header fade-up">
+            <h2 id="open-day-title" class="section__title">Discover the Future</h2>
+            <p class="open-day__intro">Un incontro pensato per capire insieme come sarà il percorso educativo dei tuoi figli e&nbsp;iniziare a&nbsp;costruire il loro futuro con noi.</p>
+          </div>
+
+          <div class="open-day-agenda fade-up">
+            <div class="open-day-agenda__photo-hero">
+              <img src="Foto primary/primary2.webp" class="open-day-agenda__photo-img" alt="Discover the Future BBEducation Middle School" loading="lazy" width="600" height="400" style="object-position: center 30%;">
+            </div>
+            <p class="open-day__agenda-label fade-up">Durante il Discover the Future:</p>
+            <div class="open-day-agenda__badges">
+              <div class="oda-badge fade-up" style="--badge-delay:0.05s">
+                <span class="oda-badge__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Scopri il metodo</strong>
+                  <span class="oda-badge__body">Inquiry Based Learning, Gameful Learning e progetti interdisciplinari:<br>come impareranno davvero i ragazzi.</span>
+                </span>
+              </div>
+              <div class="oda-badge fade-up" style="--badge-delay:0.15s">
+                <span class="oda-badge__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Il nuovo Campus di Seveso</strong>
+                  <span class="oda-badge__body">Scopri il progetto del nuovo polo educativo che aprirà nel 2027<br>e ospiterà Primary e Middle School.</span>
+                </span>
+              </div>
+              <div class="oda-badge fade-up" style="--badge-delay:0.25s">
+                <span class="oda-badge__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Incontra il team</strong>
+                  <span class="oda-badge__body">Conosci i docenti e il progetto educativo. Fai tutte le domande che ti servono<br>per scegliere consapevolmente.</span>
+                </span>
+              </div>
+              <div class="oda-badge fade-up" style="--badge-delay:0.35s">
+                <span class="oda-badge__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Fai le tue domande</strong>
+                  <span class="oda-badge__body">Parla con il team, confrontati e ricevi tutte le informazioni che ti servono per scegliere.</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align:center; margin-top: var(--space-5);">
+            <a href="#booking-form-section" class="btn btn-white fade-up">Prenota il tuo posto</a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="oda-panel oda-panel--form" id="odaFormPanel">
+        <button class="oda-form-close" id="odaFormClose" aria-label="Torna indietro">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <div class="container">
+
+          <div class="section__header fade-up">
+            <h2 class="section__title" id="oda-form-title">Prenota il tuo Discover the Future.</h2>
+            <p class="section__subtitle">Incontra il team e scopri il percorso Middle School<br>per ragazzi dagli 11 ai 14 anni.</p>
+          </div>
+
+          <div class="open-day__form-photo">
+            <div class="open-day__form-col">
+
+              <div class="no-dates-message" id="no-dates-message" role="status" aria-live="polite">
+                <p>
+                  Al momento non ci sono nuove date disponibili.<br>
+                  <strong>Lasciaci i tuoi dati e ti avviseremo appena apriremo il prossimo evento.</strong>
+                </p>
+                <a href="#info" class="btn btn-outline" style="margin-top: 1rem;">Avvisami per la prossima data</a>
+              </div>
+
+              <div id="booking-form-section" class="booking-form-wrapper" aria-label="Modulo prenotazione Discover the Future Middle School">
+                <h3 class="booking-form__heading">Scegli la data del Discover the Future</h3>
+                <span class="open-day__capacity">Massimo 20 famiglie per data</span>
+
+                <form id="booking-form" novalidate aria-label="Modulo prenotazione Discover the Future Middle School">
+                  <input type="hidden" id="booking-event-type" name="eventType" value="">
+                  <input type="hidden" name="formType" value="discover-middle">
+
+                  <div class="form-grid">
+
+                    <div class="form-field form-field--full">
+                      <label class="form-label" for="booking-date-select">
+                        Data Discover the Future <span class="required-marker" aria-hidden="true">*</span>
+                      </label>
+                      <select id="booking-date-select" name="eventId" class="form-select" required aria-required="true" aria-describedby="booking-date-select-error">
+                        <option value="" disabled selected>Seleziona una data…</option>
+                      </select>
+                      <span class="form-error" id="booking-date-select-error" role="alert" aria-live="assertive"></span>
+                      <p class="open-school-note" role="note" id="open-school-note" style="display:none; margin-top: var(--space-1);">
+                        <strong>Open School</strong> — Visita più breve, formato informativo.
+                      </p>
+                    </div>
+
+                    <div class="form-field">
+                      <label class="form-label" for="booking-name">
+                        Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+                      </label>
+                      <input type="text" id="booking-name" name="name" class="form-input" autocomplete="name" required aria-required="true" aria-describedby="booking-name-error" placeholder="es. Marco Rossi">
+                      <span class="form-error" id="booking-name-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <div class="form-field">
+                      <label class="form-label" for="booking-phone">
+                        Telefono <span class="required-marker" aria-hidden="true">*</span>
+                      </label>
+                      <input type="tel" id="booking-phone" name="phone" class="form-input" autocomplete="tel" inputmode="tel" required aria-required="true" aria-describedby="booking-phone-error" placeholder="es. 333 000 0000">
+                      <span class="form-error" id="booking-phone-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <div class="form-field">
+                      <label class="form-label" for="booking-email">
+                        Email <span class="required-marker" aria-hidden="true">*</span>
+                      </label>
+                      <input type="email" id="booking-email" name="email" class="form-input" autocomplete="email" required aria-required="true" aria-describedby="booking-email-error" placeholder="es. marco@email.it">
+                      <span class="form-error" id="booking-email-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <div class="form-field">
+                      <label class="form-label" for="booking-child-age">
+                        Età del ragazzo/a <span class="required-marker" aria-hidden="true">*</span>
+                      </label>
+                      <select id="booking-child-age" name="childAge" class="form-select" required aria-required="true" aria-describedby="booking-child-age-error">
+                        <option value="" disabled selected>Seleziona</option>
+                        <option value="10-11">10–11 anni (in entrata alla 1° media)</option>
+                        <option value="11-12">11–12 anni (1° media)</option>
+                        <option value="12-13">12–13 anni (2° media)</option>
+                        <option value="13-14">13–14 anni (3° media)</option>
+                      </select>
+                      <span class="form-error" id="booking-child-age-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <div class="form-field form-field--full">
+                      <div class="form-check">
+                        <input type="checkbox" id="booking-privacy" name="privacy" required aria-required="true" aria-describedby="booking-privacy-error">
+                        <label for="booking-privacy">
+                          Ho letto e accetto la <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a> di BBEducation.
+                          <span class="required-marker" aria-hidden="true">*</span>
+                        </label>
+                      </div>
+                      <span class="form-error" id="booking-privacy-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                  </div>
+
+                  <div class="form-submit-area">
+                    <button type="submit" class="btn btn-primary btn--compact">
+                      Prenota il tuo posto
+                    </button>
+                    <div class="form-status" role="status" aria-live="polite"></div>
+                  </div>
+
+                </form>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 11 — FAQ -->
+    <section id="faq" class="section" aria-labelledby="faq-title">
+      <div class="container">
+
+        <div class="section__header fade-up">
+          <span class="section__eyebrow">Domande frequenti</span>
+          <h2 id="faq-title" class="section__title">Prima di scegliere, è normale avere&nbsp;domande</h2>
+        </div>
+
+        <div id="faq-list" class="faq-list" role="list"></div>
+
+      </div>
+    </section>
+
+    <!-- 12 — FORM CONTATTI -->
+    <section id="info" class="section section--white info-form-section" aria-labelledby="info-title">
+      <div class="container">
+
+        <div class="info-form-wrapper fade-up">
+          <div class="section__header section__header--left" style="margin-bottom: var(--space-4);">
+            <h2 id="info-title" class="section__title" style="font-size: var(--text-2xl);">
+              Vuoi saperne di più sulla Middle School?
+            </h2>
+            <p class="section__subtitle" style="margin-inline: 0; text-align: left; margin-top: var(--space-1);">
+              Lasciaci i tuoi dati, ti ricontattiamo per un colloquio dedicato.
+            </p>
+          </div>
+
+          <form id="info-form" novalidate aria-label="Modulo richiesta informazioni Middle School">
+            <input type="hidden" name="formType" value="info-middle">
+
+            <div class="form-grid">
+
+              <div class="form-field form-field--full">
+                <label class="form-label" for="info-name">
+                  Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <input type="text" id="info-name" name="name" class="form-input" autocomplete="name" required aria-required="true" aria-describedby="info-name-error" placeholder="es. Marco Rossi">
+                <span class="form-error" id="info-name-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="info-phone">
+                  Telefono <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <input type="tel" id="info-phone" name="phone" class="form-input" autocomplete="tel" inputmode="tel" required aria-required="true" aria-describedby="info-phone-error" placeholder="es. 333 000 0000">
+                <span class="form-error" id="info-phone-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="info-email">
+                  Email <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+                <input type="email" id="info-email" name="email" class="form-input" autocomplete="email" required aria-required="true" aria-describedby="info-email-error" placeholder="es. marco@email.it">
+                <span class="form-error" id="info-email-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label class="form-label" for="info-child-age">Età del ragazzo/a</label>
+                <select id="info-child-age" name="childAge" class="form-select" aria-describedby="info-child-age-error">
+                  <option value="" disabled selected>Seleziona</option>
+                  <option value="10-11">10–11 anni (in entrata alla 1° media)</option>
+                  <option value="11-12">11–12 anni (1° media)</option>
+                  <option value="12-13">12–13 anni (2° media)</option>
+                  <option value="13-14">13–14 anni (3° media)</option>
+                </select>
+                <span class="form-error" id="info-child-age-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label class="form-label" for="info-message">Messaggio (facoltativo)</label>
+                <textarea id="info-message" name="message" class="form-input form-textarea" rows="3" placeholder="Raccontaci brevemente la situazione di tuo figlio/a…"></textarea>
+              </div>
+
+              <div class="form-field form-field--full">
+                <div class="form-check">
+                  <input type="checkbox" id="info-privacy" name="privacy" required aria-required="true" aria-describedby="info-privacy-error">
+                  <label for="info-privacy">
+                    Ho letto e accetto la <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a> di BBEducation.
+                    <span class="required-marker" aria-hidden="true">*</span>
+                  </label>
+                </div>
+                <span class="form-error" id="info-privacy-error" role="alert" aria-live="assertive"></span>
+              </div>
+
+            </div>
+
+            <div class="form-submit-area">
+              <button type="submit" class="btn btn-primary btn--compact">Richiedi un colloquio</button>
+              <div class="form-status" role="status" aria-live="polite"></div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__cta-block fade-up" style="position:relative; overflow:hidden; background:none !important;">
+        <div style="position:relative;z-index:1;">
+          <p class="footer__cta-headline">Vuoi conoscere meglio la Middle School?</p>
+          <a href="#booking-form-section" class="btn btn-white">Partecipa al Discover the Future</a>
+          <p class="footer__cta-address">Vi aspettiamo a Cesano Maderno, in Via San Bernardo ang. Via Diaz.</p>
+        </div>
+      </div>
+
+      <div class="map-container">
+        <iframe
+          src="https://maps.google.com/maps?q=Via+San+Bernardo,+Cesano+Maderno+MB,+Italia&output=embed&z=16"
+          width="100%" height="320"
+          style="border:0; border-radius: var(--radius-lg, 16px);"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Sede BBEducation — Via San Bernardo ang. Via Diaz, Cesano Maderno">
+        </iframe>
+      </div>
+
+      <div class="footer__grid">
+
+        <div>
+          <a href="#" aria-label="BBEducation — torna all'inizio della pagina">
+            <img src="logo/BBEbiancologofull.webp" alt="BBEducation" class="footer__logo" width="216" height="65" loading="lazy">
+          </a>
+          <p class="footer__tagline">Scuola Secondaria di Primo Grado Bilingue.<br>Nuovo Campus di Seveso, Brianza.</p>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Contatti</p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            BBE S.r.l. Via San Bernardo SNC, 20811 Cesano Maderno (MB)
+          </p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
+            Tel. <a href="tel:+390362545606" style="color:inherit;text-decoration:none;">0362.545606</a>
+          </p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
+            Mobile <a href="tel:+393381607768" style="color:inherit;text-decoration:none;">338.1607768</a>
+          </p>
+          <p class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <a href="mailto:info@bbeducation.it" style="color:inherit;text-decoration:none;">info@bbeducation.it</a>
+          </p>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Navigazione</p>
+          <nav aria-label="Link footer">
+            <div class="footer__nav-links" style="flex-direction:column;">
+              <a href="#metodo">Metodo</a>
+              <a href="#continuita">Percorso</a>
+              <a href="#famiglie">Comunità</a>
+              <a href="#testimonianze">Testimonianze</a>
+              <a href="#faq">FAQ</a>
+              <a href="#info">Contatti</a>
+            </div>
+          </nav>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Seguici</p>
+          <div class="footer__social-links">
+            <a href="https://www.instagram.com/bb.education/" class="footer__social-link" aria-label="BBEducation su Instagram" rel="noopener noreferrer" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/brianza.bilingual.education/?locale=it_IT" class="footer__social-link" aria-label="BBEducation su Facebook" rel="noopener noreferrer" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__bottom-text">© BBEducation — BBE S.r.l. P.IVA 09383750966. Tutti i diritti riservati.</p>
+        <p class="footer__bottom-text"><a href="#">Privacy Policy</a> &nbsp; <a href="#">Cookie Policy</a></p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script>
+    /* Discover the Future Middle School — sovrascrive config.js */
+    window.BBE_CONFIG.openDayEvents = [
+      { id: "dtf-m-1", type: "open-day", dayLabel: "Sabato", dateLabel: "3 ottobre",   time: "10:00", capacity: 20, status: "available", spotsRemaining: null },
+      { id: "dtf-m-2", type: "open-day", dayLabel: "Sabato", dateLabel: "17 ottobre",  time: "15:00", capacity: 20, status: "available", spotsRemaining: null },
+      { id: "dtf-m-3", type: "open-day", dayLabel: "Sabato", dateLabel: "14 novembre", time: "15:00", capacity: 20, status: "available", spotsRemaining: null },
+      { id: "dtf-m-4", type: "open-day", dayLabel: "Sabato", dateLabel: "28 novembre", time: "10:00", capacity: 20, status: "available", spotsRemaining: null },
+    ];
+    window.BBE_CONFIG.openSchoolEvents = [
+      { id: "os-m-1", type: "open-school", dayLabel: "Martedì", dateLabel: "27 ottobre", time: "10:00", capacity: 20, status: "available", spotsRemaining: null },
+    ];
+
+    /* FAQ Middle School */
+    window.BBE_CONFIG.faqs = [
+      {
+        id: "faq-m-0",
+        question: "La Middle School è una novità?",
+        body: "Sì. La Middle School rappresenta la nuova fase del progetto BBEducation e permetterà di proseguire il percorso educativo fino ai 14 anni.",
+        placeholderText: null,
+      },
+      {
+        id: "faq-m-1",
+        question: "Dove si svolge il Discover the Future?",
+        body: "L'evento Discover the Future si svolge presso la sede BBEducation di Cesano Maderno.",
+        placeholderText: null,
+      },
+      {
+        id: "faq-m-2",
+        question: "Quando aprirà il nuovo Campus di Seveso?",
+        body: "Il nuovo Campus sarà operativo dal 2027 e&nbsp;ospiterà i percorsi Primary e&nbsp;Middle School.",
+        placeholderText: null,
+      },
+      {
+        id: "faq-m-3",
+        question: "Cosa succederà alla sede di Cesano Maderno?",
+        body: "Dal 2027 il percorso Primary sarà trasferito nel nuovo Campus di Seveso. La Middle School nascerà direttamente nel nuovo campus.",
+        placeholderText: null,
+      },
+      {
+        id: "faq-m-4",
+        question: "Mio figlio deve conoscere già l'inglese per iscriversi?",
+        body: "No. Il percorso BBEducation è progettato per accompagnare ogni studente nel bilinguismo in modo progressivo e&nbsp;naturale, partendo dal livello di partenza di ciascuno.",
+        placeholderText: null,
+      },
+      {
+        id: "faq-m-5",
+        question: "Posso conoscere il progetto 2027 durante il Discover the Future?",
+        body: "Sì. Durante il Discover the Future potrai conoscere sia la visione educativa della Middle School sia le&nbsp;novità legate al nuovo Campus di Seveso.",
+        placeholderText: null,
+      },
+    ];
+  </script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
