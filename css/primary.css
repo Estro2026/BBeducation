@@ -1,0 +1,266 @@
+/* ================================================================
+   BBEducation Primary — colori e override
+   Sovrascrive i token Baby per adattarli alla palette Primary.
+   Caricato solo su primary.html.
+   ================================================================ */
+
+/* ── Token override ──────────────────────────────────────────── */
+:root {
+  --bbe-accent:        #FF788D;
+  --bbe-accent-2:      #FFAC59;
+  --bbe-baby-blue:     #FF788D;
+  --bbe-baby-green:    #FFAC59;
+  --bbe-baby-gradient: linear-gradient(90deg,  #FF788D 0%, #FFAC59 100%);
+  --bbe-baby-gradient-135: linear-gradient(135deg, #FF788D 0%, #FFAC59 100%);
+  --bbe-baby-gradient-180: linear-gradient(180deg, #FF788D 0%, #FFAC59 100%);
+
+  --color-border-baby:   rgba(255, 120, 141, 0.35);
+  --color-bg-baby-tint:  rgba(255, 120, 141, 0.06);
+  --shadow-card-hover:   0 8px 24px rgba(255, 120, 141, 0.22);
+  --focus-ring:          0 0 0 3px rgba(255, 120, 141, 0.45);
+  --focus-outline:       2px solid #FF788D;
+}
+
+/* ── Header label ────────────────────────────────────────────── */
+.header__label {
+  background: var(--bbe-baby-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: .04em;
+  display: block;
+  line-height: 1;
+}
+
+/* ── Separatore header ───────────────────────────────────────── */
+.site-header::after {
+  background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%);
+}
+
+/* ── Pulsante primario ───────────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%);
+  color: #fff;
+  border: none;
+}
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: linear-gradient(90deg, #e8607a 0%, #f09540 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 120, 141, 0.35);
+}
+
+/* ── btn-white su sfondo Primary ─────────────────────────────── */
+.btn-white {
+  background: #fff;
+  color: #FF788D;
+  border: 2px solid rgba(255,255,255,0.6);
+}
+.btn-white:hover, .btn-white:focus-visible {
+  background: rgba(255,255,255,0.92);
+  color: #e8607a;
+}
+
+/* ── Hero: pattern + overlay rosa chiaro ─────────────────────── */
+/*
+   Layers (dal basso verso l'alto):
+   1. #FFE9EC — sfondo rosa chiaro (light version di #FF788D)
+   2. ::before — pattern webp (stesso del Baby, piena opacità)
+   3. ::after  — velo rosa chiaro semi-trasparente che tinge il pattern
+   4. .hero__inner — contenuto (z-index 1)
+*/
+/* Hero Primary: gradiente rosa come sfondo principale,
+   pattern come texture semitrasparente sopra */
+.hero {
+  background: linear-gradient(135deg, #FF788D 0%, #FFAC59 100%) !important;
+}
+.hero::before {
+  background: url('../gradientiepatternbaby/patterngradientebaby.webp') center / cover no-repeat !important;
+  opacity: 0.18 !important;
+  mix-blend-mode: normal !important;
+}
+
+.hero__inner { position: relative; z-index: 1; }
+
+/* ── Hero eyebrow ────────────────────────────────────────────── */
+.hero__eyebrow {
+  background: var(--bbe-baby-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+/* ── Hero headline span ──────────────────────────────────────── */
+.hero__headline span {
+  background: var(--bbe-baby-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Sezioni con tinta chiara (#why, #famiglie, ecc.) ─────────── */
+#why {
+  background: rgba(255, 120, 141, 0.07);
+}
+#famiglie {
+  background: rgba(255, 120, 141, 0.07);
+}
+#bambino.section--accent {
+  background: rgba(255, 120, 141, 0.07);
+}
+.ss-panel--tint {
+  background: linear-gradient(160deg, rgba(255,120,141,0.06) 0%, rgba(255,172,89,0.09) 100%);
+}
+
+/* ── Underline gradiente su tutti i titoli di sezione ──────────── */
+#why .section__title::after,
+#famiglie .section__title::after,
+#method .section__title::after,
+#bilinguismo .section__title::after,
+#bambino .section__title::after,
+#continuita .section__title::after,
+.section__title::after {
+  background: linear-gradient(90deg, #FF788D, #FFAC59) !important;
+}
+
+/* ── Value card flip (stile Baby con colori Primary) ─────────── */
+.value-card__big-icon svg  { stroke: #FF788D; }
+.value-card__back-icon svg { stroke: #FF788D; }
+
+/* Bordo gradiente animato sulla card al flip */
+.value-card::before {
+  background: linear-gradient(135deg, #FF788D 0%, #FFAC59 100%) border-box;
+}
+
+/* ── Feature check-circle ────────────────────────────────────── */
+/* Override inline fill nei circle SVG delle feature list */
+
+/* ── Giornata film ───────────────────────────────────────────── */
+.giornata-film__progress-fill {
+  background: linear-gradient(90deg, #FF788D, #FFAC59);
+}
+.giornata-film__step.is-active {
+  color: #FF788D;
+  border-color: #FF788D;
+}
+.giornata-film__step.is-active::before { background: #FF788D; }
+.giornata-slide__num {
+  background: linear-gradient(90deg, #FF788D, #FFAC59);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Scroll story dots ───────────────────────────────────────── */
+.scroll-story__dot.is-active { background: #FF788D; }
+
+/* ── Continuità: step attivo ─────────────────────────────────── */
+.continuita-step--active .continuita-step__badge {
+  background: linear-gradient(135deg, #FF788D 0%, #FFAC59 100%);
+  color: #fff;
+}
+.continuita-step--active .continuita-step__label { color: #FF788D; }
+
+/* ── Open Day panels ─────────────────────────────────────────── */
+.oda-panel--agenda { background: #FF788D; }
+.oda-panel--form   { background: #FF788D; }
+.oda-panel--form.is-fixed-open { background: #FF788D; }
+
+/* Badge glass su sfondo pink */
+.open-day-section .oda-badge {
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  backdrop-filter: blur(8px);
+}
+.open-day-section .oda-badge__icon  { background: rgba(255,255,255,0.18); color: #fff; }
+.open-day-section .oda-badge__title { color: #fff; }
+.open-day-section .oda-badge__body  { color: rgba(255,255,255,0.85); }
+
+/* Badge nella sezione famiglie ──────────────────────────────── */
+#famiglie .oda-badge__icon { background: rgba(255,120,141,0.12); color: #FF788D; }
+#famiglie .oda-badge__title { color: var(--color-text); }
+#famiglie .oda-badge__body  { color: var(--color-text-muted); }
+
+/* ── FAQ gradient stroke sull'item aperto ────────────────────── */
+.faq-item::before {
+  background: conic-gradient(from -90deg, #FF788D 0%, #FFAC59 100%, transparent 100%);
+}
+.faq-item:has(.faq-trigger[aria-expanded="true"]) {
+  box-shadow: 0 4px 24px rgba(255,120,141,0.2);
+}
+
+/* ── Info form gradient stroke ───────────────────────────────── */
+.info-form-wrapper::before {
+  background: conic-gradient(from -90deg, #FF788D 0%, #FFAC59 100%, transparent 100%);
+}
+
+/* ── Giornata film progress bar (background track) ───────────── */
+.giornata-film__progress { background: rgba(255,120,141,0.15); }
+
+/* ── Sticky CTA ─────────────────────────────────────────────── */
+.sticky-cta .btn-primary {
+  background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%);
+}
+
+/* ── Sezione bambino al centro ───────────────────────────────── */
+.centro-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .centro-grid { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+}
+.centro-grid__img {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.centro-grid__img img { width: 100%; height: 100%; object-fit: cover; }
+
+.centro-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.centro-list li {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+.centro-list__icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF788D, #FFAC59);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+/* ── Sezione famiglie grid ───────────────────────────────────── */
+.famiglie-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .famiglie-grid { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+}
+.famiglie-grid__img {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.famiglie-grid__img img { width: 100%; height: 100%; object-fit: cover; }
