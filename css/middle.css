@@ -1,0 +1,147 @@
+/* ================================================================
+   BBEducation Middle School — colori e override
+   Dominante: arancione #FFAC59 / secondario: rosa #FF788D
+   Caricato solo su middle.html.
+   ================================================================ */
+
+/* ── Token override ──────────────────────────────────────────── */
+:root {
+  --bbe-accent:        #FFAC59;
+  --bbe-accent-2:      #FF788D;
+  --bbe-baby-blue:     #FFAC59;
+  --bbe-baby-green:    #FF788D;
+  --bbe-baby-gradient: linear-gradient(90deg, #FFAC59 0%, #FF788D 100%);
+  --bbe-baby-gradient-135: linear-gradient(135deg, #FFAC59 0%, #FF788D 100%);
+  --bbe-baby-gradient-180: linear-gradient(180deg, #FFAC59 0%, #FF788D 100%);
+
+  --color-border-baby:   rgba(255, 172, 89, 0.35);
+  --color-bg-baby-tint:  rgba(255, 172, 89, 0.06);
+  --shadow-card-hover:   0 8px 24px rgba(255, 172, 89, 0.22);
+  --focus-ring:          0 0 0 3px rgba(255, 172, 89, 0.45);
+  --focus-outline:       2px solid #FFAC59;
+}
+
+/* ── Header label ────────────────────────────────────────────── */
+.header__label {
+  background: var(--bbe-baby-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: .04em;
+  display: block;
+  line-height: 1;
+}
+
+/* ── Separatore header ───────────────────────────────────────── */
+.site-header::after {
+  background: linear-gradient(90deg, #FFAC59 0%, #FF788D 100%);
+}
+
+/* ── Pulsante primario ───────────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(90deg, #FFAC59 0%, #FF788D 100%);
+  color: #fff;
+  border: none;
+}
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: linear-gradient(90deg, #f09540 0%, #e8607a 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 172, 89, 0.35);
+}
+
+/* ── btn-white su sfondo Middle ──────────────────────────────── */
+.btn-white {
+  background: #fff;
+  color: #FFAC59;
+  border: 2px solid rgba(255,255,255,0.6);
+}
+.btn-white:hover, .btn-white:focus-visible {
+  background: rgba(255,255,255,0.92);
+  color: #f09540;
+}
+
+/* ── Hero eyebrow ────────────────────────────────────────────── */
+.hero__eyebrow {
+  background: var(--bbe-baby-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+/* ── Hero headline span ──────────────────────────────────────── */
+.hero__headline span {
+  background: var(--bbe-baby-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Sezione #why ────────────────────────────────────────────── */
+#why { background: #ffffff; }
+
+/* ── Underline gradiente su tutti i titoli di sezione ──────────── */
+#why .section__title::after,
+#famiglie .section__title::after,
+#metodo .section__title::after,
+#bilinguismo .section__title::after,
+#continuita .section__title::after,
+#competenze .section__title::after,
+.section__title::after {
+  background: linear-gradient(90deg, #FFAC59, #FF788D) !important;
+}
+
+/* ── Value card flip ─────────────────────────────────────────── */
+.value-card__big-icon svg  { stroke: #FFAC59; }
+.value-card__back-icon svg { stroke: #FFAC59; }
+
+/* ── Scroll story dots ───────────────────────────────────────── */
+.scroll-story__dot.is-active { background: #FFAC59; }
+
+/* ── Continuità: step attivo ─────────────────────────────────── */
+.continuita-step--active .continuita-step__badge {
+  background: linear-gradient(135deg, #FFAC59 0%, #FF788D 100%);
+  color: #fff;
+}
+.continuita-step--active .continuita-step__label { color: #FFAC59; }
+
+/* ── Open Day / Discover the Future panels ───────────────────── */
+.oda-panel--agenda { background: #FFAC59; }
+.oda-panel--form   { background: #FFAC59; }
+.oda-panel--form.is-fixed-open { background: #FFAC59; }
+
+.open-day-section .oda-badge {
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  backdrop-filter: blur(8px);
+}
+.open-day-section .oda-badge__icon  { background: rgba(255,255,255,0.18); color: #fff; }
+.open-day-section .oda-badge__title { color: #fff; }
+.open-day-section .oda-badge__body  { color: rgba(255,255,255,0.85); }
+
+/* ── FAQ gradient stroke ─────────────────────────────────────── */
+.faq-item::before {
+  background: conic-gradient(from -90deg, #FFAC59 0%, #FF788D 100%, transparent 100%);
+}
+.faq-item:has(.faq-trigger[aria-expanded="true"]) {
+  box-shadow: 0 4px 24px rgba(255,172,89,0.2);
+}
+
+/* ── Info form gradient stroke ───────────────────────────────── */
+.info-form-wrapper::before {
+  background: conic-gradient(from -90deg, #FFAC59 0%, #FF788D 100%, transparent 100%);
+}
+
+/* ── Sticky CTA ─────────────────────────────────────────────── */
+.sticky-cta .btn-primary {
+  background: linear-gradient(90deg, #FFAC59 0%, #FF788D 100%);
+}
+
+/* ── Badge capacity ──────────────────────────────────────────── */
+#famiglie .oda-badge__icon { background: rgba(255,172,89,0.12); color: #FFAC59; }
+#famiglie .oda-badge__title { color: var(--color-text); }
+#famiglie .oda-badge__body  { color: var(--color-text-muted); }
