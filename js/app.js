@@ -61,15 +61,28 @@
      SMOOTH SCROLL — anchor links
      ============================================================ */
   function initSmoothScroll() {
+    var headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-height")) || 110;
+
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
       link.addEventListener("click", function (e) {
         var targetId = link.getAttribute("href");
-        if (targetId === "#") return;
+
+        // Logo / link senza target → scroll to top
+        if (targetId === "#") {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+
         var target = document.querySelector(targetId);
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-        // Move focus to target for accessibility
+
+        // Calcola posizione assoluta dell'elemento meno l'header sticky
+        var rect = target.getBoundingClientRect();
+        var absoluteTop = window.scrollY + rect.top - headerH;
+        window.scrollTo({ top: Math.max(0, absoluteTop), behavior: "smooth" });
+
         if (!target.hasAttribute("tabindex")) {
           target.setAttribute("tabindex", "-1");
         }
@@ -797,25 +810,6 @@
       enterObs.observe(story);
     }
 
-    function setupHeight() {
-      story.style.height = panelsEl.scrollHeight + "px";
-    }
-
-    function syncScroll() {
-      var panelH = panelsEl.clientHeight;
-      if (!panelH) return;
-      var storyTop = story.getBoundingClientRect().top;
-      var scrolled = -(storyTop - headerH);
-      if (scrolled < 0) scrolled = 0;
-      var maxScroll = panelsEl.scrollHeight - panelH;
-      if (scrolled > maxScroll) scrolled = maxScroll;
-      panelsEl.scrollTop = scrolled;
-      var idx = scrolled >= panelH * 0.5 ? 1 : 0;
-      if (idx !== current) goTo(idx);
-    }
-
-    function scrollHandler() { syncScroll(); }
-
     // IntersectionObserver per breakpoint mobile (immagine che cambia via IO)
     var mobObs = null;
     function setupMobile() {
@@ -884,8 +878,9 @@
         var newPos = Math.max(0, Math.min(max, pos + delta));
         panelsEl.scrollTop = newPos;
         updateIdx();
-        // Mantieni window.scrollY in sync per uscita corretta
-        var targetY = story.offsetTop - headerH + newPos;
+        // Mantieni window.scrollY in sync per uscita corretta (offsetTop è relativo all'offsetParent, non alla pagina)
+        var storyAbsTop = story.getBoundingClientRect().top + window.scrollY;
+        var targetY = storyAbsTop - headerH + newPos;
         window.scrollTo({ top: targetY, behavior: "instant" });
       }
 

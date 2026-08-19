@@ -1181,7 +1181,7 @@ button {
   justify-content: center;
   padding: var(--space-4) 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .scroll-story__sticky {
     position: relative;
     top: auto;
@@ -2510,21 +2510,20 @@ button {
   margin-bottom: var(--space-2);
 }
 
+.footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .footer__contact-item {
   display: flex;
   align-items: flex-start;
   gap: var(--space-1);
   font-size: var(--text-sm);
   color: rgba(255,255,255,0.7);
-  margin-bottom: var(--space-1);
+  margin: 0;
   line-height: 1.5;
-}
-@media (max-width: 767px) {
-  .footer__contact-item {
-    padding: 0;
-    margin-bottom: 0.5rem;
-  }
-  .footer__contact-item:last-child { margin-bottom: 0; }
 }
 
 .footer__social-links {
