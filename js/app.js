@@ -19,6 +19,7 @@
     infoSubmitting: false,
   };
 
+
   /* ============================================================
      DOM READY
      ============================================================ */
@@ -541,54 +542,147 @@
   }
 
   /* ============================================================
-     FADE-UP OBSERVER (scroll reveal)
+     SCROLL REVEAL — stagger per sezione, fade-up / fade-out
      ============================================================ */
   function initFadeUpObserver() {
     if (!("IntersectionObserver" in window)) {
-      // Fallback: show all immediately
-      document.querySelectorAll(".fade-up").forEach(function (el) {
-        el.classList.add("in-view");
-      });
+      document.querySelectorAll(".fade-up").forEach(function(el) { el.classList.add("in-view"); });
       return;
     }
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    var STAGGER = 80; // ms tra un elemento e il successivo
+    var isMobile = window.matchMedia("(max-width: 767px)").matches;
+    var THRESHOLD = isMobile ? 0.1 : 0.3;
 
-    document.querySelectorAll(".fade-up").forEach(function (el) {
-      observer.observe(el);
+    // Selettori di elementi animabili dentro ogni sezione
+    var childSelectors = [
+      ".section__header",
+      ".section__eyebrow:not([aria-hidden])",
+      ".oda-panel--agenda .section__eyebrow",
+      ".section__title",
+      ".section__subtitle",
+      ".value-card",
+      ".oda-badge",
+      ".faq-item",
+      ".method__content",
+      ".method__image",
+      ".open-day-agenda__photo-hero",
+      ".famiglie-grid",
+      ".famiglie-grid__img",
+      ".centro-grid",
+      ".centro-grid__img",
+      ".booking-form-wrapper",
+      ".info-form-wrapper",
+      ".giornata-film__header",
+      ".giornata-film__stage",
+      ".giornata-film__nav",
+      ".footer__cta-block",
+      ".section__cta",
+      ".scroll-story__sticky",
+      "section > .container > p",
+      "section > .container > .btn",
+      "section > .container > a.btn"
+    ];
+
+
+    // Aggiungi .fade-up a tutti gli elementi target
+    childSelectors.forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(el) {
+        if (!el.classList.contains("fade-up")) el.classList.add("fade-up");
+      });
     });
 
-    // Continuità steps
+    // Aggiunge/rimuove in-view con stagger ai .fade-up figli di un contenitore
+    var EXCLUDE = ".scroll-story__img-inner, .scroll-story__img-track, .zoom-reveal";
+
+    function getEls(container) {
+      return Array.from(container.querySelectorAll(".fade-up")).filter(function(el) {
+        return !el.matches(EXCLUDE);
+      });
+    }
+
+    function staggerIn(container) {
+      var els = getEls(container);
+      if (container.classList && container.classList.contains("fade-up") && !container.matches(EXCLUDE)) els.unshift(container);
+      var stickyIdx = els.findIndex(function(el) { return el.classList.contains("scroll-story__sticky"); });
+      if (stickyIdx > 0) { els.unshift(els.splice(stickyIdx, 1)[0]); }
+      els.forEach(function(el, i) {
+        el.style.transitionDelay = (i * STAGGER) + "ms";
+        el.classList.add("in-view");
+      });
+    }
+
+    function staggerOut(container) {
+      var els = getEls(container);
+      if (container.classList && container.classList.contains("fade-up") && !container.matches(EXCLUDE)) els.unshift(container);
+      var stickyIdx = els.findIndex(function(el) { return el.classList.contains("scroll-story__sticky"); });
+      if (stickyIdx > 0) { els.unshift(els.splice(stickyIdx, 1)[0]); }
+      els.reverse().forEach(function(el, i) {
+        el.style.transitionDelay = (i * STAGGER) + "ms";
+        el.classList.remove("in-view");
+      });
+    }
+
+    // Osserva ogni <section>, il wrapper scroll-story e il footer al 30% di visibilità
+    // #open-day escluso: osservato tramite i suoi panel separatamente
+    var sections = Array.from(document.querySelectorAll("section, .scroll-story, footer.site-footer"))
+      .filter(function(el) { return el.id !== "open-day"; });
+
+    var sectionObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) staggerIn(entry.target);
+        else staggerOut(entry.target);
+      });
+    }, { threshold: THRESHOLD });
+
+    sections.forEach(function(sec) { sectionObs.observe(sec); });
+
+    // #open-day: osserva i due panel separatamente (evita l'altezza doppia del section)
+    [".oda-panel--agenda", ".oda-panel--form"].forEach(function(sel) {
+      var panel = document.querySelector(sel);
+      if (!panel) return;
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) staggerIn(entry.target);
+          else staggerOut(entry.target);
+        });
+      }, { threshold: THRESHOLD });
+      obs.observe(panel);
+    });
+
+    // #bilinguismo — threshold 80% desktop, 10% mobile
+    var bilinguismo = document.getElementById("bilinguismo");
+    if (bilinguismo) {
+      var bilObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) staggerIn(entry.target);
+          else staggerOut(entry.target);
+        });
+      }, { threshold: isMobile ? 0.1 : 0.8 });
+      bilObs.observe(bilinguismo);
+    }
+
+
+// Frecce continuità — one-shot
+    var pathEl = document.querySelector(".continuita-path");
+    if (pathEl) {
+      var pathObs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { pathEl.classList.add("path-in-view"); pathObs.disconnect(); }
+      }, { threshold: 0.3 });
+      pathObs.observe(pathEl);
+    }
+
+    // Steps continuità — stagger autonomo
     var stepObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add("in-view");
-          stepObs.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove("in-view");
         }
       });
-    }, { threshold: 0.2 });
-    document.querySelectorAll(".continuita-step--anim").forEach(function(el) {
-      stepObs.observe(el);
-    });
-
-    // Frecce: classe sul path quando il primo step è visibile
-    var path = document.querySelector(".continuita-path");
-    if (path) {
-      var pathObs = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) {
-          path.classList.add("path-in-view");
-          pathObs.disconnect();
-        }
-      }, { threshold: 0.3 });
-      pathObs.observe(path);
-    }
+    }, { threshold: 0.3 });
+    document.querySelectorAll(".continuita-step--anim").forEach(function(el) { stepObs.observe(el); });
   }
 
   /* ============================================================
@@ -609,22 +703,40 @@
       if (!formPanel.contains(e.target)) e.preventDefault();
     }
 
+    var STAGGER_FORM = 80;
+    function staggerFormIn() {
+      var els = Array.from(formPanel.querySelectorAll(".fade-up"));
+      els.forEach(function(el, i) {
+        el.style.transitionDelay = (i * STAGGER_FORM) + "ms";
+        el.classList.add("in-view");
+      });
+    }
+    function staggerFormOut() {
+      var els = Array.from(formPanel.querySelectorAll(".fade-up"));
+      els.forEach(function(el) {
+        el.style.transitionDelay = "0ms";
+        el.classList.remove("in-view");
+      });
+    }
+
     function openFormFixed() {
       originScrollY = window.scrollY;
       formPanel.style.transform = "translateY(100%)";
       formPanel.style.transition = "none";
       formPanel.classList.add("is-fixed-open");
       formPanel.scrollTop = 0;
-      // Desktop: overflow hidden sul body
       document.body.style.overflow = "hidden";
-      // Mobile: blocca touchmove sul body, lascia passare quello sul panel
       document.addEventListener("touchmove", blockBodyScroll, { passive: false });
       formPanel.offsetHeight;
       formPanel.style.transition = "transform 0.65s cubic-bezier(0.32, 0, 0.16, 1)";
       formPanel.style.transform = "translateY(0)";
+      // Reset → reveal elementi dopo che il pannello è entrato
+      staggerFormOut();
+      setTimeout(staggerFormIn, 500);
     }
 
     function closeFormFixed() {
+      staggerFormOut();
       formPanel.style.transform = "translateY(100%)";
       document.body.style.overflow = "";
       document.removeEventListener("touchmove", blockBodyScroll);
@@ -650,42 +762,171 @@
 
   function initScrollStory() {
     var story = document.getElementById("scroll-story-baby");
-    if (!story || !("IntersectionObserver" in window)) return;
+    if (!story) return;
 
-    var panels  = story.querySelectorAll(".scroll-story__panel");
     var imgInner = document.getElementById("ss-img-inner");
-    var dots    = story.querySelectorAll(".scroll-story__dot");
+    var dots     = story.querySelectorAll(".scroll-story__dot");
+    var imgs     = imgInner ? Array.from(imgInner.querySelectorAll(".scroll-story__img")) : [];
+    var panelsEl = story.querySelector(".scroll-story__panels");
+    var panelEls = story.querySelectorAll(".scroll-story__panel");
+    var current  = 0;
+    var mq       = window.matchMedia("(max-width: 1023px)");
+    var desktopActive = false;
+    var headerH  = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-height")) || 110;
 
-    var current = 0;
+    function triggerZoom(idx) {
+      imgs.forEach(function(img, i) {
+        if (i === idx) { img.classList.remove("in-view"); void img.offsetWidth; img.classList.add("in-view"); }
+        else { img.classList.remove("in-view"); }
+      });
+    }
 
     function goTo(idx) {
       if (idx === current) return;
       current = idx;
+      if (imgInner) imgInner.classList.toggle("at-panel-1", idx === 1);
+      dots.forEach(function(d, i) { d.classList.toggle("is-active", i === idx); });
+      triggerZoom(idx);
+    }
 
-      /* sposta il track — 2 pannelli */
-      imgInner.classList.toggle("at-panel-1", idx === 1);
+    // Zoom iniziale all'entrata della sezione
+    if ("IntersectionObserver" in window) {
+      var enterObs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { triggerZoom(current); enterObs.disconnect(); }
+      }, { threshold: 0.3 });
+      enterObs.observe(story);
+    }
 
-      /* aggiorna dots */
-      dots.forEach(function (dot, i) {
-        dot.classList.toggle("is-active", i === idx);
+    function setupHeight() {
+      story.style.height = panelsEl.scrollHeight + "px";
+    }
+
+    function syncScroll() {
+      var panelH = panelsEl.clientHeight;
+      if (!panelH) return;
+      var storyTop = story.getBoundingClientRect().top;
+      var scrolled = -(storyTop - headerH);
+      if (scrolled < 0) scrolled = 0;
+      var maxScroll = panelsEl.scrollHeight - panelH;
+      if (scrolled > maxScroll) scrolled = maxScroll;
+      panelsEl.scrollTop = scrolled;
+      var idx = scrolled >= panelH * 0.5 ? 1 : 0;
+      if (idx !== current) goTo(idx);
+    }
+
+    function scrollHandler() { syncScroll(); }
+
+    // IntersectionObserver per breakpoint mobile (immagine che cambia via IO)
+    var mobObs = null;
+    function setupMobile() {
+      if (mobObs) return;
+      if (!("IntersectionObserver" in window)) return;
+      mobObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) goTo(parseInt(entry.target.dataset.ssIdx, 10));
+        });
+      }, { threshold: 0.45 });
+      panelEls.forEach(function(panel, i) { panel.dataset.ssIdx = i; mobObs.observe(panel); });
+    }
+
+    function teardownMobile() {
+      if (mobObs) { mobObs.disconnect(); mobObs = null; }
+    }
+
+    function activateDesktop() {
+      if (desktopActive) return;
+      desktopActive = true;
+      teardownMobile();
+
+      var wheelMode = false;
+      var wheelTimer = null;
+
+      function getMax() { return Math.max(0, panelsEl.scrollHeight - panelsEl.clientHeight); }
+
+      function updateIdx() {
+        var max = getMax();
+        var idx = max > 0 && panelsEl.scrollTop >= max * 0.5 ? 1 : 0;
+        if (idx !== current) goTo(idx);
+      }
+
+      function syncScroll() {
+        if (wheelMode) return;
+        var panelH = panelsEl.clientHeight;
+        if (!panelH) return;
+        var storyTop = story.getBoundingClientRect().top;
+        var scrolled = -(storyTop - headerH);
+        if (scrolled < 0) scrolled = 0;
+        var max = getMax();
+        if (scrolled > max) scrolled = max;
+        panelsEl.scrollTop = scrolled;
+        updateIdx();
+      }
+
+      function inStickyZone() {
+        var panelH = panelsEl.clientHeight;
+        if (!panelH) return false;
+        var rect = story.getBoundingClientRect();
+        return rect.top <= headerH + 2 && rect.bottom >= panelH + headerH - 2;
+      }
+
+      function onWheel(e) {
+        if (!inStickyZone()) return;
+        var max = getMax();
+        var pos = panelsEl.scrollTop;
+        var delta = e.deltaY;
+        // Ai confini: rilascia lo scroll naturale
+        if (delta > 0 && pos >= max - 1) return;
+        if (delta < 0 && pos <= 1) return;
+        e.preventDefault();
+        wheelMode = true;
+        clearTimeout(wheelTimer);
+        wheelTimer = setTimeout(function() { wheelMode = false; }, 200);
+        var newPos = Math.max(0, Math.min(max, pos + delta));
+        panelsEl.scrollTop = newPos;
+        updateIdx();
+        // Mantieni window.scrollY in sync per uscita corretta
+        var targetY = story.offsetTop - headerH + newPos;
+        window.scrollTo({ top: targetY, behavior: "instant" });
+      }
+
+      window.addEventListener("scroll", syncScroll, { passive: true });
+      window.addEventListener("wheel", onWheel, { passive: false });
+
+      function setupHeight() { story.style.height = panelsEl.scrollHeight + "px"; }
+
+      window.addEventListener("resize", function() {
+        if (!desktopActive) return;
+        story.style.height = "";
+        setTimeout(function() { setupHeight(); syncScroll(); }, 50);
+      }, { passive: true });
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() { if (desktopActive) { setupHeight(); syncScroll(); } });
+      }
+      window.addEventListener("load", function() { if (desktopActive) { setupHeight(); syncScroll(); } }, { once: true });
+
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() { setupHeight(); syncScroll(); });
       });
     }
 
-    var obs = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            goTo(parseInt(entry.target.dataset.ssIdx, 10));
-          }
-        });
-      },
-      { threshold: 0.45 }
-    );
+    function deactivateDesktop() {
+      if (!desktopActive) return;
+      desktopActive = false;
+      story.style.height = "";
+      panelsEl.scrollTop = 0;
+      setupMobile();
+    }
 
-    panels.forEach(function (panel, i) {
-      panel.dataset.ssIdx = i;
-      obs.observe(panel);
+    // Ascolta cambi di breakpoint in entrambe le direzioni
+    mq.addEventListener("change", function(e) {
+      if (e.matches) { deactivateDesktop(); }
+      else { activateDesktop(); }
     });
+
+    // Init iniziale
+    if (mq.matches) { setupMobile(); }
+    else { activateDesktop(); }
   }
 
   /* ============================================================
