@@ -85,6 +85,108 @@
     ]
   }
   </script>
+  <style>
+    #method .method__content { display: flex; flex-direction: column; gap: 1rem !important; }
+    #method .method__content > * { margin: 0 !important; }
+    #method .method__content > .btn,
+    #method .method__content > a.btn { margin-top: 1rem !important; }
+    #bilinguismo .method__content { display: flex; flex-direction: column; gap: 1rem !important; }
+    #bilinguismo .method__content > * { margin: 0 !important; }
+
+    /* ── Spaziatura uniforme ───────────────────────────────── */
+    /* 1) Titolo → sottotitolo: 1rem */
+    .section__title + .section__subtitle,
+    .section__title + p,
+    .section__title + .open-day__intro { margin-top: 1rem !important; }
+
+    /* 2) Contenuto → CTA: 2rem */
+    .section__subtitle + .btn,
+    .section__subtitle + .hero__cta-group,
+    .section__subtitle + div > .btn,
+    .method__body + .btn,
+    .method__body + a.btn,
+    .open-day-agenda + div,
+    .open-day__intro + .open-day-agenda { margin-top: 2rem !important; }
+
+    /* 3) Blocchi di testo tra loro: 2rem */
+    .method__body + .method__body { margin-top: 2rem !important; }
+    p + p { margin-top: 2rem !important; }
+    /* hero: la regola p+p non deve toccare headline→subtitle */
+    .hero__copy p + p { margin-top: 0 !important; }
+
+    /* 4) Elementi della stessa sezione: 2rem */
+    .section__header + *,
+    .open-day-agenda__badges { gap: 2rem !important; }
+    .why-grid { gap: 2rem !important; }
+    .continuita-steps { gap: 2rem !important; }
+    /* 1 — Una scuola pensata intorno al bambino */
+    #why { background: #ffffff !important; }
+    /* 2 — Crescere attraverso ciò che si vive */
+    #scroll-story-baby { background: rgba(128,169,213,0.15) !important; }
+    #scroll-story-baby .scroll-story__panel,
+    #scroll-story-baby .scroll-story__sticky { background: transparent !important; }
+    @media (min-width: 1024px) { #scroll-story-baby .scroll-story__sticky { padding-bottom: 96px !important; } }
+    @media (min-width: 1024px) { #scroll-story-baby .scroll-story__dots { bottom: calc(96px + var(--space-2)) !important; } }
+    /* 3 — Una giornata fatta di piccoli grandi momenti */
+    #giornata { background: #ffffff !important; padding-block: 96px !important; }
+    @media (max-width: 767px) { #giornata { padding-block: 48px !important; } }
+    @media (max-width: 767px) { #giornata .giornata-film__header { padding-bottom: 0 !important; } }
+    @media (max-width: 767px) { #giornata .giornata-film__nav > div[style] { padding-top: 24px !important; padding-bottom: 0 !important; } }
+    @media (max-width: 767px) { #giornata .giornata-film__nav { padding-bottom: 0 !important; } }
+    #giornata .giornata-film { min-height: unset !important; }
+    #giornata .giornata-film__header { padding-top: 0 !important; padding-bottom: 2rem !important; display: flex; flex-direction: column; gap: 1rem !important; }
+    #giornata .giornata-film__header > * { margin: 0 !important; }
+    #giornata .giornata-film__header .section__subtitle { text-align: center !important; align-self: center !important; width: 100% !important; }
+    #giornata .giornata-film__nav { padding-bottom: 0 !important; }
+    #giornata .giornata-film__stage { min-height: unset !important; max-height: calc(100svh - 380px) !important; margin-top: 2rem !important; }
+    @media (max-width: 767px) { #giornata .giornata-film__stage { max-height: clamp(200px, calc(100svh - 300px), 420px) !important; margin-top: 1rem !important; } }
+    /* 4 — Crescere insieme, scuola e famiglia */
+    #famiglie { background: rgba(128,169,213,0.15) !important; }
+    #faq .section__eyebrow { margin-bottom: 2rem !important; }
+    .site-footer { padding-top: 80px !important; }
+    @media (max-width: 767px) { .site-footer { padding-top: 48px !important; } }
+    @media (max-width: 767px) { .footer__contact-item { margin-top: 0 !important; } }
+    .site-footer .container { padding-top: 0 !important; }
+    .footer__cta-block { padding-top: 0 !important; }
+    .map-container + .footer__grid { margin-top: 2rem !important; }
+    /* 5 — Dalla Baby alla Middle */
+    #continuita { background: #ffffff !important; }
+    #continuita .section__header + .continuita-path { margin-top: 2rem !important; }
+    /* 6 — Open Day: sfondi separati */
+    #open-day { background: none !important; }
+    #open-day .oda-panel--agenda { background: rgba(128,169,213,0.15) !important; }
+    #open-day .oda-panel--agenda .section__title,
+    #open-day .oda-panel--agenda .open-day__intro,
+    #open-day .oda-panel--agenda .open-day-date-intro { color: var(--color-text) !important; }
+    #open-day .oda-panel--agenda .section__title { margin-bottom: 0 !important; }
+    #open-day .oda-panel--agenda .open-day__intro { margin-top: 1rem !important; margin-bottom: 2rem !important; }
+    #open-day .oda-panel--agenda .open-day__capacity { color: var(--color-text-muted) !important; border-color: var(--color-border) !important; }
+    /* Pulsante gradiente */
+    #open-day .oda-panel--agenda .btn-white { background: var(--bbe-baby-gradient) !important; color: #111 !important; border: none !important; margin-top: 2rem !important; }
+    @media (max-width: 767px) { #open-day .oda-panel--agenda .btn-white { margin-top: 0 !important; } }
+    @media (max-width: 767px) { #open-day .oda-panel--agenda div:has(> a.btn-white) { margin-top: 24px !important; padding-top: 0 !important; } }
+    /* Card badge */
+    #open-day .oda-panel--agenda .oda-badge { background: #fff !important; }
+    #open-day .oda-panel--agenda .oda-badge__icon { background: rgba(128,169,213,0.15) !important; color: var(--bbe-baby-blue) !important; }
+    #open-day .oda-panel--agenda .oda-badge__title { color: var(--color-text) !important; }
+    #open-day .oda-panel--agenda .oda-badge__body { color: var(--color-text-muted) !important; }
+    /* "Durante l'Open Day:" in nero */
+    #open-day .oda-panel--agenda .open-day__agenda-label { color: var(--color-text) !important; margin-top: 2rem !important; }
+    /* Scritta decorativa "Open Day" in gradiente */
+    #open-day .oda-panel--agenda .section__eyebrow {
+      background: var(--bbe-baby-gradient) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+      opacity: 0.25 !important;
+      margin-top: 2rem !important;
+    }
+    #open-day .oda-panel--agenda .container { padding-top: 2rem !important; }
+    #open-day .oda-panel--form { background: url('gradientiepatternbaby/patterngradientebaby.webp') center / cover no-repeat !important; padding-top: 80px !important; padding-bottom: 80px !important; }
+    @media (max-width: 767px) { #open-day .oda-panel--form { padding-top: 48px !important; padding-bottom: 48px !important; } }
+    #booking-form-section { margin-top: 0 !important; }
+    #open-day .oda-panel--form .section__header { margin-bottom: 2rem !important; }
+</style>
 </head>
 
 <body>
@@ -163,7 +265,7 @@
 
         <!-- Copy — sinistra su desktop (order:-1), sotto immagine su mobile -->
         <div class="hero__copy">
-          <p class="hero__eyebrow">Nido bilingue italiano e inglese</p>
+          <p class="hero__eyebrow">Nido + Scuola dell'Infanzia Bilingue</p>
 
           <!-- H1 SEO — semanticamente corretto, gerarchicamente primo -->
           <h1 id="hero-h1" class="hero__h1">
@@ -177,8 +279,7 @@
           </p>
 
           <p class="hero__subtitle">
-            Un percorso bilingue italiano e inglese pensato per&nbsp;crescere con curiosità, autonomia e&nbsp;fiducia,
-            in&nbsp;un ambiente dove ogni bambino si sente accolto e&nbsp;valorizzato.
+            Un percorso bilingue italiano e inglese, dai primi anni alla Scuola dell'Infanzia, pensato per crescere con curiosità, autonomia e&nbsp;fiducia, in un ambiente dove ogni bambino si sente accolto e&nbsp;valorizzato.
           </p>
 
           <div class="hero__cta-group">
@@ -466,8 +567,12 @@
         <div class="scroll-story__sticky" aria-hidden="true">
           <div class="scroll-story__img-track">
             <div class="scroll-story__img-inner" id="ss-img-inner">
-              <img src="Foto/baby2.webp" class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
-              <img src="Foto/baby.webp"  class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
+              <div class="scroll-story__img-slot">
+                <img src="Foto/baby2.webp" class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
+              </div>
+              <div class="scroll-story__img-slot">
+                <img src="Foto/baby.webp"  class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
+              </div>
             </div>
           </div>
           <div class="scroll-story__dots" aria-hidden="true">
@@ -486,7 +591,7 @@
 
       <!-- Intestazione fuori dal film -->
       <div class="giornata-film__header fade-up">
-        <h2 id="giornata-title" class="section__title">Una giornata fatta di<br>piccoli grandi momenti</h2>
+        <h2 id="giornata-title" class="section__title">Una giornata fatta di piccoli grandi momenti</h2>
         <p class="section__subtitle">Ogni giorno è una storia. Scorri per viverla.</p>
       </div>
 
@@ -651,7 +756,7 @@
       <div class="container">
 
         <div class="section__header fade-up">
-          <h2 id="continuita-title" class="section__title">Dal Baby alla Primary</h2>
+          <h2 id="continuita-title" class="section__title">Dalla Baby alla Middle</h2>
           <p class="section__subtitle">
             Il percorso non si ferma ai primi anni. BBEducation accompagna ogni bambino nella crescita,
             mantenendo nel tempo valori, metodo e relazione.
@@ -709,7 +814,7 @@
             </p>
           </div>
 
-          <div class="open-day-agenda fade-up" aria-label="Cosa potrai fare durante l'Open Day">
+          <div class="open-day-agenda" aria-label="Cosa potrai fare durante l'Open Day">
             <div class="open-day-agenda__photo-hero">
               <img src="Foto/baby3.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async">
             </div>
@@ -794,7 +899,7 @@
               class="booking-form-wrapper"
               aria-label="Modulo di prenotazione Open Day"
             >
-          <h3 class="booking-form__heading">Scegli la data dell'Open Day</h3>
+          <h3 class="booking-form__heading">Scegli la data <br class="mob-only">dell'Open Day</h3>
           <span class="open-day__capacity">Massimo 15 famiglie per data</span>
 
           <form
@@ -1266,7 +1371,7 @@
   <!-- Scripts -->
   <script src="js/config.js"></script>
   <script src="js/analytics.js"></script>
-  <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 
   <!-- Lazy map loader -->
   <script>

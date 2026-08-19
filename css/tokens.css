@@ -31,9 +31,9 @@
   --bbe-middle-orange: #FFAC59;
 
   /* === GRADIENTE BABY === */
-  --bbe-baby-gradient: linear-gradient(90deg, #80A9D5 0%, #70DDA0 100%);
-  --bbe-baby-gradient-135: linear-gradient(135deg, #80A9D5 0%, #70DDA0 100%);
-  --bbe-baby-gradient-180: linear-gradient(180deg, #80A9D5 0%, #70DDA0 100%);
+  --bbe-baby-gradient: linear-gradient(90deg, #70DDA0 0%, #80A9D5 100%);
+  --bbe-baby-gradient-135: linear-gradient(135deg, #70DDA0 0%, #80A9D5 100%);
+  --bbe-baby-gradient-180: linear-gradient(180deg, #70DDA0 0%, #80A9D5 100%);
 
   /* === COLORI FUNZIONALI === */
   --color-text: #1a1a1a;
@@ -66,7 +66,7 @@
   --space-3: 1.5rem;
   --space-4: 2rem;
   --space-5: 3rem;
-  --space-6: 4rem;
+  --space-6: 6rem;
   --space-7: 5rem;
   --space-8: 6rem;
 
