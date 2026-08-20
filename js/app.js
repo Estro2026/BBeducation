@@ -783,7 +783,8 @@
     var panelsEl = story.querySelector(".scroll-story__panels");
     var panelEls = story.querySelectorAll(".scroll-story__panel");
     var current  = 0;
-    var mq       = window.matchMedia("(max-width: 1023px)");
+    var mqMobile = window.matchMedia("(max-width: 1023px)");
+    var mqSticky = window.matchMedia("(min-width: 1024px) and (min-height: 700px)");
     var desktopActive = false;
     var headerH  = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-height")) || 110;
 
@@ -858,8 +859,8 @@
       function getMax() { return Math.max(0, panelsEl.scrollHeight - panelsEl.clientHeight); }
 
       function updateIdx() {
-        var max = getMax();
-        var idx = (max > 0 && panelsEl.scrollTop >= max * 0.5) ? 1 : 0;
+        var p0h = panelEls[0] ? panelEls[0].offsetHeight : 0;
+        var idx = (p0h > 0 && panelsEl.scrollTop >= p0h * 0.5) ? 1 : 0;
         if (idx !== current) goTo(idx);
       }
 
@@ -873,11 +874,14 @@
         updateIdx();
       }
 
-      function setupHeight() { story.style.height = panelsEl.scrollHeight + "px"; }
+      function setupHeight() {
+        story.style.height = "";
+        var h = panelsEl.scrollHeight + headerH;
+        story.style.height = h + "px";
+      }
 
       onDesktopScroll = syncScroll;
       onDesktopResize = function() {
-        story.style.height = "";
         requestAnimationFrame(function() {
           if (desktopActive) { setupHeight(); syncScroll(); }
         });
@@ -903,18 +907,23 @@
       if (onDesktopResize) { window.removeEventListener("resize", onDesktopResize); onDesktopResize = null; }
       story.style.height = "";
       panelsEl.scrollTop = 0;
-      setupMobile();
     }
 
-    // Ascolta cambi di breakpoint in entrambe le direzioni
-    mq.addEventListener("change", function(e) {
-      if (e.matches) { deactivateDesktop(); }
-      else { activateDesktop(); }
-    });
+    // Macchina a tre stati: A) desktop+tall→sticky  B) desktop+short→naturale  C) mobile
+    function syncState() {
+      if (!mqMobile.matches && mqSticky.matches) {
+        // Case A: desktop con abbastanza altezza
+        if (!desktopActive) { teardownMobile(); activateDesktop(); }
+      } else {
+        // Case B (desktop basso) o C (mobile): layout naturale + IO observer
+        if (desktopActive) deactivateDesktop();
+        if (!mobObs) setupMobile();
+      }
+    }
 
-    // Init iniziale
-    if (mq.matches) { setupMobile(); }
-    else { activateDesktop(); }
+    mqMobile.addEventListener("change", syncState);
+    mqSticky.addEventListener("change", syncState);
+    syncState();
   }
 
   /* ============================================================

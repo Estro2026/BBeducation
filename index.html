@@ -127,20 +127,24 @@
     #scroll-story-baby { background: rgba(128,169,213,0.15) !important; }
     #scroll-story-baby .scroll-story__panel,
     #scroll-story-baby .scroll-story__sticky { background: transparent !important; }
-    @media (min-width: 1024px) { #scroll-story-baby .scroll-story__sticky { padding-bottom: 96px !important; } }
-    @media (min-width: 1024px) { #scroll-story-baby .scroll-story__dots { bottom: calc(96px + var(--space-2)) !important; } }
+    @media (min-width: 1024px) and (min-height: 700px) { #scroll-story-baby .scroll-story__sticky { padding-bottom: 96px !important; } }
+    @media (min-width: 1024px) and (min-height: 700px) { #scroll-story-baby .scroll-story__dots { bottom: calc(96px + var(--space-2)) !important; } }
+    /* contenimento bilinguismo a tablet */
+    @media (max-width: 1023px) {
+      #scroll-story-baby { overflow: hidden; }
+    }
     /* 3 — Una giornata fatta di piccoli grandi momenti */
     #giornata { background: #ffffff !important; padding-block: 96px !important; }
     @media (max-width: 767px) { #giornata { padding-block: 48px !important; } }
     @media (max-width: 767px) { #giornata .giornata-film__header { padding-bottom: 0 !important; } }
     @media (max-width: 767px) { #giornata .giornata-film__nav > div[style] { padding-top: 24px !important; padding-bottom: 0 !important; } }
     @media (max-width: 767px) { #giornata .giornata-film__nav { padding-bottom: 0 !important; } }
-    #giornata .giornata-film { min-height: unset !important; }
+    #giornata { min-height: unset !important; }
     #giornata .giornata-film__header { padding-top: 0 !important; padding-bottom: 2rem !important; display: flex; flex-direction: column; gap: 1rem !important; }
     #giornata .giornata-film__header > * { margin: 0 !important; }
     #giornata .giornata-film__header .section__subtitle { text-align: center !important; align-self: center !important; width: 100% !important; }
     #giornata .giornata-film__nav { padding-bottom: 0 !important; }
-    #giornata .giornata-film__stage { min-height: unset !important; max-height: calc(100svh - 380px) !important; margin-top: 2rem !important; }
+    #giornata .giornata-film__stage { min-height: 420px !important; max-height: calc(100svh - 380px) !important; margin-top: 2rem !important; }
     @media (max-width: 767px) { #giornata .giornata-film__stage { max-height: clamp(200px, calc(100svh - 300px), 420px) !important; margin-top: 1rem !important; } }
     /* 4 — Crescere insieme, scuola e famiglia */
     #famiglie { background: rgba(128,169,213,0.15) !important; }
