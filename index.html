@@ -86,14 +86,7 @@
   }
   </script>
   <style>
-    #method .method__content { display: flex; flex-direction: column; gap: 1rem !important; }
-    #method .method__content > * { margin: 0 !important; }
-    #method .method__content > .btn,
-    #method .method__content > a.btn { margin-top: 1rem !important; }
-    #bilinguismo .method__content { display: flex; flex-direction: column; gap: 1rem !important; }
-    #bilinguismo .method__content > * { margin: 0 !important; }
-
-    /* ── Spaziatura uniforme ───────────────────────────────── */
+/* ── Spaziatura uniforme ───────────────────────────────── */
     /* 1) Titolo → sottotitolo: 1rem */
     .section__title + .section__subtitle,
     .section__title + p,
@@ -123,16 +116,8 @@
     .continuita-steps { gap: 2rem !important; }
     /* 1 — Una scuola pensata intorno al bambino */
     #why { background: #ffffff !important; }
-    /* 2 — Crescere attraverso ciò che si vive */
-    #scroll-story-baby { background: rgba(128,169,213,0.15) !important; }
-    #scroll-story-baby .scroll-story__panel,
-    #scroll-story-baby .scroll-story__sticky { background: transparent !important; }
-    @media (min-width: 1024px) and (min-height: 700px) { #scroll-story-baby .scroll-story__sticky { padding-bottom: 96px !important; } }
-    @media (min-width: 1024px) and (min-height: 700px) { #scroll-story-baby .scroll-story__dots { bottom: calc(96px + var(--space-2)) !important; } }
-    /* contenimento bilinguismo a tablet */
-    @media (max-width: 1023px) {
-      #scroll-story-baby { overflow: hidden; }
-    }
+    /* 2 — Metodo + Bilinguismo */
+    #metodo-section { background: rgba(128,169,213,0.15) !important; }
     /* 3 — Una giornata fatta di piccoli grandi momenti */
     #giornata { background: #ffffff !important; padding-block: 96px !important; }
     @media (max-width: 767px) { #giornata { padding-block: 48px !important; } }
@@ -504,90 +489,71 @@
       </div>
     </section>
 
+
     <!-- ==========================================================
-         SCROLL STORY: method + bilinguismo (2 pannelli, container-width)
+         METODO — testo + immagine: scroll interno sostituisce i pannelli
     ========================================================== -->
-    <div class="scroll-story" id="scroll-story-baby">
-      <div class="scroll-story__frame">
+    <section id="metodo-section" class="metodo" aria-labelledby="method-title">
+      <div class="metodo__inner fade-up">
+        <div class="metodo__vgrid">
 
-        <!-- SINISTRA: pannelli di testo -->
-        <div class="scroll-story__panels">
+          <!-- Colonna testo: pannelli sovrapposti via grid stacking, uno visibile alla volta -->
+          <div class="metodo__vtexts">
 
-          <section id="method" class="scroll-story__panel ss-panel--white" aria-labelledby="method-title">
-            <div class="scroll-story__mob-img" aria-hidden="true">
-              <img src="Foto/baby2.webp" alt="" width="600" height="450" loading="lazy" decoding="async" class="method__image">
+            <div class="metodo__panel is-active" data-idx="0">
+              <h2 id="method-title" class="section__title section__title--left">
+                Crescere attraverso<br>ciò che&nbsp;si&nbsp;vive
+              </h2>
+              <p class="method__body">
+                Ogni giornata è fatta di esperienze che aiutano i&nbsp;bambini a&nbsp;conoscere il&nbsp;mondo,
+                sviluppare autonomia e costruire le&nbsp;prime relazioni.
+              </p>
+              <p class="method__body" style="font-weight:700;color:var(--color-text);">
+                Ogni esperienza diventa un'occasione per:
+              </p>
+              <ul class="metodo__features">
+                <li class="metodo__feature">
+                  <span class="metodo__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>Scoprire</strong><br><span style="font-weight:400">Stimolando curiosità e&nbsp;voglia di&nbsp;conoscere.</span></span>
+                </li>
+                <li class="metodo__feature">
+                  <span class="metodo__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>Sperimentare</strong><br><span style="font-weight:400">Attraverso gioco, attività e&nbsp;laboratori.</span></span>
+                </li>
+                <li class="metodo__feature">
+                  <span class="metodo__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>Crescere</strong><br><span style="font-weight:400">Sviluppando autonomia, sicurezza e&nbsp;capacità relazionali.</span></span>
+                </li>
+              </ul>
+              <p class="method__body" style="font-weight:700;color:var(--bbe-baby-blue);">
+                In italiano e in inglese, ogni giorno.
+              </p>
+              <a href="#booking-form-section" class="btn btn-primary" style="align-self:flex-start;">Vieni a conoscerci</a>
             </div>
-            <div class="scroll-story__panel-inner">
-              <div class="method__content fade-up">
-                <h2 id="method-title" class="section__title section__title--left" style="padding-top:var(--space-1);padding-bottom:var(--space-1);">
-                  Crescere attraverso ciò che&nbsp;si&nbsp;vive
-                </h2>
-                <p class="method__body">
-                  Ogni giornata è fatta di esperienze che aiutano i&nbsp;bambini a&nbsp;conoscere il&nbsp;mondo,
-                  sviluppare autonomia e costruire le&nbsp;prime relazioni.
-                </p>
-                <p class="method__body" style="font-weight:700;color:var(--color-text);">
-                  Ogni esperienza diventa un'occasione per:
-                </p>
-                <ul class="method__features">
-                  <li class="method__feature">
-                    <span class="method__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    <span><strong>Scoprire</strong><br><span style="font-weight:400">Stimolando curiosità e&nbsp;voglia di&nbsp;conoscere.</span></span>
-                  </li>
-                  <li class="method__feature">
-                    <span class="method__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    <span><strong>Sperimentare</strong><br><span style="font-weight:400">Attraverso gioco, attività e&nbsp;laboratori.</span></span>
-                  </li>
-                  <li class="method__feature">
-                    <span class="method__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    <span><strong>Crescere</strong><br><span style="font-weight:400">Sviluppando autonomia, sicurezza e&nbsp;capacità relazionali.</span></span>
-                  </li>
-                </ul>
-                <p class="method__body" style="font-weight:700;color:var(--bbe-baby-blue);margin-top:0.25rem;margin-bottom:0.25rem;">
-                  In italiano e in inglese, ogni giorno.
-                </p>
-                <a href="#booking-form-section" class="btn btn-primary" style="margin-top:0.25rem;align-self:flex-start;">Vieni a conoscerci</a>
-              </div>
-            </div>
-          </section>
 
-          <section id="bilinguismo" class="scroll-story__panel ss-panel--white" aria-labelledby="bilinguismo-title">
-            <div class="scroll-story__mob-img" aria-hidden="true">
-              <img src="Foto/baby.webp" alt="" width="600" height="450" loading="lazy" decoding="async" class="method__image">
+            <div class="metodo__panel" data-idx="1">
+              <h2 id="bilinguismo-title" class="section__title section__title--left">
+                Due lingue,<br>una quotidianità
+              </h2>
+              <p class="method__body">Italiano e inglese fanno parte naturalmente della giornata del bambino.</p>
+              <p class="method__body">L'inglese entra nelle attività, nel gioco e nelle relazioni quotidiane, grazie alla presenza di insegnanti italiani e&nbsp;madrelingua.</p>
             </div>
-            <div class="scroll-story__panel-inner">
-              <div class="method__content fade-up">
-                <h2 id="bilinguismo-title" class="section__title section__title--left">
-                  Due lingue,<br>una quotidianità
-                </h2>
-                <p class="method__body">Italiano e inglese fanno parte naturalmente della giornata del bambino.</p>
-                <p class="method__body">L'inglese entra nelle attività, nel gioco e nelle relazioni quotidiane, grazie alla presenza di insegnanti italiani e&nbsp;madrelingua.</p>
-              </div>
-            </div>
-          </section>
 
-        </div><!-- /.scroll-story__panels -->
+          </div><!-- /.metodo__vtexts -->
 
-        <!-- DESTRA: immagine sticky -->
-        <div class="scroll-story__sticky" aria-hidden="true">
-          <div class="scroll-story__img-track">
-            <div class="scroll-story__img-inner" id="ss-img-inner">
-              <div class="scroll-story__img-slot">
-                <img src="Foto/baby2.webp" class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
-              </div>
-              <div class="scroll-story__img-slot">
-                <img src="Foto/baby.webp"  class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
-              </div>
+          <!-- Colonna immagine: stacked via grid, cambia insieme al testo -->
+          <div class="metodo__vimgs" aria-hidden="true">
+            <img class="metodo__img is-active" data-idx="0" src="Foto/baby2.webp" alt="" width="600" height="900" loading="lazy" decoding="async">
+            <img class="metodo__img" data-idx="1" src="Foto/baby.webp" alt="" width="600" height="900" loading="lazy" decoding="async">
+            <div class="metodo__dots">
+              <span class="metodo__dot is-active"></span>
+              <span class="metodo__dot"></span>
             </div>
           </div>
-          <div class="scroll-story__dots" aria-hidden="true">
-            <span class="scroll-story__dot is-active"></span>
-            <span class="scroll-story__dot"></span>
-          </div>
-        </div>
 
-      </div><!-- /.scroll-story__frame -->
-    </div><!-- /.scroll-story -->
+        </div><!-- /.metodo__vgrid -->
+      </div><!-- /.metodo__inner -->
+    </section><!-- /.metodo -->
 
     <!-- ==========================================================
          GIORNATA — Film di immagini: 8 momenti

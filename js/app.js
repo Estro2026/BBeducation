@@ -35,6 +35,7 @@
     initOpenDaySectionObserver();
     initFormPanel();
     initScrollStory();
+    initMetodo();
     initGiornataFilm();
   });
 
@@ -783,8 +784,7 @@
     var panelsEl = story.querySelector(".scroll-story__panels");
     var panelEls = story.querySelectorAll(".scroll-story__panel");
     var current  = 0;
-    var mqMobile = window.matchMedia("(max-width: 1023px)");
-    var mqSticky = window.matchMedia("(min-width: 1024px) and (min-height: 700px)");
+    var mq = window.matchMedia("(max-width: 1023px)");
     var desktopActive = false;
     var headerH  = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-height")) || 110;
 
@@ -855,6 +855,9 @@
       if (desktopActive) return;
       desktopActive = true;
       teardownMobile();
+      // Reset immagine a pannello 0 prima di ricalcolare lo stato
+      if (imgInner) imgInner.classList.remove("at-panel-1");
+      current = 0;
 
       function getMax() { return Math.max(0, panelsEl.scrollHeight - panelsEl.clientHeight); }
 
@@ -907,23 +910,79 @@
       if (onDesktopResize) { window.removeEventListener("resize", onDesktopResize); onDesktopResize = null; }
       story.style.height = "";
       panelsEl.scrollTop = 0;
+      // Reset immagine allo stato iniziale
+      if (imgInner) imgInner.classList.remove("at-panel-1");
+      dots.forEach(function(d, i) { d.classList.toggle("is-active", i === 0); });
+      current = 0;
     }
 
-    // Macchina a tre stati: A) desktop+tall→sticky  B) desktop+short→naturale  C) mobile
-    function syncState() {
-      if (!mqMobile.matches && mqSticky.matches) {
-        // Case A: desktop con abbastanza altezza
-        if (!desktopActive) { teardownMobile(); activateDesktop(); }
-      } else {
-        // Case B (desktop basso) o C (mobile): layout naturale + IO observer
-        if (desktopActive) deactivateDesktop();
-        if (!mobObs) setupMobile();
-      }
+    mq.addEventListener("change", function(e) {
+      if (e.matches) { deactivateDesktop(); setupMobile(); }
+      else { teardownMobile(); activateDesktop(); }
+    });
+
+    if (mq.matches) { setupMobile(); }
+    else { activateDesktop(); }
+  }
+
+  /* ============================================================
+     METODO — sticky viewer: testo e immagine cambiano allo scroll
+     ============================================================ */
+  function initMetodo() {
+    var section = document.getElementById("metodo-section");
+    if (!section) return;
+
+    var panels = section.querySelectorAll(".metodo__panel");
+    var imgs   = section.querySelectorAll(".metodo__img");
+    var dots   = section.querySelectorAll(".metodo__dot");
+
+    if (!panels.length) return;
+
+    var current = 0;
+    var total   = panels.length;
+    var locked  = false;
+
+    function goTo(idx) {
+      if (idx === current) return;
+      panels[current].classList.remove("is-active");
+      if (imgs[current])  imgs[current].classList.remove("is-active");
+      if (dots[current])  dots[current].classList.remove("is-active");
+      current = idx;
+      panels[current].classList.add("is-active");
+      if (imgs[current])  imgs[current].classList.add("is-active");
+      if (dots[current])  dots[current].classList.add("is-active");
+      /* blocca ulteriori switch durante la transizione */
+      locked = true;
+      setTimeout(function() { locked = false; }, 500);
     }
 
-    mqMobile.addEventListener("change", syncState);
-    mqSticky.addEventListener("change", syncState);
-    syncState();
+    section.addEventListener("wheel", function(e) {
+      /* Rilascia lo scroll di pagina se siamo già al bordo */
+      if (e.deltaY > 0 && current === total - 1) return;
+      if (e.deltaY < 0 && current === 0) return;
+
+      /* Intercetta solo se la sezione è visibile nella viewport */
+      var rect = section.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+      e.preventDefault();
+      if (locked) return;
+
+      if (e.deltaY > 0) goTo(current + 1);
+      else              goTo(current - 1);
+    }, { passive: false });
+
+    /* Touch: swipe verticale */
+    var touchY = 0;
+    section.addEventListener("touchstart", function(e) {
+      touchY = e.touches[0].clientY;
+    }, { passive: true });
+    section.addEventListener("touchend", function(e) {
+      var diff = touchY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) < 50 || locked) return;
+      if (diff > 0 && current < total - 1) goTo(current + 1);
+      else if (diff < 0 && current > 0)   goTo(current - 1);
+    }, { passive: true });
   }
 
   /* ============================================================
