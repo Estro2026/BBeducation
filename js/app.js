@@ -639,7 +639,7 @@
     // Osserva ogni <section>, il wrapper scroll-story e il footer al 30% di visibilità
     // #open-day escluso: osservato tramite i suoi panel separatamente
     var sections = Array.from(document.querySelectorAll("section, .scroll-story, footer.site-footer"))
-      .filter(function(el) { return el.id !== "open-day"; });
+      .filter(function(el) { return el.id !== "open-day" && !el.classList.contains("scroll-story"); });
 
     var sectionObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
@@ -800,15 +800,38 @@
       if (imgInner) imgInner.classList.toggle("at-panel-1", idx === 1);
       dots.forEach(function(d, i) { d.classList.toggle("is-active", i === idx); });
       triggerZoom(idx);
+      // Gestisce il reveal del contenuto del pannello attivo
+      panelEls.forEach(function(panel, i) {
+        var content = panel.querySelector(".method__content");
+        if (!content) return;
+        content.style.transitionDelay = "";
+        if (i === idx) { content.classList.add("in-view"); }
+        else { content.classList.remove("in-view"); }
+      });
     }
 
-    // Zoom iniziale all'entrata della sezione
+    // Zoom + reveal al primo ingresso nella sezione
     if ("IntersectionObserver" in window) {
       var enterObs = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) { triggerZoom(current); enterObs.disconnect(); }
-      }, { threshold: 0.3 });
+        if (entries[0].isIntersecting) {
+          triggerZoom(current);
+          // Rivela tutti gli elementi .fade-up dentro scroll-story (sticky, immagini mobile, ecc.)
+          story.querySelectorAll(".fade-up").forEach(function(el) {
+            el.style.transitionDelay = "";
+            el.classList.add("in-view");
+          });
+          // Il pannello 2 resta nascosto finché goTo(1) non lo porta in posizione
+          var secondContent = panelEls[1] && panelEls[1].querySelector(".method__content");
+          if (secondContent) secondContent.classList.remove("in-view");
+          enterObs.disconnect();
+        }
+      }, { threshold: 0.1 });
       enterObs.observe(story);
     }
+
+    // Riferimenti ai listener desktop per poterli rimuovere al deactivate
+    var onDesktopScroll = null;
+    var onDesktopResize = null;
 
     // IntersectionObserver per breakpoint mobile (immagine che cambia via IO)
     var mobObs = null;
@@ -832,23 +855,17 @@
       desktopActive = true;
       teardownMobile();
 
-      var wheelMode = false;
-      var wheelTimer = null;
-
       function getMax() { return Math.max(0, panelsEl.scrollHeight - panelsEl.clientHeight); }
 
       function updateIdx() {
         var max = getMax();
-        var idx = max > 0 && panelsEl.scrollTop >= max * 0.5 ? 1 : 0;
+        var idx = (max > 0 && panelsEl.scrollTop >= max * 0.5) ? 1 : 0;
         if (idx !== current) goTo(idx);
       }
 
       function syncScroll() {
-        if (wheelMode) return;
-        var panelH = panelsEl.clientHeight;
-        if (!panelH) return;
         var storyTop = story.getBoundingClientRect().top;
-        var scrolled = -(storyTop - headerH);
+        var scrolled = headerH - storyTop;
         if (scrolled < 0) scrolled = 0;
         var max = getMax();
         if (scrolled > max) scrolled = max;
@@ -856,44 +873,18 @@
         updateIdx();
       }
 
-      function inStickyZone() {
-        var panelH = panelsEl.clientHeight;
-        if (!panelH) return false;
-        var rect = story.getBoundingClientRect();
-        return rect.top <= headerH + 2 && rect.bottom >= panelH + headerH - 2;
-      }
-
-      function onWheel(e) {
-        if (!inStickyZone()) return;
-        var max = getMax();
-        var pos = panelsEl.scrollTop;
-        var delta = e.deltaY;
-        // Ai confini: rilascia lo scroll naturale
-        if (delta > 0 && pos >= max - 1) return;
-        if (delta < 0 && pos <= 1) return;
-        e.preventDefault();
-        wheelMode = true;
-        clearTimeout(wheelTimer);
-        wheelTimer = setTimeout(function() { wheelMode = false; }, 200);
-        var newPos = Math.max(0, Math.min(max, pos + delta));
-        panelsEl.scrollTop = newPos;
-        updateIdx();
-        // Mantieni window.scrollY in sync per uscita corretta (offsetTop è relativo all'offsetParent, non alla pagina)
-        var storyAbsTop = story.getBoundingClientRect().top + window.scrollY;
-        var targetY = storyAbsTop - headerH + newPos;
-        window.scrollTo({ top: targetY, behavior: "instant" });
-      }
-
-      window.addEventListener("scroll", syncScroll, { passive: true });
-      window.addEventListener("wheel", onWheel, { passive: false });
-
       function setupHeight() { story.style.height = panelsEl.scrollHeight + "px"; }
 
-      window.addEventListener("resize", function() {
-        if (!desktopActive) return;
+      onDesktopScroll = syncScroll;
+      onDesktopResize = function() {
         story.style.height = "";
-        setTimeout(function() { setupHeight(); syncScroll(); }, 50);
-      }, { passive: true });
+        requestAnimationFrame(function() {
+          if (desktopActive) { setupHeight(); syncScroll(); }
+        });
+      };
+
+      window.addEventListener("scroll", onDesktopScroll, { passive: true });
+      window.addEventListener("resize", onDesktopResize, { passive: true });
 
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(function() { if (desktopActive) { setupHeight(); syncScroll(); } });
@@ -908,6 +899,8 @@
     function deactivateDesktop() {
       if (!desktopActive) return;
       desktopActive = false;
+      if (onDesktopScroll) { window.removeEventListener("scroll", onDesktopScroll); onDesktopScroll = null; }
+      if (onDesktopResize) { window.removeEventListener("resize", onDesktopResize); onDesktopResize = null; }
       story.style.height = "";
       panelsEl.scrollTop = 0;
       setupMobile();
