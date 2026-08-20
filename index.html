@@ -22,7 +22,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/style.css?v=24">
+  <link rel="stylesheet" href="css/style.css?v=77">
 
   <!-- Structured data: confermato — nessun dato inventato -->
   <script type="application/ld+json">
@@ -85,6 +85,109 @@
     ]
   }
   </script>
+  <style>
+    #method .method__content { display: flex; flex-direction: column; gap: 1rem !important; }
+    #method .method__content > * { margin: 0 !important; }
+    #method .method__content > .btn,
+    #method .method__content > a.btn { margin-top: 1rem !important; }
+    #bilinguismo .method__content { display: flex; flex-direction: column; gap: 1rem !important; }
+    #bilinguismo .method__content > * { margin: 0 !important; }
+
+    /* ── Spaziatura uniforme ───────────────────────────────── */
+    /* 1) Titolo → sottotitolo: 1rem */
+    .section__title + .section__subtitle,
+    .section__title + p,
+    .section__title + .open-day__intro { margin-top: 1rem !important; }
+
+    /* 2) Contenuto → CTA: 2rem */
+    .section__subtitle + .btn,
+    .section__subtitle + .hero__cta-group,
+    .section__subtitle + div > .btn,
+    .method__body + .btn,
+    .method__body + a.btn,
+    .open-day-agenda + div,
+    .open-day__intro + .open-day-agenda { margin-top: 2rem !important; }
+
+    /* 3) Blocchi di testo tra loro: 2rem */
+    .method__body + .method__body { margin-top: 2rem !important; }
+    p + p { margin-top: 2rem !important; }
+    /* hero: la regola p+p non deve toccare headline→subtitle */
+    .hero__copy p + p { margin-top: 0 !important; }
+    /* footer contatti: gap gestito dal flex container */
+    .footer__contact-list p + p { margin-top: 0 !important; }
+
+    /* 4) Elementi della stessa sezione: 2rem */
+    .section__header + *,
+    .open-day-agenda__badges { gap: 2rem !important; }
+    .why-grid { gap: 2rem !important; }
+    .continuita-steps { gap: 2rem !important; }
+    /* 1 — Una scuola pensata intorno al bambino */
+    #why { background: #ffffff !important; }
+    /* 2 — Crescere attraverso ciò che si vive */
+    #scroll-story-baby { background: rgba(128,169,213,0.15) !important; }
+    #scroll-story-baby .scroll-story__panel,
+    #scroll-story-baby .scroll-story__sticky { background: transparent !important; }
+    @media (min-width: 1024px) { #scroll-story-baby .scroll-story__sticky { padding-bottom: 96px !important; } }
+    @media (min-width: 1024px) { #scroll-story-baby .scroll-story__dots { bottom: calc(96px + var(--space-2)) !important; } }
+    /* 3 — Una giornata fatta di piccoli grandi momenti */
+    #giornata { background: #ffffff !important; padding-block: 96px !important; }
+    @media (max-width: 767px) { #giornata { padding-block: 48px !important; } }
+    @media (max-width: 767px) { #giornata .giornata-film__header { padding-bottom: 0 !important; } }
+    @media (max-width: 767px) { #giornata .giornata-film__nav > div[style] { padding-top: 24px !important; padding-bottom: 0 !important; } }
+    @media (max-width: 767px) { #giornata .giornata-film__nav { padding-bottom: 0 !important; } }
+    #giornata .giornata-film { min-height: unset !important; }
+    #giornata .giornata-film__header { padding-top: 0 !important; padding-bottom: 2rem !important; display: flex; flex-direction: column; gap: 1rem !important; }
+    #giornata .giornata-film__header > * { margin: 0 !important; }
+    #giornata .giornata-film__header .section__subtitle { text-align: center !important; align-self: center !important; width: 100% !important; }
+    #giornata .giornata-film__nav { padding-bottom: 0 !important; }
+    #giornata .giornata-film__stage { min-height: unset !important; max-height: calc(100svh - 380px) !important; margin-top: 2rem !important; }
+    @media (max-width: 767px) { #giornata .giornata-film__stage { max-height: clamp(200px, calc(100svh - 300px), 420px) !important; margin-top: 1rem !important; } }
+    /* 4 — Crescere insieme, scuola e famiglia */
+    #famiglie { background: rgba(128,169,213,0.15) !important; }
+    #faq .section__eyebrow { margin-bottom: 2rem !important; }
+    .site-footer { padding-top: 80px !important; }
+    @media (max-width: 767px) { .site-footer { padding-top: 48px !important; } }
+    .site-footer .container { padding-top: 0 !important; }
+    .footer__cta-block { padding-top: 0 !important; }
+    .map-container + .footer__grid { margin-top: 2rem !important; }
+    /* 5 — Dalla Baby alla Middle */
+    #continuita { background: #ffffff !important; }
+    #continuita .section__header + .continuita-path { margin-top: 2rem !important; }
+    /* 6 — Open Day: sfondi separati */
+    #open-day { background: none !important; }
+    #open-day .oda-panel--agenda { background: rgba(128,169,213,0.15) !important; }
+    #open-day .oda-panel--agenda .section__title,
+    #open-day .oda-panel--agenda .open-day__intro,
+    #open-day .oda-panel--agenda .open-day-date-intro { color: var(--color-text) !important; }
+    #open-day .oda-panel--agenda .section__title { margin-bottom: 0 !important; }
+    #open-day .oda-panel--agenda .open-day__intro { margin-top: 1rem !important; margin-bottom: 2rem !important; }
+    #open-day .oda-panel--agenda .open-day__capacity { color: var(--color-text-muted) !important; border-color: var(--color-border) !important; }
+    /* Pulsante gradiente */
+    #open-day .oda-panel--agenda .btn-white { background: var(--bbe-baby-gradient) !important; color: #111 !important; border: none !important; margin-top: 2rem !important; }
+    @media (max-width: 767px) { #open-day .oda-panel--agenda .btn-white { margin-top: 0 !important; } }
+    @media (max-width: 767px) { #open-day .oda-panel--agenda div:has(> a.btn-white) { margin-top: 24px !important; padding-top: 0 !important; } }
+    /* Card badge */
+    #open-day .oda-panel--agenda .oda-badge { background: #fff !important; }
+    #open-day .oda-panel--agenda .oda-badge__icon { background: rgba(128,169,213,0.15) !important; color: var(--bbe-baby-blue) !important; }
+    #open-day .oda-panel--agenda .oda-badge__title { color: var(--color-text) !important; }
+    #open-day .oda-panel--agenda .oda-badge__body { color: var(--color-text-muted) !important; }
+    /* "Durante l'Open Day:" in nero */
+    #open-day .oda-panel--agenda .open-day__agenda-label { color: var(--color-text) !important; margin-top: 2rem !important; }
+    /* Scritta decorativa "Open Day" in gradiente */
+    #open-day .oda-panel--agenda .section__eyebrow {
+      background: var(--bbe-baby-gradient) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+      opacity: 0.25 !important;
+      margin-top: 2rem !important;
+    }
+    #open-day .oda-panel--agenda .container { padding-top: 2rem !important; }
+    #open-day .oda-panel--form { background: url('gradientiepatternbaby/patterngradientebaby.webp') center / cover no-repeat !important; padding-top: 80px !important; padding-bottom: 80px !important; }
+    @media (max-width: 767px) { #open-day .oda-panel--form { padding-top: 48px !important; padding-bottom: 48px !important; } }
+    #booking-form-section { margin-top: 0 !important; }
+    #open-day .oda-panel--form .section__header { margin-bottom: 2rem !important; }
+</style>
 </head>
 
 <body>
@@ -99,7 +202,7 @@
     <div class="container header__inner">
 
       <!-- Brand -->
-      <a href="/" class="header__brand" aria-label="BBEducation — torna alla homepage">
+      <a href="#" class="header__brand" aria-label="BBEducation — torna all'inizio della pagina">
         <img
           src="logo/BBEnormalelogofull.webp"
           alt="BBEducation logo"
@@ -114,7 +217,7 @@
       <nav class="header__nav" aria-label="Navigazione principale">
         <ul>
           <li><a href="#method">Metodo</a></li>
-          <li><a href="#open-day">Open Day</a></li>
+          <li><a href="#continuita">Percorso</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#info">Contatti</a></li>
         </ul>
@@ -122,7 +225,7 @@
 
       <!-- CTA primaria -->
       <div class="header__cta">
-        <a href="#open-day" class="btn btn-primary">Prenotazione Open Day</a>
+        <a href="#booking-form-section" class="btn btn-primary">Prenota una visita</a>
       </div>
 
     </div>
@@ -163,7 +266,7 @@
 
         <!-- Copy — sinistra su desktop (order:-1), sotto immagine su mobile -->
         <div class="hero__copy">
-          <p class="hero__eyebrow">Nido &amp; Scuola dell'Infanzia · Biassono</p>
+          <p class="hero__eyebrow">Nido + Scuola dell'Infanzia Bilingue</p>
 
           <!-- H1 SEO — semanticamente corretto, gerarchicamente primo -->
           <h1 id="hero-h1" class="hero__h1">
@@ -172,50 +275,26 @@
 
           <!-- Headline emozionale — rilevanza visiva principale -->
           <p class="hero__headline">
-            Il primo passo verso<br>
-            <span>il suo futuro<br>inizia qui.</span>
+            Qui tuo figlio cresce<br>
+            <span>sentendosi a casa.</span>
           </p>
 
           <p class="hero__subtitle">
-            Un percorso bilingue pensato per crescere con curiosità, autonomia e fiducia,
-            in un ambiente dove ogni bambino si sente accolto e valorizzato.
+            Un percorso bilingue italiano e inglese, dai primi anni alla Scuola dell'Infanzia, pensato per crescere con curiosità, autonomia e&nbsp;fiducia, in un ambiente dove ogni bambino si sente accolto e&nbsp;valorizzato.
           </p>
 
           <div class="hero__cta-group">
-            <a href="#open-day" class="btn btn-primary">
-              Prenota il tuo Open Day
+            <a href="#booking-form-section" class="btn btn-primary">
+              Partecipa all'Open Day
             </a>
-            <p class="hero__cta-note">
-              Scopri BBEducation, visita la scuola e incontra il nostro team.
-            </p>
           </div>
 
-          <div class="proof-badges proof-badges--small" aria-label="Riconoscimenti">
-            <div class="proof-badge">
-              <span class="proof-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                  <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                </svg>
-              </span>
-              Al fianco delle famiglie della Brianza
-            </div>
-            <div class="proof-badge">
-              <span class="proof-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-              </span>
-              Metodo bilingue certificato
-            </div>
-          </div>
         </div>
 
       </div>
 
-      <!-- Recensioni integrate nella hero — visibili all'atterraggio -->
-      <div class="hero__social">
-        <!-- TODO: sostituire con il plugin recensioni Google quando disponibile -->
+      <!-- Recensioni rimosse -->
+      <div class="hero__social" style="display:none;">
         <div class="reviews-plugin-wrapper" aria-label="Recensioni Google">
           <div class="reviews-marquee">
             <div class="reviews-grid" aria-hidden="false">
@@ -306,11 +385,11 @@
     <section id="why" class="section" aria-labelledby="why-title">
       <div class="container">
         <div class="section__header fade-up">
-          <h2 id="why-title" class="section__title">Una scuola pensata intorno al bambino</h2>
+          <h2 id="why-title" class="section__title">Una scuola pensata intorno al&nbsp;bambino</h2>
           <p class="section__subtitle">
-            I primi anni sono fondamentali. Per questo in BBEducation ogni esperienza è
-            progettata per accompagnare la crescita, rispettando i tempi e valorizzando
-            le potenzialità di ogni bambino.
+            I primi anni sono fondamentali. Per&nbsp;questo in&nbsp;BBEducation ogni esperienza è
+            pensata per&nbsp;accompagnare la&nbsp;crescita di&nbsp;ogni bambino, rispettandone i&nbsp;tempi,
+            le&nbsp;caratteristiche e il&nbsp;modo unico di&nbsp;scoprire il&nbsp;mondo.
           </p>
         </div>
 
@@ -335,7 +414,7 @@
                   </svg>
                 </div>
                 <h3 id="vc-1-title" class="value-card__title">Bilinguismo naturale</h3>
-                <p class="value-card__body">L'inglese entra nella quotidianità attraverso il gioco, le attività e le relazioni. Non solo una lingua da imparare, ma una lingua da vivere.</p>
+                <p class="value-card__body">Italiano e inglese fanno parte della quotidianità attraverso il&nbsp;gioco, le&nbsp;attività e le&nbsp;relazioni.</p>
               </div>
             </div>
           </article>
@@ -359,7 +438,7 @@
                   </svg>
                 </div>
                 <h3 id="vc-2-title" class="value-card__title">Un metodo che fa crescere</h3>
-                <p class="value-card__body">Imparare significa esplorare, sperimentare e fare esperienza. Un approccio educativo che stimola curiosità, autonomia e creatività.</p>
+                <p class="value-card__body">Imparare significa esplorare, sperimentare e fare&nbsp;esperienza. Un approccio educativo che stimola curiosità, autonomia e&nbsp;creatività.</p>
               </div>
             </div>
           </article>
@@ -373,7 +452,7 @@
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
                   </svg>
                 </div>
-                <p class="value-card__front-label">Docenti qualificati</p>
+                <p class="value-card__front-label">Cura e attenzione</p>
                 <p class="value-card__hint">scopri di più →</p>
               </div>
               <div class="value-card__back">
@@ -382,8 +461,8 @@
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
                   </svg>
                 </div>
-                <h3 id="vc-3-title" class="value-card__title">Docenti qualificati</h3>
-                <p class="value-card__body">Un team educativo competente e attento accompagna ogni bambino con cura, creando ogni giorno un ambiente sereno e stimolante.</p>
+                <h3 id="vc-3-title" class="value-card__title">Cura e attenzione</h3>
+                <p class="value-card__body">Un team educativo competente e&nbsp;attento accompagna ogni&nbsp;bambino con&nbsp;cura, creando ogni&nbsp;giorno un&nbsp;ambiente sereno e&nbsp;stimolante.</p>
               </div>
             </div>
           </article>
@@ -407,169 +486,402 @@
                   </svg>
                 </div>
                 <h3 id="vc-4-title" class="value-card__title">Al centro, ogni bambino</h3>
-                <p class="value-card__body">Perché ogni bambino ha i suoi tempi, le sue inclinazioni e il suo modo di scoprire il mondo. E il nostro compito è accompagnarlo.</p>
+                <p class="value-card__body">Ogni bambino ha i&nbsp;propri tempi, le&nbsp;proprie inclinazioni e il&nbsp;proprio modo di&nbsp;scoprire il&nbsp;mondo. Il percorso educativo parte da&nbsp;qui.</p>
               </div>
             </div>
           </article>
 
         </div>
+
+        <div class="section__cta fade-up" style="text-align:center; margin-top: var(--space-5);">
+          <a href="#booking-form-section" class="btn btn-primary">Prenota una visita</a>
+        </div>
+
       </div>
     </section>
 
     <!-- ==========================================================
-         5. L'ESPERIENZA BBE
+         SCROLL STORY: method + bilinguismo (2 pannelli, container-width)
     ========================================================== -->
-    <section id="method" class="section section--white" aria-labelledby="method-title">
-      <div class="container">
-        <div class="method__layout">
+    <div class="scroll-story" id="scroll-story-baby">
+      <div class="scroll-story__frame">
 
-          <!-- Content -->
-          <div class="method__content fade-up">
-            <span class="section__eyebrow">Il percorso educativo</span>
-            <h2 id="method-title" class="section__title section__title--left">
-              Imparare attraverso ciò che&nbsp;si&nbsp;vive
-            </h2>
+        <!-- SINISTRA: pannelli di testo -->
+        <div class="scroll-story__panels">
 
-            <p class="method__body">
-              In BBEducation il percorso educativo prende forma ogni giorno attraverso
-              esperienze concrete, attività bilingue, gioco, laboratori e momenti di relazione.
-            </p>
+          <section id="method" class="scroll-story__panel ss-panel--white" aria-labelledby="method-title">
+            <div class="scroll-story__mob-img" aria-hidden="true">
+              <img src="Foto/baby2.webp" alt="" width="600" height="450" loading="lazy" decoding="async" class="method__image">
+            </div>
+            <div class="scroll-story__panel-inner">
+              <div class="method__content fade-up">
+                <h2 id="method-title" class="section__title section__title--left" style="padding-top:var(--space-1);padding-bottom:var(--space-1);">
+                  Crescere attraverso ciò che&nbsp;si&nbsp;vive
+                </h2>
+                <p class="method__body">
+                  Ogni giornata è fatta di esperienze che aiutano i&nbsp;bambini a&nbsp;conoscere il&nbsp;mondo,
+                  sviluppare autonomia e costruire le&nbsp;prime relazioni.
+                </p>
+                <p class="method__body" style="font-weight:700;color:var(--color-text);">
+                  Ogni esperienza diventa un'occasione per:
+                </p>
+                <ul class="method__features">
+                  <li class="method__feature">
+                    <span class="method__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Scoprire</strong><br><span style="font-weight:400">Stimolando curiosità e&nbsp;voglia di&nbsp;conoscere.</span></span>
+                  </li>
+                  <li class="method__feature">
+                    <span class="method__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Sperimentare</strong><br><span style="font-weight:400">Attraverso gioco, attività e&nbsp;laboratori.</span></span>
+                  </li>
+                  <li class="method__feature">
+                    <span class="method__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><strong>Crescere</strong><br><span style="font-weight:400">Sviluppando autonomia, sicurezza e&nbsp;capacità relazionali.</span></span>
+                  </li>
+                </ul>
+                <p class="method__body" style="font-weight:700;color:var(--bbe-baby-blue);margin-top:0.25rem;margin-bottom:0.25rem;">
+                  In italiano e in inglese, ogni giorno.
+                </p>
+                <a href="#booking-form-section" class="btn btn-primary" style="margin-top:0.25rem;align-self:flex-start;">Vieni a conoscerci</a>
+              </div>
+            </div>
+          </section>
 
-            <p class="method__body" style="font-weight: 700; color: var(--color-text);">
-              Ogni esperienza diventa un'occasione per:
-            </p>
+          <section id="bilinguismo" class="scroll-story__panel ss-panel--white" aria-labelledby="bilinguismo-title">
+            <div class="scroll-story__mob-img" aria-hidden="true">
+              <img src="Foto/baby.webp" alt="" width="600" height="450" loading="lazy" decoding="async" class="method__image">
+            </div>
+            <div class="scroll-story__panel-inner">
+              <div class="method__content fade-up">
+                <h2 id="bilinguismo-title" class="section__title section__title--left">
+                  Due lingue,<br>una quotidianità
+                </h2>
+                <p class="method__body">Italiano e inglese fanno parte naturalmente della giornata del bambino.</p>
+                <p class="method__body">L'inglese entra nelle attività, nel gioco e nelle relazioni quotidiane, grazie alla presenza di insegnanti italiani e&nbsp;madrelingua.</p>
+              </div>
+            </div>
+          </section>
 
-            <ul class="method__features" aria-label="Cosa offre il percorso BBEducation">
-              <li class="method__feature">
-                <span class="method__feature-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
-                </span>
-                <span>
-                  <strong>Scoprire</strong><br><span style="font-weight:400">stimolando curiosità e voglia di imparare.</span>
-                </span>
-              </li>
-              <li class="method__feature">
-                <span class="method__feature-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
-                </span>
-                <span>
-                  <strong>Sperimentare</strong><br><span style="font-weight:400">attraverso attività che coinvolgono e fanno fare esperienza.</span>
-                </span>
-              </li>
-              <li class="method__feature">
-                <span class="method__feature-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
-                </span>
-                <span>
-                  <strong>Crescere</strong><br><span style="font-weight:400">sviluppando autonomia, sicurezza e capacità relazionali.</span>
-                </span>
-              </li>
-              <li class="method__feature">
-                <span class="method__feature-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#70DDA0" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
-                </span>
-                <span>
-                  <strong>In un ambiente bilingue</strong><br><span style="font-weight:400">dove italiano e inglese fanno naturalmente parte della quotidianità.</span>
-                </span>
-              </li>
-            </ul>
+        </div><!-- /.scroll-story__panels -->
 
-            <a href="#open-day" class="btn btn-primary">
-              Prenota il tuo Open Day
-            </a>
+        <!-- DESTRA: immagine sticky -->
+        <div class="scroll-story__sticky" aria-hidden="true">
+          <div class="scroll-story__img-track">
+            <div class="scroll-story__img-inner" id="ss-img-inner">
+              <div class="scroll-story__img-slot">
+                <img src="Foto/baby2.webp" class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
+              </div>
+              <div class="scroll-story__img-slot">
+                <img src="Foto/baby.webp"  class="scroll-story__img" width="800" height="900" loading="lazy" decoding="async" alt="">
+              </div>
+            </div>
           </div>
-
-          <!-- Media -->
-          <div class="method__media fade-up" aria-hidden="true">
-            <img
-              src="Foto/baby2.webp"
-              alt=""
-              class="method__image"
-              width="600"
-              height="450"
-              loading="lazy"
-              decoding="async"
-            >
-            <div class="method__media-accent"></div>
+          <div class="scroll-story__dots" aria-hidden="true">
+            <span class="scroll-story__dot is-active"></span>
+            <span class="scroll-story__dot"></span>
           </div>
-
         </div>
+
+      </div><!-- /.scroll-story__frame -->
+    </div><!-- /.scroll-story -->
+
+    <!-- ==========================================================
+         GIORNATA — Film di immagini: 8 momenti
+    ========================================================== -->
+    <section id="giornata" class="giornata-film" aria-labelledby="giornata-title">
+
+      <!-- Intestazione fuori dal film -->
+      <div class="giornata-film__header fade-up">
+        <h2 id="giornata-title" class="section__title">Una giornata fatta di piccoli grandi momenti</h2>
+        <p class="section__subtitle">Ogni giorno è una storia. Scorri per viverla.</p>
+      </div>
+
+      <!-- Slideshow -->
+      <div class="giornata-film__stage" id="giornata-stage" aria-live="polite">
+
+        <div class="giornata-slide is-active" data-slide="0">
+          <img src="Foto/baby.webp"  class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
+          <div class="giornata-slide__overlay">
+            <span class="giornata-slide__num" aria-hidden="true">01</span>
+            <strong class="giornata-slide__name">Accoglienza</strong>
+            <p class="giornata-slide__desc">Il bambino arriva e trova un ambiente familiare.<br>L'educatrice lo accoglie per nome.</p>
+          </div>
+        </div>
+
+        <div class="giornata-slide" data-slide="1">
+          <img src="Foto/baby2.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
+          <div class="giornata-slide__overlay">
+            <span class="giornata-slide__num" aria-hidden="true">02</span>
+            <strong class="giornata-slide__name">Gioco</strong>
+            <p class="giornata-slide__desc">Gioco libero o guidato: il bambino esplora, sceglie, si muove a modo suo.</p>
+          </div>
+        </div>
+
+        <div class="giornata-slide" data-slide="2">
+          <img src="Foto/baby3.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
+          <div class="giornata-slide__overlay">
+            <span class="giornata-slide__num" aria-hidden="true">03</span>
+            <strong class="giornata-slide__name">Attività</strong>
+            <p class="giornata-slide__desc">Disegno, musica, manipolazione: un'attività pensata per la sua età<br>e la sua curiosità.</p>
+          </div>
+        </div>
+
+        <div class="giornata-slide" data-slide="3">
+          <img src="Foto/baby.webp"  class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
+          <div class="giornata-slide__overlay">
+            <span class="giornata-slide__num" aria-hidden="true">04</span>
+            <strong class="giornata-slide__name">Esperienza bilingue</strong>
+            <p class="giornata-slide__desc">Una canzone, una storia, un gioco: tutto in inglese.<br>Il bilinguismo si vive, non si studia.</p>
+          </div>
+        </div>
+
+        <div class="giornata-slide" data-slide="4">
+          <img src="Foto/baby2.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
+          <div class="giornata-slide__overlay">
+            <span class="giornata-slide__num" aria-hidden="true">05</span>
+            <strong class="giornata-slide__name">Relazione</strong>
+            <p class="giornata-slide__desc">Tempo per stare insieme: con i compagni, con l'educatrice.<br>Si impara a condividere, aspettare, comunicare.</p>
+          </div>
+        </div>
+
+        <div class="giornata-slide" data-slide="5">
+          <img src="Foto/baby3.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
+          <div class="giornata-slide__overlay">
+            <span class="giornata-slide__num" aria-hidden="true">06</span>
+            <strong class="giornata-slide__name">Riposo</strong>
+            <p class="giornata-slide__desc">Un momento di pausa rispettando i ritmi di ogni bambino.<br>Chi dorme, dorme. Chi no, ha uno spazio tranquillo.</p>
+          </div>
+        </div>
+
+        <div class="giornata-slide" data-slide="6">
+          <img src="Foto/baby.webp"  class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
+          <div class="giornata-slide__overlay">
+            <span class="giornata-slide__num" aria-hidden="true">07</span>
+            <strong class="giornata-slide__name">Scoperta</strong>
+            <p class="giornata-slide__desc">Un oggetto, un fenomeno, una domanda. Spazio aperto alla meraviglia<br>e all'iniziativa del bambino.</p>
+          </div>
+        </div>
+
+        <div class="giornata-slide" data-slide="7">
+          <img src="Foto/baby2.webp" class="giornata-slide__bg" alt="" loading="lazy" decoding="async">
+          <div class="giornata-slide__overlay">
+            <span class="giornata-slide__num" aria-hidden="true">08</span>
+            <strong class="giornata-slide__name">Ricongiungimento</strong>
+            <p class="giornata-slide__desc">La giornata si chiude. Il bambino sorride, racconta, abbraccia.<br>La famiglia ritrova un figlio un po' più grande.</p>
+          </div>
+        </div>
+
+      </div><!-- /.giornata-film__stage -->
+
+      <!-- Barra di progresso + nav -->
+      <div class="giornata-film__nav" aria-label="Navigazione momenti">
+        <div class="giornata-film__progress" id="giornata-progress" aria-hidden="true">
+          <div class="giornata-film__progress-fill" id="giornata-progress-fill"></div>
+        </div>
+        <div class="giornata-film__steps" role="tablist">
+          <button class="giornata-film__step is-active" data-goto="0" role="tab" aria-selected="true" aria-label="Accoglienza">Accoglienza</button>
+          <button class="giornata-film__step" data-goto="1" role="tab" aria-selected="false" aria-label="Gioco">Gioco</button>
+          <button class="giornata-film__step" data-goto="2" role="tab" aria-selected="false" aria-label="Attività">Attività</button>
+          <button class="giornata-film__step" data-goto="3" role="tab" aria-selected="false" aria-label="Esperienza bilingue">Bilingue</button>
+          <button class="giornata-film__step" data-goto="4" role="tab" aria-selected="false" aria-label="Relazione">Relazione</button>
+          <button class="giornata-film__step" data-goto="5" role="tab" aria-selected="false" aria-label="Riposo">Riposo</button>
+          <button class="giornata-film__step" data-goto="6" role="tab" aria-selected="false" aria-label="Scoperta">Scoperta</button>
+          <button class="giornata-film__step" data-goto="7" role="tab" aria-selected="false" aria-label="Ricongiungimento">Ricongiungimento</button>
+        </div>
+        <div style="text-align:center;padding-top:var(--space-5);">
+          <a href="#booking-form-section" class="btn btn-primary">Partecipa all'Open Day</a>
+        </div>
+      </div>
+
+    </section><!-- /.giornata-film -->
+
+    <!-- ==========================================================
+         5. CRESCERE INSIEME, SCUOLA E FAMIGLIA
+    ========================================================== -->
+    <section id="famiglie" class="section" aria-labelledby="famiglie-title">
+      <div class="container">
+
+        <div class="section__header fade-up">
+          <h2 id="famiglie-title" class="section__title">Crescere insieme, scuola e famiglia</h2>
+          <p class="section__subtitle">
+            Accompagnare un bambino significa anche costruire una relazione di fiducia con la sua famiglia.
+          </p>
+        </div>
+
+        <div class="open-day-agenda__badges" style="max-width: 700px; margin-inline: auto;">
+          <div class="oda-badge fade-up">
+            <span class="oda-badge__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </span>
+            <span class="oda-badge__text">
+              <strong class="oda-badge__title">Confronto con le educatrici</strong>
+              <span class="oda-badge__body">Momenti dedicati per raccontare come cresce tuo figlio, giorno dopo giorno.</span>
+            </span>
+          </div>
+          <div class="oda-badge fade-up">
+            <span class="oda-badge__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </span>
+            <span class="oda-badge__text">
+              <strong class="oda-badge__title">Comunicazione con le famiglie</strong>
+              <span class="oda-badge__body">La famiglia è sempre aggiornata su ciò che vive il bambino a scuola.</span>
+            </span>
+          </div>
+          <div class="oda-badge fade-up">
+            <span class="oda-badge__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </span>
+            <span class="oda-badge__text">
+              <strong class="oda-badge__title">Condivisione del percorso del bambino</strong>
+              <span class="oda-badge__body">Il progetto educativo di ogni bambino viene costruito insieme, con attenzione alle sue esigenze individuali.</span>
+            </span>
+          </div>
+          <div class="oda-badge fade-up">
+            <span class="oda-badge__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </span>
+            <span class="oda-badge__text">
+              <strong class="oda-badge__title">Attenzione alle esigenze individuali</strong>
+              <span class="oda-badge__body">BBEducation non accompagna soltanto il bambino, ma anche la famiglia nel percorso di crescita.</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         6. DAL BABY ALLA PRIMARY — CONTINUITÀ EDUCATIVA
+    ========================================================== -->
+    <section id="continuita" class="section section--white" aria-labelledby="continuita-title">
+      <div class="container">
+
+        <div class="section__header fade-up">
+          <h2 id="continuita-title" class="section__title">Dalla Baby alla Middle</h2>
+          <p class="section__subtitle">
+            Il percorso non si ferma ai primi anni. BBEducation accompagna ogni bambino nella crescita,
+            mantenendo nel tempo valori, metodo e relazione.
+          </p>
+        </div>
+
+        <div class="continuita-path">
+          <div class="continuita-step continuita-step--active continuita-step--anim">
+            <div class="continuita-step__img-wrap">
+              <img src="Foto/baby.webp" alt="Bambini al Baby" class="continuita-step__img" loading="lazy" width="400" height="300">
+            </div>
+            <span class="continuita-step__badge">0–6</span>
+            <strong class="continuita-step__label">Baby</strong>
+            <span class="continuita-step__desc">Nido e Scuola dell'Infanzia</span>
+          </div>
+          <div class="continuita-step continuita-step--anim" style="--step-delay:0.28s">
+            <div class="continuita-step__img-wrap">
+              <img src="Foto/baby2.webp" alt="Bambini alla Primary" class="continuita-step__img" loading="lazy" width="400" height="300">
+            </div>
+            <span class="continuita-step__badge">6–11</span>
+            <strong class="continuita-step__label">Primary</strong>
+            <span class="continuita-step__desc">Scuola Primaria</span>
+          </div>
+          <div class="continuita-step continuita-step--anim" style="--step-delay:0.52s">
+            <div class="continuita-step__img-wrap">
+              <img src="Foto/baby3.webp" alt="Ragazzi alla Middle School" class="continuita-step__img" loading="lazy" width="400" height="300">
+            </div>
+            <span class="continuita-step__badge">11–14</span>
+            <strong class="continuita-step__label">Middle School</strong>
+            <span class="continuita-step__desc">Scuola Secondaria di primo grado</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- ==========================================================
          6. OPEN DAY — sezione principale di conversione
     ========================================================== -->
-    <section id="open-day" class="section section--blue open-day-section" aria-labelledby="open-day-title" tabindex="-1">
-      <!-- Decorativo: "OPEN DAY" gigante che sbuca dalla sezione sopra -->
-      <span class="section__eyebrow" aria-hidden="true">Open Day</span>
+    <section id="open-day" class="open-day-section" aria-labelledby="open-day-title" tabindex="-1">
 
-      <div class="container">
+      <!-- ── PANEL 1: agenda ── -->
+      <div class="oda-panel oda-panel--agenda">
+        <!-- Decorativo: "OPEN DAY" gigante -->
+        <span class="section__eyebrow" aria-hidden="true">Open Day</span>
 
-        <!-- Header centrato -->
-        <div class="section__header fade-up">
-          <h2 id="open-day-title" class="section__title">
-            La scuola giusta si sceglie vivendola
-          </h2>
-          <p class="open-day__intro">
-            Leggere può raccontarti una scuola.<br>
-            <strong>Visitarla ti permette di capire se è quella giusta per tuo figlio.</strong>
-          </p>
-        </div>
+        <div class="container">
 
-        <!-- Agenda: foto hero + badge sotto -->
-        <div class="open-day-agenda fade-up" aria-label="Cosa potrai fare durante l'Open Day">
-
-          <!-- Foto full-width -->
-          <div class="open-day-agenda__photo-hero">
-            <img src="Foto/baby3.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async">
+          <div class="section__header fade-up">
+            <h2 id="open-day-title" class="section__title">
+              La scuola giusta si sceglie vivendola.
+            </h2>
+            <p class="open-day__intro">
+              Visitare la scuola ti permette di capire se è quella giusta per&nbsp;tuo figlio.
+            </p>
           </div>
 
-          <!-- Label + badge cards -->
-          <p class="open-day-agenda__label">Durante l'Open Day potrai:</p>
-          <div class="open-day-agenda__badges">
-            <div class="oda-badge">
-              <span class="oda-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              </span>
-              <span class="oda-badge__text">
-                <strong class="oda-badge__title">Visitare la scuola</strong>
-                <span class="oda-badge__body">Scoprire gli ambienti in cui i bambini imparano, giocano e crescono.</span>
-              </span>
+          <div class="open-day-agenda" aria-label="Cosa potrai fare durante l'Open Day">
+            <div class="open-day-agenda__photo-hero">
+              <img src="Foto/baby3.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async">
             </div>
-            <div class="oda-badge">
-              <span class="oda-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </span>
-              <span class="oda-badge__text">
-                <strong class="oda-badge__title">Scoprire il metodo</strong>
-                <span class="oda-badge__body">Capire come funziona il nostro approccio bilingue e come entra nella quotidianità.</span>
-              </span>
-            </div>
-            <div class="oda-badge">
-              <span class="oda-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-              </span>
-              <span class="oda-badge__text">
-                <strong class="oda-badge__title">Conoscere il team</strong>
-                <span class="oda-badge__body">Incontrare le persone che accompagneranno il tuo bambino ogni giorno.</span>
-              </span>
-            </div>
-            <div class="oda-badge">
-              <span class="oda-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              </span>
-              <span class="oda-badge__text">
-                <strong class="oda-badge__title">Fare tutte le tue domande</strong>
-                <span class="oda-badge__body">Ricevere informazioni sul percorso e trovare le risposte che stai cercando.</span>
-              </span>
+            <p class="open-day__agenda-label fade-up">Durante l'Open Day:</p>
+            <div class="open-day-agenda__badges">
+              <div class="oda-badge fade-up" style="--badge-delay:0.05s">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Visita la scuola</strong>
+                  <span class="oda-badge__body">Scopri gli ambienti in cui i bambini imparano, giocano e crescono.</span>
+                </span>
+              </div>
+              <div class="oda-badge fade-up" style="--badge-delay:0.15s">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Scopri il metodo</strong>
+                  <span class="oda-badge__body">Conosci il nostro approccio educativo e bilingue.</span>
+                </span>
+              </div>
+              <div class="oda-badge fade-up" style="--badge-delay:0.25s">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Conosci il team</strong>
+                  <span class="oda-badge__body">Incontra le educatrici che accompagneranno tuo figlio.</span>
+                </span>
+              </div>
+              <div class="oda-badge fade-up" style="--badge-delay:0.35s">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Fai le tue domande</strong>
+                  <span class="oda-badge__body">Parla con il team e ricevi tutte le informazioni che stai cercando.</span>
+                </span>
+              </div>
             </div>
           </div>
 
-        </div>
+          <div style="text-align:center; margin-top: var(--space-5);">
+            <a href="#booking-form-section" class="btn btn-white fade-up">Prenota una visita</a>
+          </div>
 
-        <!-- Form + foto affiancati -->
-        <div class="open-day__form-photo fade-up">
+        </div>
+      </div><!-- /oda-panel--agenda -->
+
+      <!-- ── PANEL 2: form (slide up all'entrata in viewport / click CTA) ── -->
+      <div class="oda-panel oda-panel--form" id="odaFormPanel">
+        <button class="oda-form-close" id="odaFormClose" aria-label="Torna indietro">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <div class="container">
+
+          <div class="section__header fade-up">
+            <h2 class="section__title" id="oda-form-title">Vieni a conoscere BBEducation.</h2>
+            <p class="section__subtitle">
+              Visita la scuola, incontra il team e scopri come accompagniamo i bambini nei loro primi anni di crescita.
+            </p>
+          </div>
+
+          <div class="open-day__form-photo">
 
           <!-- Form prenotazione (sinistra) -->
           <div class="open-day__form-col">
@@ -588,7 +900,7 @@
               class="booking-form-wrapper"
               aria-label="Modulo di prenotazione Open Day"
             >
-          <h3 class="booking-form__heading">Scegli la data e vieni a conoscerci al centro</h3>
+          <h3 class="booking-form__heading">Scegli la data <br class="mob-only">dell'Open Day</h3>
           <span class="open-day__capacity">Massimo 15 famiglie per data</span>
 
           <form
@@ -739,7 +1051,9 @@
 
         </div><!-- /open-day__form-photo -->
 
-      </div>
+        </div><!-- /container -->
+      </div><!-- /oda-panel--form -->
+
     </section>
 
     <!-- ==========================================================
@@ -750,7 +1064,7 @@
 
         <div class="section__header fade-up">
           <span class="section__eyebrow">Domande frequenti</span>
-          <h2 id="faq-title" class="section__title">Prima di scegliere, è normale avere domande</h2>
+          <h2 id="faq-title" class="section__title">Prima di scegliere, è normale avere&nbsp;domande</h2>
         </div>
 
         <!-- Accordion generato da app.js -->
@@ -923,9 +1237,9 @@
       <!-- CTA block gradiente -->
       <div class="footer__cta-block fade-up">
         <p class="footer__cta-headline">
-          Il suo futuro comincia dalle prime esperienze
+          Il suo futuro comincia dalle prime&nbsp;esperienze
         </p>
-        <a href="#open-day" class="btn btn-white">Prenota il tuo Open Day</a>
+        <a href="#booking-form-section" class="btn btn-white">Prenota il tuo Open Day</a>
         <p class="footer__cta-address">
           Vi aspettiamo a Biassono, in Via Lega Lombarda n.11
         </p>
@@ -950,14 +1264,16 @@
 
         <!-- Brand col -->
         <div>
-          <img
-            src="logo/BBEbiancologofull.webp"
-            alt="BBEducation"
-            class="footer__logo"
-            width="216"
-            height="65"
-            loading="lazy"
-          >
+          <a href="#" aria-label="BBEducation — torna all'inizio della pagina">
+            <img
+              src="logo/BBEbiancologofull.webp"
+              alt="BBEducation"
+              class="footer__logo"
+              width="216"
+              height="65"
+              loading="lazy"
+            >
+          </a>
           <p class="footer__tagline">
             Nido e Scuola dell'Infanzia bilingue.<br>
             Sede di Biassono, Brianza.
@@ -967,24 +1283,26 @@
         <!-- Contatti -->
         <div>
           <p class="footer__col-title">Contatti</p>
-          <p class="footer__contact-item">
-            <span class="footer__contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </span>
-            Via Lega Lombarda n.11, Biassono (MB)
-          </p>
-          <p class="footer__contact-item">
-            <span class="footer__contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            </span>
-            <a href="tel:+39039491864" style="color:inherit;text-decoration:none;">039 491 864</a>
-          </p>
-          <p class="footer__contact-item">
-            <span class="footer__contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </span>
-            <a href="mailto:info@bbeducation.it" style="color:inherit;text-decoration:none;">info@bbeducation.it</a>
-          </p>
+          <div class="footer__contact-list">
+            <p class="footer__contact-item">
+              <span class="footer__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              Via Lega Lombarda n.11, Biassono (MB)
+            </p>
+            <p class="footer__contact-item">
+              <span class="footer__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </span>
+              <a href="tel:+39039491864" style="color:inherit;text-decoration:none;">039 491 864</a>
+            </p>
+            <p class="footer__contact-item">
+              <span class="footer__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <a href="mailto:info@bbeducation.it" style="color:inherit;text-decoration:none;">info@bbeducation.it</a>
+            </p>
+          </div>
         </div>
 
         <!-- Link -->
@@ -992,11 +1310,11 @@
           <p class="footer__col-title">Navigazione</p>
           <nav aria-label="Link footer">
             <div class="footer__nav-links" style="flex-direction: column;">
-              <a href="#why">Perché BBEducation</a>
               <a href="#method">Il metodo</a>
-              <a href="#open-day">Open Day</a>
+              <a href="#continuita">Il percorso</a>
               <a href="#faq">FAQ</a>
               <a href="#info">Contatti</a>
+              <a href="#booking-form-section">Prenota una visita</a>
             </div>
           </nav>
         </div>
@@ -1056,7 +1374,7 @@
   <!-- Scripts -->
   <script src="js/config.js"></script>
   <script src="js/analytics.js"></script>
-  <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 
   <!-- Lazy map loader -->
   <script>
