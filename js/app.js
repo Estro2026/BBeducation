@@ -932,15 +932,32 @@
     var section = document.getElementById("metodo-section");
     if (!section) return;
 
+    var inner  = section.querySelector(".metodo__inner");
     var panels = section.querySelectorAll(".metodo__panel");
     var imgs   = section.querySelectorAll(".metodo__img");
     var dots   = section.querySelectorAll(".metodo__dot");
 
-    if (!panels.length) return;
+    if (!panels.length || !inner) return;
 
     var current = 0;
     var total   = panels.length;
-    var locked  = false;
+
+    /* ── Breakpoint unico — CSS (.metodo--flow) e JS devono coincidere ──────
+       Desktop sticky : min-width 760px AND min-height 490px
+         Sticky attivo a ~100–150% zoom su schermi ≥ 1366×768.
+         A 760×490 il contenuto occupa ~340px su 370px disponibili — si
+         adatta, con margini stretti ma senza overflow.
+       Flow (non-sticky) : tutto il resto
+         Zoom ≥175% su schermi comuni, o qualsiasi viewport più piccola.
+         Tutti i pannelli visibili nel normale document flow, colonna unica.
+         Nessun altezza fissa, nessuno sticky, nessun JS su scrollTop.         */
+    var MQ_DESKTOP = "(min-width: 760px) and (min-height: 490px)";
+    var mqDesktop  = window.matchMedia(MQ_DESKTOP);
+
+    function getHeaderHeight() {
+      var h = document.querySelector(".site-header");
+      return h ? h.getBoundingClientRect().height : 110;
+    }
 
     function goTo(idx) {
       if (idx === current) return;
@@ -951,38 +968,145 @@
       panels[current].classList.add("is-active");
       if (imgs[current])  imgs[current].classList.add("is-active");
       if (dots[current])  dots[current].classList.add("is-active");
-      /* blocca ulteriori switch durante la transizione */
-      locked = true;
-      setTimeout(function() { locked = false; }, 500);
     }
 
-    section.addEventListener("wheel", function(e) {
-      /* Rilascia lo scroll di pagina se siamo già al bordo */
-      if (e.deltaY > 0 && current === total - 1) return;
-      if (e.deltaY < 0 && current === 0) return;
+    function clearInlineStyles() {
+      section.style.height  = "";
+      inner.style.position  = "";
+      inner.style.top       = "";
+      inner.style.height    = "";
+      inner.style.boxSizing = "";
+    }
 
-      /* Intercetta solo se la sezione è visibile nella viewport */
-      var rect = section.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+    /* ── Modalità FLOW: document flow normale, tutti i pannelli visibili ──
+       Usata sia su schermi piccoli (mobile, tablet) sia su schermi desktop
+       a zoom elevato. Non ci sono listener di scroll/wheel intercettati.   */
+    function setupFlow() {
+      clearInlineStyles();
+      section.classList.add("metodo--flow");
 
-      e.preventDefault();
-      if (locked) return;
+      /* Forza subito tutti i .fade-up del section allo stato visibile finale.
+         Non aspettare l'IntersectionObserver: a zoom elevato (es. 250%) la soglia
+         del 30% potrebbe non scattare mai e metodo__inner (che ha .fade-up) resterebbe
+         a opacity:0, rendendo invisibile l'intera sezione. */
+      section.querySelectorAll(".fade-up").forEach(function(el) {
+        el.classList.add("in-view");
+      });
 
-      if (e.deltaY > 0) goTo(current + 1);
-      else              goTo(current - 1);
-    }, { passive: false });
+      panels.forEach(function(p)   { p.classList.add("is-active"); });
+      imgs.forEach(function(img)   { img.classList.add("is-active"); });
+      dots.forEach(function(d)     { d.classList.remove("is-active"); });
+    }
 
-    /* Touch: swipe verticale */
-    var touchY = 0;
-    section.addEventListener("touchstart", function(e) {
-      touchY = e.touches[0].clientY;
-    }, { passive: true });
-    section.addEventListener("touchend", function(e) {
-      var diff = touchY - e.changedTouches[0].clientY;
-      if (Math.abs(diff) < 50 || locked) return;
-      if (diff > 0 && current < total - 1) goTo(current + 1);
-      else if (diff < 0 && current > 0)   goTo(current - 1);
-    }, { passive: true });
+    function teardownFlow() {
+      section.classList.remove("metodo--flow");
+      current = 0;
+      panels.forEach(function(p, i) {
+        if (i === 0) p.classList.add("is-active");
+        else         p.classList.remove("is-active");
+      });
+      imgs.forEach(function(img, i) {
+        if (i === 0) img.classList.add("is-active");
+        else         img.classList.remove("is-active");
+      });
+      dots.forEach(function(d, i) {
+        if (i === 0) d.classList.add("is-active");
+        else         d.classList.remove("is-active");
+      });
+    }
+
+    /* ── Modalità DESKTOP: scroll-driven sticky ── */
+    var desktopCleanup = null;
+
+    function setupDesktop() {
+      clearInlineStyles();
+      var raf = null, resizeTimer = null;
+      var _onScroll, _onResize;
+
+      function setHeight() {
+        var headerH = getHeaderHeight();
+        var innerH  = window.innerHeight - headerH;
+        inner.style.boxSizing = "border-box";
+        inner.style.position  = "sticky";
+        inner.style.top       = headerH + "px";
+        inner.style.height    = innerH  + "px";
+        section.style.height  = (total * innerH) + "px";
+      }
+
+      _onScroll = function() {
+        if (raf) return;
+        raf = requestAnimationFrame(function() {
+          raf = null;
+          var headerH     = getHeaderHeight();
+          var sectionTop  = section.getBoundingClientRect().top;
+          var scrolledIn  = Math.max(0, headerH - sectionTop);
+          var innerH      = window.innerHeight - headerH;
+          var totalScroll = (total - 1) * innerH;
+          if (totalScroll <= 0) return;
+          var progress = Math.min(scrolledIn / totalScroll, 1);
+          var idx      = Math.min(Math.floor(progress * total), total - 1);
+          if (idx !== current) goTo(idx);
+        });
+      };
+
+      _onResize = function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          if (mode !== "desktop") return;
+          setHeight();
+          _onScroll();
+        }, 100);
+      };
+
+      setHeight();
+
+      var ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(function() {
+        if (mode !== "desktop") return;
+        setHeight();
+        _onScroll();
+      }) : null;
+      if (ro) ro.observe(section);
+
+      window.addEventListener("scroll", _onScroll, { passive: true });
+      window.addEventListener("resize", _onResize, { passive: true });
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() { if (mode === "desktop") setHeight(); });
+      }
+      window.addEventListener("load", function() { if (mode === "desktop") setHeight(); }, { once: true });
+
+      desktopCleanup = function() {
+        window.removeEventListener("scroll", _onScroll);
+        window.removeEventListener("resize", _onResize);
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+        if (ro)  ro.disconnect();
+        clearInlineStyles();
+        desktopCleanup = null;
+      };
+    }
+
+    function teardownDesktop() {
+      if (desktopCleanup) desktopCleanup();
+    }
+
+    /* ── Orchestrazione (2 modalità) ── */
+    var mode = null; /* "desktop" | "flow" */
+
+    function syncState() {
+      var target = mqDesktop.matches ? "desktop" : "flow";
+      if (target === mode) return;
+
+      if (mode === "desktop") teardownDesktop();
+      if (mode === "flow")    teardownFlow();
+
+      mode = target;
+
+      if (mode === "desktop") { goTo(0); setupDesktop(); }
+      if (mode === "flow")    { setupFlow(); }
+    }
+
+    mqDesktop.addEventListener("change", syncState);
+    syncState();
   }
 
   /* ============================================================

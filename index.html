@@ -497,9 +497,9 @@
       <div class="metodo__inner fade-up">
         <div class="metodo__vgrid">
 
-          <!-- Colonna testo: pannelli sovrapposti via grid stacking, uno visibile alla volta -->
-          <div class="metodo__vtexts">
-
+          <!-- Coppia 0 — desktop: display:contents → panel (col 1) e img (col 2) entrano
+               direttamente nella grid. Flow/mobile: display:flex → img sopra, testo sotto. -->
+          <div class="metodo__pair" data-idx="0">
             <div class="metodo__panel is-active" data-idx="0">
               <h2 id="method-title" class="section__title section__title--left">
                 Crescere attraverso<br>ciò che&nbsp;si&nbsp;vive
@@ -530,7 +530,11 @@
               </p>
               <a href="#booking-form-section" class="btn btn-primary" style="align-self:flex-start;">Vieni a conoscerci</a>
             </div>
+            <img class="metodo__img is-active" data-idx="0" src="Foto/baby2.webp" alt="" width="600" height="900" loading="lazy" decoding="async">
+          </div>
 
+          <!-- Coppia 1 -->
+          <div class="metodo__pair" data-idx="1">
             <div class="metodo__panel" data-idx="1">
               <h2 id="bilinguismo-title" class="section__title section__title--left">
                 Due lingue,<br>una quotidianità
@@ -538,17 +542,13 @@
               <p class="method__body">Italiano e inglese fanno parte naturalmente della giornata del bambino.</p>
               <p class="method__body">L'inglese entra nelle attività, nel gioco e nelle relazioni quotidiane, grazie alla presenza di insegnanti italiani e&nbsp;madrelingua.</p>
             </div>
-
-          </div><!-- /.metodo__vtexts -->
-
-          <!-- Colonna immagine: stacked via grid, cambia insieme al testo -->
-          <div class="metodo__vimgs" aria-hidden="true">
-            <img class="metodo__img is-active" data-idx="0" src="Foto/baby2.webp" alt="" width="600" height="900" loading="lazy" decoding="async">
             <img class="metodo__img" data-idx="1" src="Foto/baby.webp" alt="" width="600" height="900" loading="lazy" decoding="async">
-            <div class="metodo__dots">
-              <span class="metodo__dot is-active"></span>
-              <span class="metodo__dot"></span>
-            </div>
+          </div>
+
+          <!-- Dots: fuori dalle coppie, posizionati sotto la colonna immagini -->
+          <div class="metodo__dots" aria-hidden="true">
+            <span class="metodo__dot is-active"></span>
+            <span class="metodo__dot"></span>
           </div>
 
         </div><!-- /.metodo__vgrid -->

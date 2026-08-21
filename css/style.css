@@ -1297,39 +1297,47 @@ button {
    METODO — scroll interno: testo e immagine si sostituiscono
 --------------------------------------------------------------- */
 .metodo {
-  overflow: hidden;
+  /* nessun overflow:hidden — non deve creare scroll container che rompa position:sticky */
 }
 
-/* Il wrapper che fa il fade-up (reveal) della sezione */
+/* Il wrapper che fa il fade-up (reveal) della sezione.
+   Su desktop il JS imposta: position:sticky, top, height.
+   padding-block garantisce sempre spazio sopra e sotto — NON va azzerato.
+   Il contenuto si comprime via gap/padding svh-based anziché essere tagliato. */
 .metodo__inner {
-  height: 100vh;
+  box-sizing: border-box; /* il padding è incluso nell'altezza JS */
   height: 100svh;
   display: flex;
   align-items: center;
+  padding-block: clamp(20px, 4svh, 64px);
 }
 
 .metodo__vgrid {
   width: 100%;
   max-width: var(--content-max);
   margin-inline: auto;
-  padding-inline: var(--space-3);
+  padding-inline: clamp(var(--space-2), 5vw, var(--space-5));
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-5);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1rem, 4vw, var(--space-5));
   align-items: center;
 }
 
-/* --- Colonna testo: pannelli sovrapposti, uno visibile alla volta --- */
-.metodo__vtexts {
-  display: grid;
-  min-width: 0;
+/* --- Desktop: coppie trasparenti — i figli entrano direttamente nella grid ---
+   display:contents rimuove il box visuale di .metodo__pair ma mantiene il DOM.
+   Il pannello va in col 1 row 1, l'immagine in col 2 row 1: si sovrappongono
+   tra di loro (due pannelli nella stessa cella, due immagini nell'altra). */
+.metodo__pair {
+  display: contents;
 }
 
 .metodo__panel {
-  grid-area: 1 / 1;               /* grid stacking: stessa cella */
+  grid-column: 1;
+  grid-row: 1;                     /* tutti i pannelli nella stessa cella */
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(0.3rem, 1.2svh, 1rem);
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -1351,7 +1359,7 @@ button {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: clamp(0.25rem, 0.8svh, 0.75rem);
 }
 
 .metodo__feature {
@@ -1367,18 +1375,15 @@ button {
   margin-top: 2px;
 }
 
-/* --- Colonna immagine: stacked via grid, cambia insieme al testo --- */
-.metodo__vimgs {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  min-width: 0;
-}
-
+/* --- Immagini: tutte in col 2 row 1 — si sovrappongono, una visibile via JS --- */
 .metodo__img {
-  grid-area: 1 / 1;
-  width: 78%;
-  aspect-ratio: 3/4;
+  grid-column: 2;
+  grid-row: 1;                     /* tutte le immagini nella stessa cella */
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  max-width: clamp(160px, 36vw, 420px);
+  height: min(clamp(180px, 55svh, 520px), calc(100svh - var(--header-height) - 8svh - 60px));
   object-fit: cover;
   object-position: center top;
   border-radius: var(--radius-lg, 2rem);
@@ -1389,12 +1394,13 @@ button {
 
 .metodo__img.is-active { opacity: 1; }
 
-/* Dots */
+/* Dots: sotto la colonna immagini (col 2, riga 2) */
 .metodo__dots {
-  grid-area: 2 / 1;
+  grid-column: 2;
+  grid-row: 2;
   display: flex;
   gap: 7px;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   justify-content: center;
 }
 
@@ -1416,6 +1422,168 @@ button {
   opacity: 1 !important;
   transform: none !important;
   transition-delay: 0ms !important;
+}
+
+/* Viewport stretta o bassa: layout a colonna singola.
+   JS usa: MQ_DESKTOP = "(min-width: 760px) and (min-height: 490px)".
+   Tutto ciò che non soddisfa quella condizione → modalità "flow" (JS aggiunge
+   .metodo--flow). Questo media query è un rinforzo CSS per layout strutturale
+   su viewport molto piccole (telefoni, 200%+ zoom su schermi piccoli). */
+@media (max-width: 639px), (max-height: 400px) {
+  .metodo__inner {
+    height: auto !important;
+    min-height: 100svh;
+    padding-block: var(--space-5);
+    position: static !important;
+    top: auto !important;
+    align-items: flex-start !important;
+  }
+  .metodo__vgrid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .metodo__pair {
+    display: flex; /* sovrascrive display:contents del desktop */
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .metodo__img {
+    order: -1; /* immagine sopra il testo all'interno della coppia */
+    justify-self: unset;
+    align-self: unset;
+    max-width: min(100%, 320px);
+    height: clamp(180px, 50vw, 320px);
+    width: 100%;
+  }
+  .metodo__dots { display: none; }
+}
+
+/* ── Non-sticky flow: stesso layout del mobile, tutti i pannelli visibili ──
+   JS aggiunge .metodo--flow quando: NOT (min-width:760px AND min-height:490px).
+   Stessi valori del blocco @media (max-width:639px),(max-height:400px),
+   ma con tutti i pannelli e le immagini visibili (nessun toggle JS).      */
+.metodo--flow {
+  height: auto !important;
+}
+
+.metodo--flow .metodo__inner {
+  height: auto !important;
+  min-height: 0 !important;
+  position: static !important;
+  top: auto !important;
+  align-items: flex-start !important;
+  padding-block: var(--space-5);
+}
+
+/* Layout: colonna unica, coppie impilate (foto1 → testo1 → foto2 → testo2) */
+.metodo--flow .metodo__vgrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: stretch;
+}
+
+.metodo--flow .metodo__pair {
+  display: flex; /* sovrascrive display:contents del desktop */
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Immagine prima del testo all'interno di ogni coppia.
+   In flow mode la larghezza è quella della sezione (no limite a 320px). */
+.metodo--flow .metodo__img {
+  order: -1;
+  justify-self: unset;
+  align-self: unset;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(220px, 55vw, 420px);
+  opacity: 1;
+  transition: none;
+}
+
+.metodo--flow .metodo__panel {
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  opacity: 1;
+  transform: none;
+  transition: none;
+  pointer-events: auto;
+}
+
+.metodo--flow .metodo__dots {
+  display: none;
+}
+
+/* In flow mode tutti gli elementi .fade-up devono essere immediatamente visibili.
+   metodo__inner ha .fade-up e parte a opacity:0 — senza IntersectionObserver che
+   scatta (es. a 250% zoom) l'intera sezione resterebbe invisibile.
+   Questo blocco è la garanzia incondizionata di visibilità nel fallback. */
+.metodo--flow .fade-up,
+.metodo--flow.fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  transition: none !important;
+  transition-delay: 0ms !important;
+}
+
+/* Tipografia elastica — scoped a .metodo per non toccare il resto del sito.
+   Usa clamp(min, fluid-vw+fluid-svh, max) per reagire sia alla larghezza
+   che all'altezza (il browser zoom riduce entrambe le dimensioni CSS). */
+.metodo .section__title {
+  font-size: clamp(0.95rem, 1.4vw + 0.5svh, 1.875rem);
+  line-height: 1.15;
+}
+
+.metodo .method__body {
+  font-size: clamp(0.8rem, 0.75vw + 0.2svh, 1rem);
+  line-height: 1.6;
+}
+
+.metodo .metodo__feature {
+  font-size: clamp(0.75rem, 0.7vw + 0.15svh, 0.9375rem);
+}
+
+.metodo .btn {
+  font-size: clamp(0.8rem, 0.85vw, 1rem);
+  padding-block: clamp(0.5rem, 1svh, 0.75rem);
+  padding-inline: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+/* Zona sticky stretta: desktop width ma viewport alta 490–620px
+   (equivale a 150–175% su schermi 1280–1440px).
+   Si comprime solo in questa fascia: al 100% su schermi grandi
+   il media query non scatta e la spaziatura rimane confortevole. */
+@media (min-width: 760px) and (max-height: 620px) {
+  .metodo__inner {
+    padding-block: clamp(10px, 1.8svh, 14px);
+  }
+  .metodo__panel {
+    gap: clamp(0.1rem, 0.35svh, 0.4rem);
+  }
+  .metodo__features {
+    gap: clamp(0.08rem, 0.22svh, 0.3rem);
+  }
+  .metodo .section__title {
+    font-size: clamp(0.85rem, 1.2vw + 0.4svh, 1.4rem);
+    line-height: 1.1;
+  }
+  .metodo .method__body {
+    font-size: clamp(0.75rem, 0.65vw + 0.18svh, 0.9rem);
+    line-height: 1.4;
+  }
+  .metodo .metodo__feature {
+    font-size: clamp(0.7rem, 0.6vw + 0.12svh, 0.85rem);
+    line-height: 1.35;
+  }
+  .metodo .btn {
+    padding-block: clamp(0.25rem, 0.45svh, 0.45rem);
+    padding-inline: clamp(0.75rem, 1.5vw, 1.25rem);
+    font-size: clamp(0.75rem, 0.8vw, 0.9rem);
+  }
 }
 
 /* ---------------------------------------------------------------
