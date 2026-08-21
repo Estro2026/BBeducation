@@ -142,6 +142,49 @@
     /* 5 — Dalla Baby alla Middle */
     #continuita { background: #ffffff !important; }
     #continuita .section__header + .continuita-path { margin-top: 2rem !important; }
+
+    /* Badge età */
+    #continuita .pms-badge--baby    { background: rgba(128,169,213,0.18) !important; color: #5a8ab5 !important; }
+    #continuita .pms-badge--primary { background: rgba(255,120,141,0.15) !important; color: #FF788D !important; }
+    #continuita .pms-badge--middle  { background: rgba(255,172,89,0.18)  !important; color: #FFAC59 !important; }
+
+    /* Label titolo card */
+    #continuita .pms-label--baby    { color: #5a8ab5 !important; }
+    #continuita .pms-label--primary { color: #FF788D !important; }
+    #continuita .pms-label--middle  { color: #FFAC59 !important; }
+
+    /* Active state Baby */
+    #continuita .continuita-step--active .continuita-step__badge { background: rgba(128,169,213,0.18) !important; color: #5a8ab5 !important; }
+    #continuita .continuita-step--active .continuita-step__label { color: #5a8ab5 !important; }
+
+    /* Linea orizzontale: gradiente baby → primary → middle */
+    #continuita .continuita-path::before {
+      background: linear-gradient(90deg, #70DDA0 0%, #5a8ab5 33%, #FF788D 66%, #FFAC59 100%) !important;
+    }
+
+    /* Connettori verticali */
+    #continuita .continuita-step::before { opacity: 1 !important; background: linear-gradient(to bottom, #70DDA0, #5a8ab5) !important; }
+    #continuita .continuita-step:nth-child(2)::before { background: linear-gradient(to bottom, #5a8ab5, #FF788D) !important; }
+    #continuita .continuita-step:nth-child(3)::before { background: linear-gradient(to bottom, #FF788D, #FFAC59) !important; }
+    #continuita .continuita-path.path-in-view .continuita-step::before { opacity: 1 !important; }
+
+    /* Hover stroke — base */
+    #continuita .continuita-step::after {
+      content: ''; position: absolute; inset: -2px;
+      border-radius: calc(var(--radius-lg, 16px) + 2px); padding: 2px;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      --ct-sweep: 0%;
+      transition: --ct-sweep 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 1; pointer-events: none;
+    }
+    #continuita .continuita-step:hover::after { --ct-sweep: 100%; }
+    @media (hover: none) { #continuita .continuita-step::after { display: none; } }
+    #continuita .continuita-step:nth-child(1)::after { background: conic-gradient(from -90deg, #5a8ab5 0% var(--ct-sweep), transparent var(--ct-sweep)); }
+    #continuita .continuita-step:nth-child(2)::after { background: conic-gradient(from -90deg, #FF788D 0% var(--ct-sweep), transparent var(--ct-sweep)); }
+    #continuita .continuita-step:nth-child(3)::after { background: conic-gradient(from -90deg, #FFAC59 0% var(--ct-sweep), transparent var(--ct-sweep)); }
     /* 6 — Open Day: sfondi separati */
     #open-day { background: none !important; }
     #open-day .oda-panel--agenda { background: rgba(128,169,213,0.15) !important; }
@@ -176,6 +219,113 @@
     @media (max-width: 767px) { #open-day .oda-panel--form { padding-top: 48px !important; padding-bottom: 48px !important; } }
     #booking-form-section { margin-top: 0 !important; }
     #open-day .oda-panel--form .section__header { margin-bottom: 2rem !important; }
+
+    /* ════════════════════════════════════════════════════════════
+       METODO — pulsante: stessa dimensione del pulsante PMS
+    ════════════════════════════════════════════════════════════ */
+    #metodo-section .btn-primary {
+      padding: 0.65em 1.5em !important;
+      min-height: 50px !important;
+      font-size: var(--text-base) !important;
+      line-height: normal !important;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       METODO — mobile (≤759px): riduce gap tra titolo e testi
+    ════════════════════════════════════════════════════════════ */
+    @media (max-width: 759px) {
+      #metodo-section .metodo__panel .section__title {
+        margin-bottom: -0.35rem !important;
+        font-size: 1.5rem !important;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       METODO — desktop sticky: immagine più alta e prominente
+    ════════════════════════════════════════════════════════════ */
+    @media (min-width: 760px) {
+      #metodo-section:not(.metodo--flow) .metodo__img {
+        max-width: min(46vw, 500px) !important;
+        height: min(clamp(240px, 62svh, 580px), calc(100svh - 110px - 6svh)) !important;
+        object-position: center 20% !important;
+      }
+      #metodo-section:not(.metodo--flow) .metodo__inner {
+        align-items: safe center !important;
+        padding-top: clamp(1.5rem, 5svh, 3.5rem) !important;
+        padding-bottom: clamp(1.5rem, 5svh, 3.5rem) !important;
+      }
+      #metodo-section:not(.metodo--flow) .metodo__panel .section__title {
+        font-size: 1.9rem !important;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       METODO — flow mode su viewport LARGHI (≥760px, altezza <560px)
+       Quando il viewport è troppo basso per lo sticky ma abbastanza largo
+       per due colonne: layout 2 colonne (testo sinistra | immagine destra),
+       entrambe le sezioni visibili, non-sticky.
+       Stessa logica della sezione Primary/Middle della pagina PMS.
+    ════════════════════════════════════════════════════════════ */
+    @media (min-width: 760px) {
+      /* Inner: altezza automatica */
+      #metodo-section.metodo--flow .metodo__inner {
+        height: auto !important;
+        align-items: flex-start !important;
+        padding-top: clamp(var(--space-4), 5svh, var(--space-5)) !important;
+        padding-bottom: clamp(var(--space-4), 5svh, var(--space-5)) !important;
+      }
+      /* Vgrid: colonna verticale di pair */
+      #metodo-section.metodo--flow .metodo__vgrid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: clamp(var(--space-5), 6svh, var(--space-6)) !important;
+        align-items: stretch !important;
+      }
+      /* Ogni pair: CSS Grid 2 colonne uguali — testo sinistra, immagine destra */
+      #metodo-section.metodo--flow .metodo__pair {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: 1fr !important;
+        gap: clamp(1.5rem, 4vw, 3rem) !important;
+        align-items: stretch !important;
+      }
+      /* Panel testo: cella sinistra */
+      #metodo-section.metodo--flow .metodo__panel {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        min-width: 0 !important;
+        padding: var(--space-3) 0 !important;
+        gap: 0.35rem !important;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+      }
+      /* Titolo: dimensione nel layout a 2 colonne */
+      #metodo-section.metodo--flow .metodo__panel .section__title {
+        font-size: clamp(1.4rem, 2.5vw, 1.9rem) !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.2rem !important;
+      }
+      /* Immagine: cella destra, si estende all'altezza del testo */
+      #metodo-section.metodo--flow .metodo__img {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        order: 0 !important;
+        width: 100% !important;
+        height: clamp(280px, 60svh, 460px) !important;
+        min-height: 0 !important;
+        max-width: none !important;
+        aspect-ratio: auto !important;
+        object-fit: cover !important;
+        object-position: center 20% !important;
+        border-radius: var(--radius-lg) !important;
+        opacity: 1 !important;
+      }
+      /* Dots: non utili in questa modalità */
+      #metodo-section.metodo--flow .metodo__dots {
+        display: none !important;
+      }
+    }
 </style>
 </head>
 
@@ -739,24 +889,24 @@
             <div class="continuita-step__img-wrap">
               <img src="Foto/baby.webp" alt="Bambini al Baby" class="continuita-step__img" loading="lazy" width="400" height="300">
             </div>
-            <span class="continuita-step__badge">0–6</span>
-            <strong class="continuita-step__label">Baby</strong>
+            <span class="continuita-step__badge pms-badge--baby">0–6</span>
+            <strong class="continuita-step__label pms-label--baby">Baby</strong>
             <span class="continuita-step__desc">Nido e Scuola dell'Infanzia</span>
           </div>
           <div class="continuita-step continuita-step--anim" style="--step-delay:0.28s">
             <div class="continuita-step__img-wrap">
               <img src="Foto/baby2.webp" alt="Bambini alla Primary" class="continuita-step__img" loading="lazy" width="400" height="300">
             </div>
-            <span class="continuita-step__badge">6–11</span>
-            <strong class="continuita-step__label">Primary</strong>
+            <span class="continuita-step__badge pms-badge--primary">6–11</span>
+            <strong class="continuita-step__label pms-label--primary">Primary</strong>
             <span class="continuita-step__desc">Scuola Primaria</span>
           </div>
           <div class="continuita-step continuita-step--anim" style="--step-delay:0.52s">
             <div class="continuita-step__img-wrap">
               <img src="Foto/baby3.webp" alt="Ragazzi alla Middle School" class="continuita-step__img" loading="lazy" width="400" height="300">
             </div>
-            <span class="continuita-step__badge">11–14</span>
-            <strong class="continuita-step__label">Middle School</strong>
+            <span class="continuita-step__badge pms-badge--middle">11–14</span>
+            <strong class="continuita-step__label pms-label--middle">Middle School</strong>
             <span class="continuita-step__desc">Scuola Secondaria di primo grado</span>
           </div>
         </div>
@@ -1317,6 +1467,12 @@
               </svg>
             </a>
           </div>
+
+          <!-- Cross-link alla landing Primary & Middle -->
+          <p class="footer__col-title" style="margin-top: var(--space-4);">Anche per i più grandi</p>
+          <a href="primary-middle-school.html" style="color:rgba(255,255,255,0.75); font-size:0.9rem; text-decoration:underline; text-underline-offset:3px;">
+            BBEducation Primary &amp; Middle School
+          </a>
         </div>
 
       </div>

@@ -138,7 +138,8 @@
     var isLastSeats = ev.status === "last-seats";
     var isOS = ev.type === "open-school";
 
-    var label = ev.dayLabel + " " + ev.dateLabel + " · ore " + ev.time;
+    var label = ev.dayLabel + " " + ev.dateLabel;
+    if (ev.time) label += " · ore " + ev.time;
     if (isOS) label += " — Open School";
     if (isLastSeats) label += " (ultimi posti)";
     if (isFull) label += " — Al completo";
@@ -951,7 +952,7 @@
          Zoom ≥175% su schermi comuni, o qualsiasi viewport più piccola.
          Tutti i pannelli visibili nel normale document flow, colonna unica.
          Nessun altezza fissa, nessuno sticky, nessun JS su scrollTop.         */
-    var MQ_DESKTOP = "(min-width: 760px) and (min-height: 490px)";
+    var MQ_DESKTOP = "(min-width: 760px) and (min-height: 560px)";
     var mqDesktop  = window.matchMedia(MQ_DESKTOP);
 
     function getHeaderHeight() {
@@ -1022,15 +1023,20 @@
       clearInlineStyles();
       var raf = null, resizeTimer = null;
       var _onScroll, _onResize;
+      var stepH = 0;
 
       function setHeight() {
-        var headerH = getHeaderHeight();
-        var innerH  = window.innerHeight - headerH;
+        var headerH  = getHeaderHeight();
+        var viewH    = window.innerHeight - headerH;
+        inner.style.height = "auto";
+        var contentH = inner.scrollHeight;
+        var finalH   = Math.max(viewH, contentH);
         inner.style.boxSizing = "border-box";
         inner.style.position  = "sticky";
         inner.style.top       = headerH + "px";
-        inner.style.height    = innerH  + "px";
-        section.style.height  = (total * innerH) + "px";
+        inner.style.height    = finalH  + "px";
+        section.style.height  = (total * finalH) + "px";
+        stepH = finalH;
       }
 
       _onScroll = function() {
@@ -1040,7 +1046,7 @@
           var headerH     = getHeaderHeight();
           var sectionTop  = section.getBoundingClientRect().top;
           var scrolledIn  = Math.max(0, headerH - sectionTop);
-          var innerH      = window.innerHeight - headerH;
+          var innerH      = stepH > 0 ? stepH : (window.innerHeight - headerH);
           var totalScroll = (total - 1) * innerH;
           if (totalScroll <= 0) return;
           var progress = Math.min(scrolledIn / totalScroll, 1);

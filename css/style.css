@@ -351,6 +351,7 @@ button {
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-pill);
   transition: color var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
 }
 
 .header__nav a:hover {
@@ -391,7 +392,7 @@ button {
   display: flex;
   flex-direction: column;
   height: calc(100svh - var(--header-height));
-  min-height: 540px;
+  min-height: clamp(280px, calc(100svh - var(--header-height)), 540px);
 }
 
 /* Background image con Ken Burns in entrata */
@@ -1536,6 +1537,11 @@ button {
 .metodo .section__title {
   font-size: clamp(0.95rem, 1.4vw + 0.5svh, 1.875rem);
   line-height: 1.15;
+}
+
+/* Mobile: titoli metodo a 24px (coerente con gerarchia tipografica mobile) */
+@media (max-width: 767px) {
+  .metodo .section__title { font-size: 1.5rem; line-height: 1.2; }
 }
 
 .metodo .method__body {
@@ -3862,6 +3868,11 @@ nav .footer__nav-links {
   .continuita-path {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3);
+  }
+  .continuita-step:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin-inline: auto;
   }
 }
 @media (max-width: 599px) {

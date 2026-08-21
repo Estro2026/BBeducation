@@ -10,82 +10,127 @@ window.BBE_CONFIG = {
      SCUOLA
   ---------------------------------------------------------- */
   school: {
-    name:        "BBEducation Primary & Middle School",
-    tagline:     "Scuola Primaria e Media bilingue a Biassono",
-    address:     "Via Lega Lombarda n.11, Biassono (MB) 20853",
-    phone:       "039 491 864",
-    email:       "info@bbeducation.it",
-    mapsUrl:     null   /* TODO: impostare URL mappa verificato */
+    name:    "BBEducation Primary & Middle School",
+    tagline: "Scuola Primaria e Media bilingue | Brianza",
+    address: "Via Lega Lombarda n.11, Biassono (MB) 20853",
+    phone:   "039 491 864",
+    email:   "info@bbeducation.it",
+    mapsUrl: null   /* TODO: impostare URL mappa verificato */
   },
 
   /* ----------------------------------------------------------
-     OPEN DAY — date da aggiornare ogni anno scolastico
-     eventType: "open-day" | "open-school"
+     OPEN DAY — date anno scolastico 2026/2027
+     Orari non disponibili: time: null (non mostrato nel frontend)
+     type: "open-day" | "open-school"
+     status: "available" | "last-seats" | "full"
   ---------------------------------------------------------- */
-  events: [
+  openDayEvents: [
     {
-      id:        "od-pms-2025-10-11",
-      label:     "Sabato 11 ottobre 2025",
-      time:      "10:00 – 12:00",
-      eventType: "open-day",
-      available: true
+      id:        "od-pms-2026-10-03",
+      type:      "open-day",
+      dayLabel:  "Sabato",
+      dateLabel: "3 ottobre",
+      year:      2026,
+      time:      null,
+      capacity:  null,
+      status:    "available"
     },
     {
-      id:        "od-pms-2025-10-25",
-      label:     "Sabato 25 ottobre 2025",
-      time:      "10:00 – 12:00",
-      eventType: "open-day",
-      available: true
+      id:        "od-pms-2026-10-17",
+      type:      "open-day",
+      dayLabel:  "Sabato",
+      dateLabel: "17 ottobre",
+      year:      2026,
+      time:      null,
+      capacity:  null,
+      status:    "available"
     },
     {
-      id:        "od-pms-2025-11-22",
-      label:     "Sabato 22 novembre 2025",
-      time:      "10:00 – 12:00",
-      eventType: "open-day",
-      available: true
+      id:        "od-pms-2026-10-27",
+      type:      "open-day",
+      dayLabel:  "Martedì",
+      dateLabel: "27 ottobre",
+      year:      2026,
+      time:      null,
+      capacity:  null,
+      status:    "available"
     },
     {
-      id:        "od-pms-2025-12-06",
-      label:     "Sabato 6 dicembre 2025",
-      time:      "10:00 – 12:00",
-      eventType: "open-day",
-      available: true
+      id:        "od-pms-2026-11-14",
+      type:      "open-day",
+      dayLabel:  "Sabato",
+      dateLabel: "14 novembre",
+      year:      2026,
+      time:      null,
+      capacity:  null,
+      status:    "available"
     },
     {
-      id:        "os-pms-2025-11-06",
-      label:     "Giovedì 6 novembre 2025",
-      time:      "18:00 – 19:30",
-      eventType: "open-school",
-      available: true
+      id:        "od-pms-2026-11-28",
+      type:      "open-day",
+      dayLabel:  "Sabato",
+      dateLabel: "28 novembre",
+      year:      2026,
+      time:      null,
+      capacity:  null,
+      status:    "available"
     },
     {
-      id:        "os-pms-2025-11-27",
-      label:     "Giovedì 27 novembre 2025",
-      time:      "18:00 – 19:30",
-      eventType: "open-school",
-      available: true
+      id:        "od-pms-2026-12-12",
+      type:      "open-day",
+      dayLabel:  "Sabato",
+      dateLabel: "12 dicembre",
+      year:      2026,
+      time:      null,
+      capacity:  null,
+      status:    "available"
+    },
+    {
+      id:        "od-pms-2027-01-23",
+      type:      "open-day",
+      dayLabel:  "Sabato",
+      dateLabel: "23 gennaio",
+      year:      2027,
+      time:      null,
+      capacity:  null,
+      status:    "available"
     }
   ],
 
   /* ----------------------------------------------------------
-     FAQ — domande specifiche per Primary & Middle School
+     FAQ — 6 domande specifiche per Primary & Middle School
+     Formato: { id, question, body } — letto da app.js initFaqAccordion()
   ---------------------------------------------------------- */
-  faq: [
+  faqs: [
     {
-      q: "Cos'è il metodo CLIL e come funziona nella pratica?",
-      a: "CLIL (Content and Language Integrated Learning) è un approccio in cui alcune discipline vengono insegnate anche in inglese. La lingua diventa così uno strumento per studiare e ragionare, non solo un oggetto di studio separato. I ragazzi acquisiscono competenze linguistiche in modo naturale e contestuale."
+      id:       "pms-faq-1",
+      question: "Dove si svolge l'Open Day?",
+      body:     "L'Open Day si svolge presso la sede BBEducation di Cesano Maderno."
     },
     {
-      q: "Il percorso rispetta i programmi ministeriali?",
-      a: "Sì. Il curricolo è allineato alle Indicazioni Nazionali per la Scuola Primaria e Secondaria di Primo Grado. Il percorso bilingue si integra con i programmi italiani senza sostituirli, ampliando le competenze dei ragazzi."
+      id:       "pms-faq-2",
+      question: "Quando sarà operativo il nuovo Campus di Seveso?",
+      body:     "Il nuovo Campus di Seveso sarà operativo dal 2027 e ospiterà i percorsi Primary e Middle School."
     },
     {
-      q: "Mio figlio non ha mai studiato in inglese. Può comunque iscriversi?",
-      a: "Sì. Il percorso è pensato per accompagnare ogni ragazzo dal suo livello di partenza. L'approccio CLIL favorisce un apprendimento progressivo e contestuale, adatto anche a chi ha poca esperienza con la lingua inglese."
+      id:       "pms-faq-3",
+      question: "Se mio figlio frequenta la Primary, poi potrà continuare il percorso nella Middle School?",
+      body:     "Sì. La nuova Middle School nasce per dare continuità al percorso educativo BBEducation, permettendo agli studenti della Primary di proseguire, se lo desiderano, all'interno dello stesso progetto educativo fino ai 14 anni. La scelta resta libera: al termine della Primary, ogni famiglia potrà decidere se continuare il percorso in BBEducation o scegliere una scuola diversa per la Middle School."
     },
     {
-      q: "Posso visitare la scuola prima di decidere?",
-      a: "Certamente. L'Open Day è l'occasione ideale: puoi visitare gli spazi, incontrare il team docenti e ricevere tutte le informazioni sul percorso accademico. Puoi prenotare il tuo posto direttamente su questa pagina."
+      id:       "pms-faq-4",
+      question: "La Middle School sarà bilingue?",
+      body:     "Sì. La Middle School farà parte del percorso bilingue italiano e inglese di BBEducation. L'inglese sarà integrato nel percorso educativo come strumento di apprendimento e comunicazione, in continuità con il progetto bilingue della Primary."
+    },
+    {
+      id:       "pms-faq-5",
+      question: "Quali metodi educativi caratterizzano la Middle School?",
+      body:     "La Middle School svilupperà un approccio basato su Inquiry Based Learning e Gameful Learning, con esperienze interdisciplinari orientate a sviluppare autonomia, pensiero critico, creatività e collaborazione. L'obiettivo è accompagnare gli studenti verso competenze utili per affrontare le sfide del futuro."
+    },
+    {
+      id:       "pms-faq-6",
+      question: "Posso partecipare sia all'Open Day Primary sia a quello Middle?",
+      body:     "Sì. Nel form di prenotazione sarà possibile indicare l'interesse per Primary School, Middle School oppure entrambi i percorsi. In questo modo potrai conoscere sia il percorso attuale sia il progetto della nuova Middle School."
     }
   ],
 

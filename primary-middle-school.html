@@ -5,27 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO -->
-  <title>Scuola Primaria e Media Bilingue a Biassono | Open Day BBEducation</title>
-  <meta name="description" content="Scopri la Scuola Primaria e Media bilingue BBEducation a Biassono. Metodo CLIL, docenti qualificati, percorso accademico per ragazzi da 6 a 14 anni. Prenota l'Open Day.">
+  <title>Scuola Primaria e Media Bilingue in Brianza | Open Day BBEducation</title>
+  <meta name="description" content="Scopri la Primary e Middle School bilingue BBEducation. Prenota l'Open Day: metodo educativo, percorso, campus e team qualificato.">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Scuola Primaria e Media Bilingue a Biassono | BBEducation">
-  <meta property="og:description" content="Un percorso accademico bilingue con metodo CLIL per ragazzi da 6 a 14 anni. Scopri BBEducation Primary &amp; Middle School a Biassono.">
+  <meta property="og:title" content="Scuola Primaria e Media Bilingue in Brianza | BBEducation">
+  <meta property="og:description" content="Un percorso bilingue italiano e inglese che cresce con loro, dalla Primary alla Middle School. Prenota il tuo Open Day.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="it_IT">
-  <!-- TODO: og:image, og:url quando disponibili -->
 
   <!-- Performance: preload critical font & LCP image -->
   <link rel="preload" href="Font/Nunito-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="Foto primary/primary.webp" as="image">
 
-  <!-- Styles — cascade: tokens → base → override PMS -->
+  <!-- Styles — identici a index.html, poi override palette PMS -->
   <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/style.css?v=26">
-  <link rel="stylesheet" href="css/primary-middle-school.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=77">
+  <link rel="stylesheet" href="css/primary-middle-school.css">
 
-  <!-- Structured data: nessun dato inventato -->
+  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,13 +32,13 @@
       {
         "@type": "EducationalOrganization",
         "name": "BBEducation — Primary & Middle School",
-        "alternateName": "BBEducation PMS",
-        "description": "Scuola Primaria e Media bilingue a Biassono con metodo CLIL per ragazzi da 6 a 14 anni.",
+        "alternateName": "BBEducation Primary",
+        "description": "Scuola Primaria e Media bilingue in Brianza per bambini dai 6 ai 14 anni.",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Via Lega Lombarda n.11",
-          "addressLocality": "Biassono",
-          "postalCode": "20853",
+          "streetAddress": "Via S.Bernardo ang. Via Diaz",
+          "addressLocality": "Cesano Maderno",
+          "postalCode": "20811",
           "addressRegion": "MB",
           "addressCountry": "IT"
         },
@@ -51,34 +50,18 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Cos'è il metodo CLIL?",
+            "name": "Dove si svolge l'Open Day?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "CLIL (Content and Language Integrated Learning) è un approccio in cui alcune materie vengono insegnate anche in inglese. La lingua diventa così uno strumento per studiare e pensare, non solo un oggetto di studio."
+              "text": "L'Open Day si svolge presso la sede BBEducation di Cesano Maderno."
             }
           },
           {
             "@type": "Question",
-            "name": "Il percorso segue i programmi ministeriali?",
+            "name": "Quando sara operativo il nuovo Campus di Seveso?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì. Il curricolo rispetta le Indicazioni Nazionali per la Scuola Primaria e Secondaria di Primo Grado, integrandole con il percorso bilingue."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Posso visitare la scuola prima di iscrivere mio figlio?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Certamente. L'Open Day è pensato proprio per questo: potrai visitare la scuola, conoscere il team e capire se BBEducation è la scelta giusta per tuo figlio."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Come posso ricevere maggiori informazioni?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Prenota il tuo Open Day oppure compila il modulo informativo: ti ricontatteremo per rispondere a tutte le tue domande."
+              "text": "Il nuovo Campus di Seveso sara operativo dal 2027 e ospitera i percorsi Primary e Middle School."
             }
           }
         ]
@@ -86,6 +69,687 @@
     ]
   }
   </script>
+
+  <style>
+    /* ── Spaziatura uniforme — stesse regole di index.html ─────── */
+    .section__title + .section__subtitle,
+    .section__title + p,
+    .section__title + .open-day__intro { margin-top: 1rem !important; }
+
+    .section__subtitle + .btn,
+    .section__subtitle + .hero__cta-group,
+    .section__subtitle + div > .btn,
+    .method__body + .btn,
+    .method__body + a.btn,
+    .open-day-agenda + div,
+    .open-day__intro + .open-day-agenda { margin-top: 2rem !important; }
+
+    .method__body + .method__body { margin-top: 2rem !important; }
+    p + p { margin-top: 2rem !important; }
+    .hero__copy p + p { margin-top: 0 !important; }
+    .footer__contact-list p + p { margin-top: 0 !important; }
+
+    .section__header + *,
+    .open-day-agenda__badges { gap: 2rem !important; }
+    .why-grid { gap: 2rem !important; }
+    .continuita-steps { gap: 2rem !important; }
+
+    /* ════════════════════════════════════════════════════════════
+       0. HEADER PMS — breakpoint nav adattato al contenuto reale
+       La PMS ha più voci e una label lunga: serve più spazio.
+       Calcolo minimo: logo(315) + gap(16) + nav5voci(407) + gap(16) + CTA(190) = ~944px
+       + container padding 48px → breakpoint sicuro a 1024px.
+    ════════════════════════════════════════════════════════════ */
+
+    /* Sotto 1024px: nascondi nav (rimane logo + CTA — clean mobile state) */
+    @media (max-width: 1023px) {
+      .header__nav { display: none !important; }
+    }
+
+    /* Sotto 1280px: nascondi label per liberare ~200px */
+    @media (max-width: 1279px) {
+      .header__label { display: none !important; }
+    }
+
+    /* 1024–1199px: nav compatta — riduci padding e font per il range stretto */
+    @media (min-width: 1024px) and (max-width: 1199px) {
+      .header__nav a { padding: var(--space-1) 0.5rem !important; font-size: 0.8rem !important; }
+      .header__nav ul { gap: 0 !important; }
+      .header__cta .btn { padding: 0.5rem 0.875rem !important; font-size: 0.8rem !important; }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       1. MENU HOVER — rosa PMS (sovrascrive azzurro Baby)
+    ════════════════════════════════════════════════════════════ */
+    .header__nav a:hover {
+      color: #FF788D !important;
+      background: rgba(255, 120, 141, 0.10) !important;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       2. SFONDI SEZIONI PMS
+    ════════════════════════════════════════════════════════════ */
+    #percorso   { background: #ffffff !important; }
+    #why        { background: rgba(255, 172, 89, 0.10) !important; }
+    #primary    { transition: background-color 0.1s linear; }
+    #campus     { background: #ffffff !important; }
+    #faq        { background: rgba(255, 172, 89, 0.10) !important; }
+
+    /* ════════════════════════════════════════════════════════════
+       3. #why — sfondo arancione CHIARO: testo normale
+    ════════════════════════════════════════════════════════════ */
+    #why .section__title { color: var(--color-text) !important; }
+    #why .section__subtitle { color: var(--color-text-secondary) !important; }
+    #why .value-card__front-label { color: rgba(255,255,255,0.95) !important; }
+    #why .value-card__hint { color: rgba(255,255,255,0.75) !important; }
+    #why .value-card__title { color: #fff !important; }
+    #why .value-card__body { color: rgba(255,255,255,0.92) !important; }
+    #why .section__cta .btn-primary { background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%) !important; color: #1a1a1a !important; }
+
+    /* ════════════════════════════════════════════════════════════
+       4. PERCORSO — Badge, label, linea orizzontale
+    ════════════════════════════════════════════════════════════ */
+    /* Badge età */
+    .pms-badge--baby    { background: rgba(128,169,213,0.18) !important; color: #5a8ab5 !important; }
+    .pms-badge--primary { background: rgba(255,120,141,0.15) !important; color: #FF788D !important; }
+    .pms-badge--middle  { background: rgba(255,172,89,0.18)  !important; color: #FFAC59 !important; }
+
+    /* Label titolo card */
+    .pms-label--baby    { color: #5a8ab5 !important; }  /* azzurro */
+    .pms-label--primary { color: #FF788D !important; }  /* rosa */
+    .pms-label--middle  { color: #FFAC59 !important; }  /* arancione */
+    .pms-desc--dark     { color: #4a4a4a !important; }
+
+    /* La card Baby ha active state — mantieni azzurro */
+    #percorso .continuita-step--active .continuita-step__label { color: #5a8ab5 !important; }
+    #percorso .continuita-step--active .continuita-step__badge {
+      background: rgba(128,169,213,0.18) !important;
+      color: #5a8ab5 !important;
+    }
+
+    /* Linea orizzontale principale del path: gradiente PMS */
+    #percorso .continuita-path::before {
+      background: linear-gradient(90deg, #70DDA0 0%, #5a8ab5 33%, #FF788D 66%, #FFAC59 100%) !important;
+    }
+
+    /* Connettori verticali tra linea e card */
+    #percorso .continuita-step::before {
+      background: linear-gradient(to bottom, #70DDA0, #5a8ab5) !important;
+      opacity: 1 !important;
+    }
+    #percorso .continuita-step:nth-child(2)::before { background: linear-gradient(to bottom, #5a8ab5, #FF788D) !important; }
+    #percorso .continuita-step:nth-child(3)::before { background: linear-gradient(to bottom, #FF788D, #FFAC59) !important; }
+    #percorso .continuita-path.path-in-view .continuita-step::before { opacity: 1 !important; }
+
+    /* ════════════════════════════════════════════════════════════
+       5. HOVER STROKE — un colore per card (Baby=azzurro, Primary=rosa, Middle=arancione)
+       Riutilizza @property --ct-sweep già registrato in style.css
+    ════════════════════════════════════════════════════════════ */
+    /* Base comune */
+    #percorso .continuita-step::after {
+      content: ''; position: absolute; inset: -2px;
+      border-radius: calc(var(--radius-lg, 16px) + 2px); padding: 2px;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      --ct-sweep: 0%;
+      transition: --ct-sweep 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 1; pointer-events: none;
+    }
+    #percorso .continuita-step:hover::after { --ct-sweep: 100%; }
+    @media (hover: none) { #percorso .continuita-step::after { display: none; } }
+
+    /* Baby: stroke azzurro */
+    #percorso .continuita-step:nth-child(1)::after {
+      background: conic-gradient(from -90deg, #5a8ab5 0% var(--ct-sweep), transparent var(--ct-sweep));
+    }
+    /* Primary: stroke rosa */
+    #percorso .continuita-step:nth-child(2)::after {
+      background: conic-gradient(from -90deg, #FF788D 0% var(--ct-sweep), transparent var(--ct-sweep));
+    }
+    /* Middle School: stroke arancione */
+    #percorso .continuita-step:nth-child(3)::after {
+      background: conic-gradient(from -90deg, #FFAC59 0% var(--ct-sweep), transparent var(--ct-sweep));
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       6. UNDERLINE ANIMATO titoli con gradiente PMS
+    ════════════════════════════════════════════════════════════ */
+    #why .section__title,
+    #campus .section__title {
+      position: relative;
+      display: inline-block;
+    }
+    #why .section__title::after,
+    #campus .section__title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; left: 0;
+      width: 100%; height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%) !important;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.7s 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #why .section__header.in-view .section__title::after,
+    #campus .section__header.in-view .section__title::after {
+      transform: scaleX(1);
+    }
+    /* Percorso e FAQ: nessun underline sul titolo */
+    #percorso .section__title::after,
+    #faq .section__title::after { display: none !important; }
+
+    /* ════════════════════════════════════════════════════════════
+       7. CAMPUS + FAQ — eyebrow SOPRA il titolo (block, non inline)
+    ════════════════════════════════════════════════════════════ */
+    #campus .section__eyebrow,
+    #faq .section__eyebrow {
+      display: block !important;
+      margin-bottom: 0.5rem !important;
+    }
+    #faq .section__eyebrow {
+      margin-bottom: 2rem !important; /* 32px */
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       8. FAQ — box accordion colorate, bottone + rosa
+    ════════════════════════════════════════════════════════════ */
+    #faq .faq-item {
+      background: rgba(255, 120, 141, 0.06) !important;
+      border: 1px solid rgba(255, 120, 141, 0.18) !important;
+      box-shadow: 0 2px 10px rgba(255, 120, 141, 0.07) !important;
+    }
+    #faq .faq-item:nth-child(even) {
+      background: rgba(255, 172, 89, 0.07) !important;
+      border-color: rgba(255, 172, 89, 0.22) !important;
+    }
+    #faq .faq-item:has(.faq-trigger[aria-expanded="true"]) {
+      box-shadow: 0 4px 20px rgba(255, 120, 141, 0.18) !important;
+    }
+    /* Bottone + */
+    /* Box dispari (rosa) — controllo rosa */
+    #faq .faq-icon {
+      background: rgba(255, 120, 141, 0.15) !important;
+      color: #c9405a !important;
+    }
+    #faq .faq-trigger[aria-expanded="true"] .faq-icon {
+      background: #FF788D !important;
+      color: #fff !important;
+    }
+    #faq .faq-trigger[aria-expanded="true"] {
+      color: #c9405a !important;
+      background: rgba(255, 120, 141, 0.06) !important;
+    }
+    /* Box pari (arancione) — controllo arancione */
+    #faq .faq-item:nth-child(even) .faq-icon {
+      background: rgba(255, 172, 89, 0.18) !important;
+      color: #b85c00 !important;
+    }
+    #faq .faq-item:nth-child(even) .faq-trigger[aria-expanded="true"] .faq-icon {
+      background: #FFAC59 !important;
+      color: #fff !important;
+    }
+    #faq .faq-item:nth-child(even) .faq-trigger[aria-expanded="true"] {
+      color: #b85c00 !important;
+      background: rgba(255, 172, 89, 0.07) !important;
+    }
+    #faq .faq-trigger:hover {
+      background: rgba(255, 120, 141, 0.05) !important;
+      color: var(--color-text) !important;
+    }
+    #faq .faq-item::before {
+      background: conic-gradient(from -90deg, #FF788D 0%, #FFAC59 100%, transparent 100%) !important;
+    }
+    #faq .faq-panel__inner {
+      border-top-color: rgba(255, 120, 141, 0.15) !important;
+    }
+    #faq .faq-panel__inner a { color: #FF788D !important; }
+
+    /* ════════════════════════════════════════════════════════════
+       9. PRIMARY → MIDDLE — sezione scroll narrativo
+       Testo leggibile su sfondi colorati
+    ════════════════════════════════════════════════════════════ */
+    /* Eyebrow comune a entrambi i pannelli */
+    .pms-scroll-eyebrow {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      text-transform: none;
+      margin-bottom: 0.75rem;
+    }
+    /* Pannello Primary (idx=0): testo bianco su rosa */
+    #primary .metodo__panel[data-idx="0"] .pms-scroll-eyebrow { color: rgba(255,255,255,0.80); }
+    #primary .metodo__panel[data-idx="0"] .section__title--left { color: #fff; }
+    #primary .metodo__panel[data-idx="0"] .method__body { color: rgba(255,255,255,0.88); }
+    #primary .metodo__panel[data-idx="0"] .metodo__feature { color: rgba(255,255,255,0.88); }
+    #primary .metodo__panel[data-idx="0"] .metodo__feature strong { color: #fff; }
+
+    /* Pannello Middle (idx=1): testo scuro su arancione */
+    #primary .metodo__panel[data-idx="1"] .pms-scroll-eyebrow { color: rgba(61,32,0,0.65); }
+    #primary .metodo__panel[data-idx="1"] .section__title--left { color: #1a1a1a; }
+    #primary .metodo__panel[data-idx="1"] .method__body { color: rgba(26,26,26,0.80); }
+    #primary .metodo__panel[data-idx="1"] .metodo__feature { color: rgba(26,26,26,0.80); }
+    #primary .metodo__panel[data-idx="1"] .metodo__feature strong { color: #1a1a1a; }
+
+    /* Icone feature: sfondo e colore adattati al pannello */
+    #primary .metodo__panel[data-idx="0"] .pms-feat-icon circle { fill: rgba(255,255,255,0.25); }
+    #primary .metodo__panel[data-idx="0"] .pms-feat-icon polyline { stroke: rgba(255,255,255,0.95); }
+    #primary .metodo__panel[data-idx="1"] .pms-feat-icon circle { fill: #FFAC59; }
+    #primary .metodo__panel[data-idx="1"] .pms-feat-icon polyline { stroke: #fff; }
+
+    /* CTA in entrambi i pannelli */
+    #primary .pms-scroll-cta {
+      display: inline-flex; align-items: center;
+      margin-top: var(--space-4); align-self: flex-start;
+      padding: 0.65em 1.5em;
+      border-radius: var(--radius-full, 999px);
+      font-weight: 700; font-size: var(--text-base);
+      text-decoration: none; cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    #primary .metodo__panel[data-idx="0"] .pms-scroll-cta {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.50);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    #primary .metodo__panel[data-idx="0"] .pms-scroll-cta:hover {
+      background: rgba(255,255,255,0.35);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    #primary .metodo__panel[data-idx="1"] .pms-scroll-cta {
+      background: rgba(61,32,0,0.12);
+      color: #3d2000;
+      border: 2px solid rgba(61,32,0,0.28);
+    }
+    #primary .metodo__panel[data-idx="1"] .pms-scroll-cta:hover {
+      background: rgba(61,32,0,0.22);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       LINE BREAK CONTROLLATI — visibili solo su mobile
+    ════════════════════════════════════════════════════════════ */
+    .m-br { display: none; }
+    @media (max-width: 767px) { .m-br { display: block; } }
+
+    /* Flow mode (mobile): superficie cromatica continua Primary → Middle.
+       Un unico gradiente sull'intera sezione, nessun background sui sotto-blocchi. */
+    #primary.metodo--flow { background: linear-gradient(180deg, #FF788D 0%, #FFAC59 100%); }
+    #primary.metodo--flow .metodo__vgrid { gap: 0 !important; }
+    #primary.metodo--flow .metodo__inner {
+      padding-top: calc(var(--space-5) + var(--space-3)) !important;
+      padding-bottom: var(--space-5) !important;
+    }
+    #primary.metodo--flow .metodo__panel {
+      background: transparent !important;
+      border-radius: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       9b. #primary STICKY — eyebrow sempre visibile con zoom browser
+       Causa del bug: metodo__inner ha align-items:center + height JS-driven.
+       A zoom elevato innerH si riduce e il contenuto centrato eccede verso l'alto
+       finendo dietro l'header (z-index:200). Fix strutturale:
+       — align-items: safe center (evita top-overflow; su browser moderni con overflow
+         il flex allinea a flex-start invece di centrare oltre il bordo superiore)
+       — padding-top/bottom fluidi: garantiscono respiro top e bottom
+       — altezza adattiva in JS (setH): il frame sticky si allarga se il contenuto
+         è più alto della viewport, così non serve overflow:clip che taglierebbe in basso
+    ════════════════════════════════════════════════════════════ */
+    @media (min-width: 760px) {
+      #primary .metodo__inner {
+        align-items: safe center !important;
+        padding-top: clamp(1.5rem, 5svh, 3.5rem) !important;
+        padding-bottom: clamp(1.5rem, 5svh, 3.5rem) !important;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       9c. PRIMARY — flow mode su viewport LARGHI (≥760px, altezza <560px)
+       Quando il viewport è troppo basso per lo sticky ma abbastanza largo
+       per due colonne: anziché impilare immagini SOPRA il testo (flow base),
+       manteniamo il layout 2 colonne — testo a sinistra, immagine a destra.
+       Entrambe le sezioni (Primary + Middle) sono visibili, non-sticky.
+    ════════════════════════════════════════════════════════════ */
+    @media (min-width: 760px) {
+      /* Inner: altezza automatica — nessuna fixed 100svh, il contenuto fluisce */
+      #primary.metodo--flow .metodo__inner {
+        height: auto !important;
+        align-items: flex-start !important;
+        padding-top: clamp(var(--space-4), 5svh, var(--space-5)) !important;
+        padding-bottom: clamp(var(--space-4), 5svh, var(--space-5)) !important;
+      }
+      /* Vgrid: colonna verticale di pair (Primary sopra, Middle sotto) */
+      #primary.metodo--flow .metodo__vgrid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: clamp(var(--space-5), 6svh, var(--space-6)) !important;
+        align-items: stretch !important;
+      }
+      /* Ogni pair: CSS Grid 2 colonne uguali — il grid estende l'img alla stessa
+         altezza del testo (funziona anche su replaced elements come <img>). */
+      #primary.metodo--flow .metodo__pair {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: 1fr !important;
+        gap: clamp(1.5rem, 4vw, 3rem) !important;
+        align-items: stretch !important;
+      }
+      /* Panel testo: cella sinistra */
+      #primary.metodo--flow .metodo__panel {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        min-width: 0 !important;
+        padding: var(--space-3) 0 !important;
+        gap: 0.35rem !important;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+      }
+      /* Titolo: dimensione nel layout a 2 colonne */
+      #primary.metodo--flow .metodo__panel .section__title {
+        font-size: clamp(1.3rem, 2.5vw, 1.9rem) !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.2rem !important;
+      }
+      /* Immagine: cella destra, si estende all'altezza del testo.
+         Il grid garantisce lo stretch anche sugli <img> (replaced elements). */
+      #primary.metodo--flow .metodo__img {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        max-width: none !important;
+        aspect-ratio: auto !important;
+        object-fit: cover !important;
+        object-position: center 20% !important;
+        border-radius: var(--radius-lg) !important;
+        opacity: 1 !important;
+        order: 0 !important;
+      }
+      /* Dots: non utili in questa modalità */
+      #primary.metodo--flow .metodo__dots {
+        display: none !important;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       10. EYEBROW — Primary scroll (legacy, mantenuto per compatibilità)
+    ════════════════════════════════════════════════════════════ */
+    .pms-primary-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.1em; font-weight: 700;
+      text-transform: uppercase; color: #fff;
+      margin-bottom: 0.75rem; display: block; opacity: 0.85;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       11. CAMPUS badges e info tag
+    ════════════════════════════════════════════════════════════ */
+    @property --campus-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes campus-border-spin {
+      to { --campus-angle: 360deg; }
+    }
+
+    #campus .open-day-agenda__badges { max-width: 720px; margin-inline: auto; }
+
+    #campus .oda-badge {
+      position: relative !important;
+      isolation: isolate !important;
+      background: transparent !important;
+      border: 1px solid rgba(255,120,141,0.25) !important;
+      transition: border-color 0.35s ease, box-shadow 0.35s ease !important;
+    }
+    /* White card fill — always behind content */
+    #campus .oda-badge::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: #fff;
+      z-index: -1;
+      pointer-events: none;
+    }
+    /* Animated gradient border layer */
+    #campus .oda-badge::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: conic-gradient(from var(--campus-angle), #FF788D 0%, #FFAC59 50%, #FF788D 100%);
+      z-index: -2;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    #campus .oda-badge:hover {
+      border-color: transparent !important;
+      box-shadow: 0 8px 24px rgba(255,120,141,0.15) !important;
+    }
+    #campus .oda-badge:hover::before {
+      opacity: 1;
+      animation: campus-border-spin 2.5s linear infinite;
+    }
+
+    #campus .oda-badge__icon { background: rgba(255,120,141,0.10) !important; color: #FF788D !important; }
+
+    .campus-info-tag {
+      display: inline-block;
+      background: rgba(255, 120, 141, 0.08);
+      color: #c45a6a;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 6px; padding: 0.35em 0.9em;
+      border: 1px solid rgba(255, 120, 141, 0.3);
+      margin-top: var(--space-3);
+      cursor: default; user-select: none;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       12. FOOTER
+    ════════════════════════════════════════════════════════════ */
+    .site-footer { padding-top: 80px !important; }
+    @media (max-width: 767px) { .site-footer { padding-top: 48px !important; } }
+    .site-footer .container { padding-top: 0 !important; }
+    .footer__cta-block { padding-top: 0 !important; }
+    .map-container + .footer__grid { margin-top: 2rem !important; }
+
+    /* ════════════════════════════════════════════════════════════
+       13. OPEN DAY — sfondi pannelli
+    ════════════════════════════════════════════════════════════ */
+    #open-day { background: none !important; }
+    #open-day .oda-panel--agenda { background: rgba(255, 120, 141, 0.10) !important; }
+    #open-day .oda-panel--agenda .section__title,
+    #open-day .oda-panel--agenda .open-day__intro,
+    #open-day .oda-panel--agenda .open-day-date-intro { color: var(--color-text) !important; }
+    #open-day .oda-panel--agenda .section__title { margin-bottom: 0 !important; }
+    #open-day .oda-panel--agenda .open-day__intro { margin-top: 1rem !important; margin-bottom: 2rem !important; }
+    #open-day .oda-panel--agenda .btn-white { background: var(--bbe-baby-gradient) !important; color: #000 !important; border: none !important; margin-top: 2rem !important; }
+    #open-day .oda-panel--agenda .btn-white:hover { color: #000 !important; }
+    #open-day .oda-panel--agenda .btn-white:focus { color: #000 !important; }
+    @media (max-width: 767px) { #open-day .oda-panel--agenda .btn-white { margin-top: 0 !important; } }
+    @media (max-width: 767px) { #open-day .oda-panel--agenda div:has(> a.btn-white) { margin-top: 24px !important; padding-top: 0 !important; } }
+    #open-day .oda-panel--agenda .oda-badge { background: #fff !important; }
+    #open-day .oda-panel--agenda .oda-badge__icon { background: rgba(255, 120, 141, 0.12) !important; color: var(--bbe-baby-blue) !important; }
+    #open-day .oda-panel--agenda .oda-badge__title { color: var(--color-text) !important; }
+    #open-day .oda-panel--agenda .oda-badge__body { color: var(--color-text-muted) !important; }
+    #open-day .oda-panel--agenda .open-day__agenda-label { color: var(--color-text) !important; margin-top: 2rem !important; }
+    #open-day .oda-panel--agenda .section__eyebrow {
+      background: var(--bbe-baby-gradient) !important;
+      -webkit-background-clip: text !important; background-clip: text !important;
+      color: transparent !important; opacity: 0.25 !important; margin-top: 2rem !important;
+    }
+    #open-day .oda-panel--agenda .container { padding-top: 2rem !important; }
+    #open-day .oda-panel--form { background: url('gradientiepatternbaby/patterngradientprimarymiddle.png') center / cover no-repeat !important; padding-top: 80px !important; padding-bottom: 80px !important; }
+    @media (max-width: 767px) { #open-day .oda-panel--form { padding-top: 48px !important; padding-bottom: 48px !important; } }
+    #booking-form-section { margin-top: 0 !important; }
+    #open-day .oda-panel--form .section__header { margin-bottom: 2rem !important; }
+
+    /* ── Radio percorso ──────────────────────────────────────── */
+    .percorso-radio-group { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .percorso-radio-group label { display: flex; align-items: center; gap: 0.5rem; font-weight: 400; cursor: pointer; font-size: var(--text-base); }
+    .percorso-radio-group input[type="radio"] { accent-color: #FF788D; width: 1.1em; height: 1.1em; cursor: pointer; flex-shrink: 0; }
+
+    /* ── #percorso path spacing ──────────────────────────────── */
+    #percorso .section__header + .continuita-path { margin-top: 2rem !important; }
+
+    /* ── Form ODA: titolo su una riga su desktop ─────────────── */
+    #oda-form-title { white-space: normal; max-width: none; }
+
+    /* ════════════════════════════════════════════════════════════
+       FORM INFO — wrapper background rosa chiaro
+       (solo il box form, non l'intera sezione)
+    ════════════════════════════════════════════════════════════ */
+    .info-form-section .info-form-wrapper {
+      background: rgba(255, 120, 141, 0.05) !important;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       PRIMARY / MIDDLE SCROLL — RIFINITURA UI
+       Gerarchia tipografica, spacing, max-width, immagine
+    ════════════════════════════════════════════════════════════ */
+
+    /* Spacing controllato via margini individuali, non gap uniforme */
+    #primary .metodo__panel {
+      gap: 0 !important;
+      padding-right: clamp(0.5rem, 2vw, 1.5rem) !important;
+    }
+
+    /* Eyebrow: legato al titolo, piccolo respiro */
+    #primary .pms-scroll-eyebrow {
+      margin-bottom: 0.6rem !important;
+    }
+
+    /* Titolo: gerarchicamente dominante, lunghezza massima per ritmo di lettura */
+    #primary .section__title--left {
+      margin-bottom: 1.25rem !important;
+      line-height: 1.18 !important;
+      max-width: 22ch !important;
+    }
+
+    /* Body: testo con misura leggibile, respiro verso i bullet */
+    #primary .method__body {
+      margin-bottom: 1.5rem !important;
+      line-height: 1.72 !important;
+      max-width: 50ch !important;
+    }
+
+    /* Features: spacing uniforme tra bullet, separazione dal CTA */
+    #primary .metodo__features {
+      gap: 1rem !important;
+      margin-bottom: 1.75rem !important;
+    }
+
+    /* Feature item: icona allineata alla prima riga del testo */
+    #primary .metodo__feature {
+      gap: 0.75rem !important;
+      align-items: flex-start !important;
+    }
+    #primary .metodo__feature-icon {
+      margin-top: 0.15em !important;
+    }
+
+    /* CTA: nessun margin-top aggiuntivo, spacing gestito da features margin-bottom */
+    #primary .pms-scroll-cta {
+      margin-top: 0 !important;
+    }
+
+    /* Immagine: più alta e prominente, leggermente più larga */
+    #primary .metodo__img {
+      max-width: min(46vw, 520px) !important;
+      height: min(clamp(240px, 64svh, 600px), calc(100svh - 110px - 4svh)) !important;
+      border-radius: 1.25rem !important;
+      object-position: center 20% !important;
+    }
+
+    /* Flow mode (mobile/tablet stretto ≤759px): immagine 351×220 sopra il testo */
+    @media (max-width: 759px) {
+      #primary.metodo--flow .metodo__pair {
+        gap: var(--space-2) !important;
+      }
+      #primary.metodo--flow .metodo__panel {
+        gap: clamp(0.3rem, 1.2svh, 1rem) !important;
+        padding: var(--space-4) !important;
+        padding-top: var(--space-2) !important;
+      }
+      #primary.metodo--flow .metodo__img {
+        max-width: 351px !important;
+        width: 100% !important;
+        aspect-ratio: 351 / 220 !important;
+        height: auto !important;
+        border-radius: var(--radius-lg) !important;
+        object-fit: cover !important;
+        object-position: center 20% !important;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RESPONSIVE — Breakpoint ≤759px: layout a colonna singola
+       Fallback CSS in caso JS non abbia ancora aggiunto .metodo--flow.
+       Header: gestito da style.css (@media ≤767px logo 60px, header 110px).
+    ════════════════════════════════════════════════════════════ */
+    @media (max-width: 759px) {
+      #primary .metodo__inner { height: auto !important; padding-block: 0 !important; }
+      #primary .metodo__vgrid { display: flex !important; flex-direction: column !important; }
+      #primary .metodo__pair { display: flex !important; flex-direction: column !important; }
+      #primary .metodo__img {
+        order: -1 !important;
+        max-width: 351px !important;
+        width: 100% !important;
+        aspect-ratio: 351 / 220 !important;
+        height: auto !important;
+        border-radius: var(--radius-lg) !important;
+        object-fit: cover !important;
+        object-position: center 20% !important;
+      }
+      #primary .metodo__panel { opacity: 1 !important; padding: var(--space-4) !important; gap: clamp(0.3rem, 1.2svh, 1rem) !important; padding-right: var(--space-4) !important; }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RESPONSIVE — Gerarchia tipografica mobile
+       Titoli sezione: 24px | Sottotitoli: 18px | Eyebrow hero: 11.2px
+    ════════════════════════════════════════════════════════════ */
+    @media (max-width: 767px) {
+      .section__title { font-size: 1.5rem !important; line-height: 1.2 !important; }
+      #primary .section__title--left { margin: 0 !important; padding: 0 !important; }
+      #primary .metodo__panel { gap: clamp(0.3rem, 1.2svh, 1rem) !important; }
+      #primary .section__title--left + .method__body { margin-top: 16px !important; }
+      .section__subtitle { font-size: 1.125rem !important; line-height: 1.6 !important; }
+      .hero__headline { font-size: clamp(1.3rem, 6vw, 1.75rem) !important; }
+      .hero__eyebrow { font-size: 0.7rem !important; }
+      .btn-primary, .btn-white { max-width: 100% !important; }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RESPONSIVE — Radio group compact su mobile
+    ════════════════════════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      .percorso-radio-group { gap: 0.75rem 1rem !important; }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RESPONSIVE — Sezioni: padding ridotto su mobile
+    ════════════════════════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      #percorso .continuita-step { padding: 1rem !important; }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RESPONSIVE — Form "Vuoi maggiori informazioni?"
+       Padding orizzontale ridotto per ottenere ~2 righe sul subtitle
+    ════════════════════════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      #info .info-form-wrapper { padding: var(--space-3) var(--space-2) !important; }
+    }
+  </style>
 </head>
 
 <body>
@@ -100,7 +764,7 @@
     <div class="container header__inner">
 
       <!-- Brand -->
-      <a href="/primary-middle-school.html" class="header__brand" aria-label="BBEducation — torna alla homepage">
+      <a href="#" class="header__brand" aria-label="BBEducation — torna all'inizio della pagina">
         <img
           src="logo/BBEnormalelogofull.webp"
           alt="BBEducation logo"
@@ -108,14 +772,15 @@
           width="315"
           height="90"
         >
-        <span class="header__label">Primary &amp; Middle School</span>
+        <span class="header__label">Primary &amp; Middle School Bilingue</span>
       </a>
 
-      <!-- Nav minimale -->
+      <!-- Nav -->
       <nav class="header__nav" aria-label="Navigazione principale">
         <ul>
-          <li><a href="#method">Metodo</a></li>
-          <li><a href="#open-day">Open Day</a></li>
+          <li><a href="#percorso">Percorso</a></li>
+          <li><a href="#primary">Primary</a></li>
+          <li><a href="#middle">Middle School</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#info">Contatti</a></li>
         </ul>
@@ -123,7 +788,7 @@
 
       <!-- CTA primaria -->
       <div class="header__cta">
-        <a href="#open-day" class="btn btn-primary">Prenotazione Open Day</a>
+        <a href="#booking-form-section" class="btn btn-primary">Prenota il tuo Open Day</a>
       </div>
 
     </div>
@@ -137,14 +802,10 @@
     <!-- ==========================================================
          2. HERO
     ========================================================== -->
-    <section
-      id="hero"
-      class="hero"
-      aria-labelledby="hero-h1"
-    >
+    <section id="hero" class="hero" aria-labelledby="hero-h1">
       <div class="hero__inner">
 
-        <!-- Immagine — destra su desktop (order:1), sopra il copy su mobile (DOM first) -->
+        <!-- Immagine -->
         <div class="hero__media" aria-hidden="true">
           <img
             src="Foto primary/primary.webp"
@@ -155,500 +816,702 @@
             fetchpriority="high"
             decoding="async"
           >
+          <div class="hero__media-overlay" aria-hidden="true"></div>
         </div>
 
-        <!-- Copy — sinistra su desktop (order:-1), sotto immagine su mobile -->
+        <!-- Copy -->
         <div class="hero__copy">
-          <p class="hero__eyebrow">Primary &amp; Middle School · Biassono</p>
+          <p class="hero__eyebrow">SCUOLA ELEMENTARE E MEDIA BILINGUE<br class="m-br">ITALIANO E INGLESE</p>
 
-          <!-- H1 SEO -->
           <h1 id="hero-h1" class="hero__h1">
-            Scuola Primaria e&nbsp;Media Bilingue a&nbsp;Biassono
+            Scuola Primaria e Media Bilingue in Brianza
           </h1>
 
-          <!-- Headline emozionale -->
           <p class="hero__headline">
-            Il futuro si&nbsp;prepara<br>
-            <span>già da&nbsp;oggi.</span>
+            Il suo prossimo passo<br>
+            <span>inizia qui.</span>
           </p>
 
           <p class="hero__subtitle">
-            Un percorso accademico bilingue per ragazzi da&nbsp;6 a&nbsp;14 anni,
-            dove l'inglese diventa strumento di&nbsp;crescita, pensiero critico
-            e&nbsp;apertura al&nbsp;mondo.
+            Un percorso bilingue che accompagna gli studenti dalla scuola primaria alla&nbsp;Middle&nbsp;School, unendo apprendimento, innovazione e&nbsp;crescita personale.
           </p>
 
           <div class="hero__cta-group">
-            <a href="#open-day" class="btn btn-primary">
+            <a href="#booking-form-section" class="btn btn-primary">
               Prenota il tuo Open Day
             </a>
-            <p class="hero__cta-note">
-              Scopri BBEducation, visita la scuola e&nbsp;incontra il nostro team.
-            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hero__social" style="display:none;"></div>
+    </section>
+
+
+    <!-- ==========================================================
+         3. IL PERCORSO BBE — continuita-path (seconda sezione, subito dopo la hero)
+    ========================================================== -->
+    <section id="percorso" class="section" aria-labelledby="percorso-title">
+      <div class="container">
+
+        <div class="section__header fade-up">
+          <h2 id="percorso-title" class="section__title">Un percorso che cresce<br class="m-br"> con loro.</h2>
+          <p class="section__subtitle">
+            Un unico progetto educativo, bilingue italiano e&nbsp;inglese, che accompagna gli studenti nelle diverse fasi della crescita.
+          </p>
+        </div>
+
+        <div class="continuita-path">
+
+          <!-- BABY -->
+          <div class="continuita-step continuita-step--active continuita-step--anim">
+            <div class="continuita-step__img-wrap">
+              <img src="Foto primary/primary.webp" alt="Bambini al Baby BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
+            </div>
+            <span class="continuita-step__badge pms-badge--baby">0–6</span>
+            <strong class="continuita-step__label pms-label--baby">Baby</strong>
+            <span class="continuita-step__desc pms-desc--dark">Nido e&nbsp;Scuola dell'Infanzia, i primi passi in&nbsp;un&nbsp;ambiente bilingue.</span>
           </div>
 
+          <!-- PRIMARY -->
+          <div class="continuita-step continuita-step--anim" style="--step-delay:0.18s">
+            <div class="continuita-step__img-wrap">
+              <img src="Foto primary/primary2.webp" alt="Studenti alla Primary BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
+            </div>
+            <span class="continuita-step__badge pms-badge--primary">6–11</span>
+            <strong class="continuita-step__label pms-label--primary">Primary</strong>
+            <span class="continuita-step__desc">Imparare facendo, attraverso esperienze, progetti e&nbsp;collaborazione.</span>
+          </div>
+
+          <!-- MIDDLE SCHOOL -->
+          <div class="continuita-step continuita-step--anim" style="--step-delay:0.36s">
+            <div class="continuita-step__img-wrap">
+              <img src="Foto primary/primary3.webp" alt="Studenti alla Middle School BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
+            </div>
+            <span class="continuita-step__badge pms-badge--middle">11–14</span>
+            <strong class="continuita-step__label pms-label--middle">Middle School</strong>
+            <span class="continuita-step__desc">Sviluppare autonomia, pensiero critico e&nbsp;competenze per il futuro.</span>
+          </div>
+
+        </div>
+
+        <div class="section__cta fade-up" style="text-align:center; margin-top: var(--space-5);">
+          <a href="#booking-form-section" class="btn btn-primary">Partecipa all'Open Day</a>
         </div>
 
       </div>
     </section>
 
+
     <!-- ==========================================================
-         4. PERCHÉ BBEDUCATION PMS
+         4. COSA CI RENDE DIVERSI — value cards
     ========================================================== -->
     <section id="why" class="section" aria-labelledby="why-title">
       <div class="container">
         <div class="section__header fade-up">
-          <h2 id="why-title" class="section__title">Un metodo pensato per&nbsp;chi&nbsp;cresce</h2>
+          <h2 id="why-title" class="section__title">Cosa ci rende diversi</h2>
           <p class="section__subtitle">
-            Gli anni della primaria e&nbsp;della media sono determinanti.
-            In&nbsp;BBEducation ogni percorso è&nbsp;progettato per sviluppare
-            competenze reali, autonomia e&nbsp;il bilinguismo che apre le&nbsp;porte
-            al&nbsp;futuro.
+            Un progetto educativo che unisce bilinguismo autentico, metodo attivo e&nbsp;attenzione alla persona, per accompagnare ogni studente con continuita dalla&nbsp;Primary alla&nbsp;Middle&nbsp;School.
           </p>
         </div>
 
         <div class="why-grid">
 
-          <!-- Card 1: Metodo CLIL -->
+          <!-- Card 1: Bilinguismo -->
           <article class="value-card fade-up" aria-labelledby="vc-1-title" role="button" tabindex="0" aria-expanded="false">
             <div class="value-card__flipper">
               <div class="value-card__front">
                 <div class="value-card__big-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#70DDA0" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
                   </svg>
                 </div>
-                <p class="value-card__front-label">Metodo CLIL</p>
+                <p class="value-card__front-label">Bilinguismo autentico</p>
                 <p class="value-card__hint">scopri di più →</p>
               </div>
               <div class="value-card__back">
                 <div class="value-card__back-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#70DDA0" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
                   </svg>
                 </div>
-                <h3 id="vc-1-title" class="value-card__title">Metodo CLIL</h3>
-                <p class="value-card__body">Le materie vengono insegnate anche in inglese: la lingua diventa uno strumento per pensare, studiare e comunicare nel mondo.</p>
+                <h3 id="vc-1-title" class="value-card__title">Bilinguismo autentico</h3>
+                <p class="value-card__body">Italiano e&nbsp;inglese integrati nella quotidianita scolastica, non come materia aggiuntiva ma come lingua di vita e&nbsp;di&nbsp;apprendimento.</p>
               </div>
             </div>
           </article>
 
-          <!-- Card 2: Percorso accademico -->
+          <!-- Card 2: Imparare facendo -->
           <article class="value-card fade-up" aria-labelledby="vc-2-title" role="button" tabindex="0" aria-expanded="false">
             <div class="value-card__flipper">
               <div class="value-card__front">
                 <div class="value-card__big-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#70DDA0" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
                   </svg>
                 </div>
-                <p class="value-card__front-label">Percorso accademico solido</p>
+                <p class="value-card__front-label">Imparare facendo</p>
                 <p class="value-card__hint">scopri di più →</p>
               </div>
               <div class="value-card__back">
                 <div class="value-card__back-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#70DDA0" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
                   </svg>
                 </div>
-                <h3 id="vc-2-title" class="value-card__title">Percorso accademico solido</h3>
-                <p class="value-card__body">Un curricolo che rispetta i programmi ministeriali e prepara ogni ragazzo con solidità, rigore e curiosità alle sfide future.</p>
+                <h3 id="vc-2-title" class="value-card__title">Imparare facendo</h3>
+                <p class="value-card__body">Esperienze, progetti e&nbsp;collaborazione al posto della&nbsp;lezione frontale. Gli&nbsp;studenti imparano attraverso il fare, il provare e&nbsp;il&nbsp;confrontarsi.</p>
               </div>
             </div>
           </article>
 
-          <!-- Card 3: Docenti qualificati -->
+          <!-- Card 3: Studente al centro -->
           <article class="value-card fade-up" aria-labelledby="vc-3-title" role="button" tabindex="0" aria-expanded="false">
             <div class="value-card__flipper">
               <div class="value-card__front">
                 <div class="value-card__big-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#70DDA0" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
                   </svg>
                 </div>
-                <p class="value-card__front-label">Docenti specializzati</p>
+                <p class="value-card__front-label">Studente al centro</p>
                 <p class="value-card__hint">scopri di più →</p>
               </div>
               <div class="value-card__back">
                 <div class="value-card__back-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#70DDA0" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
                   </svg>
                 </div>
-                <h3 id="vc-3-title" class="value-card__title">Docenti specializzati</h3>
-                <p class="value-card__body">Un team qualificato in didattica bilingue che accompagna ogni ragazzo con competenza, rispettando i tempi e le inclinazioni di ciascuno.</p>
+                <h3 id="vc-3-title" class="value-card__title">Studente al centro</h3>
+                <p class="value-card__body">Ogni ragazzo ha i propri talenti e il proprio ritmo. Il percorso educativo parte dall'individuo, non dal programma.</p>
               </div>
             </div>
           </article>
 
-          <!-- Card 4: Continuità -->
+          <!-- Card 4: Continuita educativa -->
           <article class="value-card fade-up" aria-labelledby="vc-4-title" role="button" tabindex="0" aria-expanded="false">
             <div class="value-card__flipper">
               <div class="value-card__front">
                 <div class="value-card__big-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#70DDA0" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
                   </svg>
                 </div>
-                <p class="value-card__front-label">Una scuola che cresce con te</p>
+                <p class="value-card__front-label">Continuita educativa</p>
                 <p class="value-card__hint">scopri di più →</p>
               </div>
               <div class="value-card__back">
                 <div class="value-card__back-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#FFAC59" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#70DDA0" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
                   </svg>
                 </div>
-                <h3 id="vc-4-title" class="value-card__title">Una scuola che cresce con te</h3>
-                <p class="value-card__body">Da 6 a 14 anni un percorso coerente e progressivo, che valorizza ogni fase della crescita e prepara al futuro con continuità.</p>
+                <h3 id="vc-4-title" class="value-card__title">Continuita educativa</h3>
+                <p class="value-card__body">Un unico progetto che evolve con lo studente dalla Primary alla Middle School: stessa comunita, stessi valori, profondita crescente.</p>
               </div>
             </div>
           </article>
 
         </div>
+
+        <div class="section__cta fade-up" style="text-align:center; margin-top: var(--space-5);">
+          <a href="#booking-form-section" class="btn btn-primary">Vieni a conoscerci</a>
+        </div>
+
       </div>
     </section>
 
-    <!-- ==========================================================
-         5. IL METODO
-    ========================================================== -->
-    <section id="method" class="section section--white" aria-labelledby="method-title">
-      <div class="container">
-        <div class="method__layout">
-
-          <!-- Content -->
-          <div class="method__content fade-up">
-            <h2 id="method-title" class="section__title section__title--left">
-              Imparare usando l'inglese come&nbsp;strumento
-            </h2>
-
-            <p class="method__body">
-              In BBEducation Primary &amp; Middle School il metodo CLIL è&nbsp;al centro
-              del percorso educativo: geografia, scienze, storia — alcune materie vengono
-              insegnate anche in&nbsp;inglese, perché la lingua diventi un&nbsp;mezzo naturale
-              per pensare e&nbsp;comunicare.
-            </p>
-
-            <p class="method__body" style="font-weight: 700; color: var(--color-text);">
-              Ogni lezione diventa un'occasione per:
-            </p>
-
-            <ul class="method__features" aria-label="Cosa offre il percorso BBEducation PMS">
-              <li class="method__feature">
-                <span class="method__feature-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
-                </span>
-                <span>
-                  <strong>Acquisire</strong><br><span style="font-weight:400">contenuti disciplinari in&nbsp;un contesto bilingue stimolante.</span>
-                </span>
-              </li>
-              <li class="method__feature">
-                <span class="method__feature-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
-                </span>
-                <span>
-                  <strong>Sviluppare</strong><br><span style="font-weight:400">pensiero critico e&nbsp;autonomia nello studio.</span>
-                </span>
-              </li>
-              <li class="method__feature">
-                <span class="method__feature-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
-                </span>
-                <span>
-                  <strong>Prepararsi</strong><br><span style="font-weight:400">a certificazioni internazionali riconosciute.</span>
-                </span>
-              </li>
-              <li class="method__feature">
-                <span class="method__feature-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#FFAC59" stroke="none"/><polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5"/></svg>
-                </span>
-                <span>
-                  <strong>Crescere</strong><br><span style="font-weight:400">in&nbsp;un ambiente accogliente, sfidante e&nbsp;inclusivo.</span>
-                </span>
-              </li>
-            </ul>
-
-          </div>
-
-          <!-- Media -->
-          <div class="method__media fade-up" aria-hidden="true">
-            <img
-              src="Foto primary/primary2.webp"
-              alt=""
-              class="method__image"
-              width="600"
-              height="450"
-              loading="lazy"
-              decoding="async"
-            >
-            <div class="method__media-accent"></div>
-          </div>
-
-        </div>
-      </div>
-    </section>
 
     <!-- ==========================================================
-         6. OPEN DAY
+         5. PRIMARY → MIDDLE SCHOOL — sezione narrativa con scroll
+         Due pannelli: Primary (sfondo rosa) → Middle (sfondo arancione)
     ========================================================== -->
-    <section id="open-day" class="section section--blue open-day-section" aria-labelledby="open-day-title" tabindex="-1">
-      <span class="section__eyebrow" aria-hidden="true">Open Day</span>
+    <section id="primary" class="metodo" aria-labelledby="primary-title">
+      <div class="metodo__inner fade-up">
+        <div class="metodo__vgrid">
 
-      <div class="container">
-
-        <!-- Header centrato -->
-        <div class="section__header fade-up">
-          <h2 id="open-day-title" class="section__title">
-            La scuola giusta si sceglie vivendola
-          </h2>
-          <p class="open-day__intro">
-            Leggere può raccontarti una scuola.<br>
-            <strong>Visitarla ti permette di capire se è quella giusta per tuo figlio.</strong>
-          </p>
-        </div>
-
-        <!-- Agenda: foto hero + badge sotto -->
-        <div class="open-day-agenda fade-up" aria-label="Cosa potrai fare durante l'Open Day">
-
-          <!-- Foto full-width -->
-          <div class="open-day-agenda__photo-hero">
-            <img src="Foto primary/primary3.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async">
-          </div>
-
-          <!-- Label + badge cards -->
-          <p class="open-day-agenda__label">Durante l'Open Day potrai:</p>
-          <div class="open-day-agenda__badges">
-            <div class="oda-badge">
-              <span class="oda-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              </span>
-              <span class="oda-badge__text">
-                <strong class="oda-badge__title">Visitare la scuola</strong>
-                <span class="oda-badge__body">Scoprire gli ambienti in cui i ragazzi studiano, crescono e si confrontano.</span>
-              </span>
-            </div>
-            <div class="oda-badge">
-              <span class="oda-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </span>
-              <span class="oda-badge__text">
-                <strong class="oda-badge__title">Scoprire il metodo CLIL</strong>
-                <span class="oda-badge__body">Capire come l'inglese entra nelle materie e diventa strumento di apprendimento.</span>
-              </span>
-            </div>
-            <div class="oda-badge">
-              <span class="oda-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-              </span>
-              <span class="oda-badge__text">
-                <strong class="oda-badge__title">Conoscere il team</strong>
-                <span class="oda-badge__body">Incontrare docenti e coordinatori che accompagneranno tuo figlio ogni giorno.</span>
-              </span>
-            </div>
-            <div class="oda-badge">
-              <span class="oda-badge__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              </span>
-              <span class="oda-badge__text">
-                <strong class="oda-badge__title">Fare tutte le tue domande</strong>
-                <span class="oda-badge__body">Ricevere informazioni sul percorso accademico, le iscrizioni e il piano di studi.</span>
-              </span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Form prenotazione -->
-        <div class="open-day__form-photo fade-up">
-
-          <div class="open-day__form-col">
-
-            <!-- Nessuna data disponibile -->
-            <div class="no-dates-message" id="no-dates-message" role="status" aria-live="polite">
-              <p>
-                Al momento non ci sono nuove date disponibili.<br>
-                <strong>Lasciaci i tuoi dati e ti avviseremo appena apriremo il prossimo Open Day.</strong>
+          <!-- PANNELLO 0 — Primary School -->
+          <div class="metodo__pair" data-idx="0">
+            <div class="metodo__panel is-active" data-idx="0">
+              <span class="pms-scroll-eyebrow">La Primary School</span>
+              <h2 id="primary-title" class="section__title section__title--left">
+                Imparare facendo.<br>Crescere insieme.
+              </h2>
+              <p class="method__body">
+                Alla Primary BBEducation l'apprendimento nasce dall'esperienza. Italiano e&nbsp;inglese fanno parte della quotidianita, mentre attivita, progetti e&nbsp;percorsi interdisciplinari aiutano ogni studente a&nbsp;sviluppare curiosita, creativita, collaborazione e&nbsp;pensiero critico.
               </p>
-              <a href="#info" class="btn btn-outline" style="margin-top: 1rem;">Avvisami per la prossima data</a>
+              <ul class="metodo__features">
+                <li class="metodo__feature">
+                  <span class="metodo__feature-icon" aria-hidden="true">
+                    <svg class="pms-feat-icon" viewBox="0 0 24 24" fill="none" width="20" height="20">
+                      <circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.25)"/>
+                      <polyline points="8 12 11 15 16 9" stroke="rgba(255,255,255,0.95)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span><strong>Un apprendimento attivo</strong><br><span style="font-weight:400">Gli studenti imparano attraverso esperienze concrete, attivita coinvolgenti e&nbsp;progetti che li aiutano a collegare conoscenze e&nbsp;competenze.</span></span>
+                </li>
+                <li class="metodo__feature">
+                  <span class="metodo__feature-icon" aria-hidden="true">
+                    <svg class="pms-feat-icon" viewBox="0 0 24 24" fill="none" width="20" height="20">
+                      <circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.25)"/>
+                      <polyline points="8 12 11 15 16 9" stroke="rgba(255,255,255,0.95)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span><strong>Il bilinguismo nella quotidianita</strong><br><span style="font-weight:400">L'inglese diventa uno strumento quotidiano di apprendimento e&nbsp;comunicazione, integrato nelle diverse attivita scolastiche.</span></span>
+                </li>
+                <li class="metodo__feature">
+                  <span class="metodo__feature-icon" aria-hidden="true">
+                    <svg class="pms-feat-icon" viewBox="0 0 24 24" fill="none" width="20" height="20">
+                      <circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.25)"/>
+                      <polyline points="8 12 11 15 16 9" stroke="rgba(255,255,255,0.95)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span><strong>Ogni studente al centro</strong><br><span style="font-weight:400">Classi contenute e&nbsp;attenzione alla persona permettono di costruire un&nbsp;percorso educativo attento alle caratteristiche e&nbsp;ai tempi di ogni studente.</span></span>
+                </li>
+              </ul>
+              <a href="#booking-form-section" class="pms-scroll-cta">Scopri la Primary School</a>
             </div>
+            <img class="metodo__img is-active" data-idx="0" src="Foto primary/primary2.webp" alt="Lezione alla Primary BBEducation" width="600" height="900" loading="lazy" decoding="async">
+          </div>
 
-            <div
-              id="booking-form-section"
-              class="booking-form-wrapper"
-              aria-label="Modulo di prenotazione Open Day"
-            >
-          <h3 class="booking-form__heading">Scegli la data e vieni a conoscerci al centro</h3>
-          <span class="open-day__capacity">Massimo 15 famiglie per data</span>
-
-          <form
-            id="booking-form"
-            novalidate
-            aria-label="Modulo prenotazione Open Day"
-          >
-            <input type="hidden" id="booking-event-type" name="eventType" value="">
-            <input type="hidden" name="formType" value="openday">
-
-            <div class="form-grid">
-
-              <div class="form-field form-field--full">
-                <label class="form-label" for="booking-date-select">
-                  Data Open Day <span class="required-marker" aria-hidden="true">*</span>
-                </label>
-                <select
-                  id="booking-date-select"
-                  name="eventId"
-                  class="form-select"
-                  required
-                  aria-required="true"
-                  aria-describedby="booking-date-select-error"
-                >
-                  <option value="" disabled selected>Seleziona una data…</option>
-                </select>
-                <span class="form-error" id="booking-date-select-error" role="alert" aria-live="assertive"></span>
-                <p class="open-school-note" role="note" id="open-school-note" style="display:none; margin-top: var(--space-1);">
-                  <strong>Open School</strong> — Visita più breve, formato informativo, per chi non può partecipare il sabato.
-                </p>
-              </div>
-
-              <div class="form-field">
-                <label class="form-label" for="booking-name">
-                  Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="booking-name"
-                  name="name"
-                  class="form-input"
-                  autocomplete="name"
-                  required
-                  aria-required="true"
-                  aria-describedby="booking-name-error"
-                  placeholder="es. Marco Rossi"
-                >
-                <span class="form-error" id="booking-name-error" role="alert" aria-live="assertive"></span>
-              </div>
-
-              <div class="form-field">
-                <label class="form-label" for="booking-phone">
-                  Telefono <span class="required-marker" aria-hidden="true">*</span>
-                </label>
-                <input
-                  type="tel"
-                  id="booking-phone"
-                  name="phone"
-                  class="form-input"
-                  autocomplete="tel"
-                  inputmode="tel"
-                  required
-                  aria-required="true"
-                  aria-describedby="booking-phone-error"
-                  placeholder="es. 333 000 0000"
-                >
-                <span class="form-error" id="booking-phone-error" role="alert" aria-live="assertive"></span>
-              </div>
-
-              <div class="form-field">
-                <label class="form-label" for="booking-email">
-                  Email <span class="required-marker" aria-hidden="true">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="booking-email"
-                  name="email"
-                  class="form-input"
-                  autocomplete="email"
-                  required
-                  aria-required="true"
-                  aria-describedby="booking-email-error"
-                  placeholder="es. marco@email.it"
-                >
-                <span class="form-error" id="booking-email-error" role="alert" aria-live="assertive"></span>
-              </div>
-
-              <div class="form-field">
-                <label class="form-label" for="booking-child-age">
-                  Età del ragazzo <span class="required-marker" aria-hidden="true">*</span>
-                </label>
-                <select
-                  id="booking-child-age"
-                  name="childAge"
-                  class="form-select"
-                  required
-                  aria-required="true"
-                  aria-describedby="booking-child-age-error"
-                  autocomplete="off"
-                >
-                  <option value="" disabled selected>Seleziona</option>
-                  <option value="6-7">6–7 anni (Primaria — 1°)</option>
-                  <option value="7-8">7–8 anni (Primaria — 2°)</option>
-                  <option value="8-9">8–9 anni (Primaria — 3°)</option>
-                  <option value="9-10">9–10 anni (Primaria — 4°)</option>
-                  <option value="10-11">10–11 anni (Primaria — 5°)</option>
-                  <option value="11-12">11–12 anni (Media — 1°)</option>
-                  <option value="12-13">12–13 anni (Media — 2°)</option>
-                  <option value="13-14">13–14 anni (Media — 3°)</option>
-                </select>
-                <span class="form-error" id="booking-child-age-error" role="alert" aria-live="assertive"></span>
-              </div>
-
-              <!-- Privacy -->
-              <div class="form-field form-field--full">
-                <div class="form-check">
-                  <input
-                    type="checkbox"
-                    id="booking-privacy"
-                    name="privacy"
-                    required
-                    aria-required="true"
-                    aria-describedby="booking-privacy-error"
-                  >
-                  <label for="booking-privacy">
-                    Ho letto e accetto la
-                    <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-                    di BBEducation e acconsento al trattamento dei dati per la gestione della prenotazione.
-                    <span class="required-marker" aria-hidden="true">*</span>
-                  </label>
-                </div>
-                <span class="form-error" id="booking-privacy-error" role="alert" aria-live="assertive"></span>
-              </div>
-
+          <!-- PANNELLO 1 — Middle School -->
+          <div class="metodo__pair" data-idx="1">
+            <div class="metodo__panel" data-idx="1">
+              <span class="pms-scroll-eyebrow">Il metodo della Middle School</span>
+              <h2 id="middle-title" class="section__title section__title--left">
+                Imparare a pensare.<br>Prepararsi al futuro.
+              </h2>
+              <p class="method__body">
+                Nella Middle School il modo di imparare evolve insieme agli studenti, con un&nbsp;approccio che sviluppa autonomia, curiosita e&nbsp;pensiero critico.
+              </p>
+              <ul class="metodo__features">
+                <li class="metodo__feature">
+                  <span class="metodo__feature-icon" aria-hidden="true">
+                    <svg class="pms-feat-icon" viewBox="0 0 24 24" fill="none" width="20" height="20">
+                      <circle cx="12" cy="12" r="10" fill="#FFAC59"/>
+                      <polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span><strong>Inquiry Based Learning</strong><br><span style="font-weight:400">Partire dalle domande per ricercare, esplorare e costruire conoscenza.</span></span>
+                </li>
+                <li class="metodo__feature">
+                  <span class="metodo__feature-icon" aria-hidden="true">
+                    <svg class="pms-feat-icon" viewBox="0 0 24 24" fill="none" width="20" height="20">
+                      <circle cx="12" cy="12" r="10" fill="#FFAC59"/>
+                      <polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span><strong>Gameful Learning</strong><br><span style="font-weight:400">Imparare attraverso esperienze coinvolgenti, sfide e collaborazione.</span></span>
+                </li>
+                <li class="metodo__feature">
+                  <span class="metodo__feature-icon" aria-hidden="true">
+                    <svg class="pms-feat-icon" viewBox="0 0 24 24" fill="none" width="20" height="20">
+                      <circle cx="12" cy="12" r="10" fill="#FFAC59"/>
+                      <polyline points="8 12 11 15 16 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span><strong>Future Skills</strong><br><span style="font-weight:400">Pensiero critico, creativita, autonomia e capacita di collaborare.</span></span>
+                </li>
+              </ul>
+              <a href="#booking-form-section" class="pms-scroll-cta">Scopri la Middle School</a>
             </div>
+            <img class="metodo__img" data-idx="1" src="Foto primary/primary3.webp" alt="Lezione alla Middle School BBEducation" width="600" height="900" loading="lazy" decoding="async">
+          </div>
 
-            <div class="form-submit-area">
-              <button type="submit" class="btn btn-primary btn--compact">
-                Prenota il tuo Open Day
-              </button>
-              <div class="form-status" role="status" aria-live="polite"></div>
-            </div>
+        </div>
+      </div>
+    </section>
 
-          </form>
-            </div><!-- /booking-form-wrapper -->
-          </div><!-- /open-day__form-col -->
+    <!-- Anchor per la nav "Middle School" — posizionato subito prima del campus -->
+    <div id="middle" style="height:0;overflow:hidden;" aria-hidden="true"></div>
 
-        </div><!-- /open-day__form-photo -->
+
+    <!-- ==========================================================
+         7. NUOVO CAMPUS — section__header + oda-badges (pattern #famiglie)
+    ========================================================== -->
+    <section id="campus" class="section section--white" aria-labelledby="campus-title">
+      <div class="container">
+
+        <div class="section__header fade-up" style="display:block;">
+          <span class="section__eyebrow" style="display:block; width:100%;">Nuovo campus</span>
+          <h2 id="campus-title" class="section__title">Dal 2027, il percorso continua a Seveso.</h2>
+          <p class="section__subtitle">
+            Il nuovo Campus ospiterà Primary e Middle School all'interno di un unico progetto educativo.
+          </p>
+          <p class="section__subtitle" style="margin-top: 1rem;">
+            La Middle School estenderà il percorso BBEducation fino ai 14 anni, accompagnando gli studenti in una nuova fase di crescita e apprendimento.
+          </p>
+          <div class="campus-info-tag" aria-label="Percorso Primary e Middle School" style="pointer-events:none;">
+            Primary &rarr; Middle School
+          </div>
+        </div>
+
+        <div class="open-day-agenda__badges fade-up" style="max-width:720px; margin-inline:auto; margin-top: var(--space-5);">
+
+          <div class="oda-badge">
+            <span class="oda-badge__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            <span class="oda-badge__text">
+              <strong class="oda-badge__title">Campus a Seveso</strong>
+              <span class="oda-badge__body">Una nuova sede, progettata per accompagnare gli studenti dalla Primary fino alla fine della Middle School.</span>
+            </span>
+          </div>
+
+          <div class="oda-badge">
+            <span class="oda-badge__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </span>
+            <span class="oda-badge__text">
+              <strong class="oda-badge__title">Un unico progetto educativo</strong>
+              <span class="oda-badge__body">Stessi valori, stesso metodo, continuita di relazione. Il percorso BBEducation che cresce insieme agli studenti.</span>
+            </span>
+          </div>
+
+          <div class="oda-badge">
+            <span class="oda-badge__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <span class="oda-badge__text">
+              <strong class="oda-badge__title">Operativo dal 2027</strong>
+              <span class="oda-badge__body">Il nuovo campus aprira nel 2027, con tutte le classi gia attive del percorso bilingue.</span>
+            </span>
+          </div>
+
+          <div class="oda-badge">
+            <span class="oda-badge__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </span>
+            <span class="oda-badge__text">
+              <strong class="oda-badge__title">Bilingue fin dal primo giorno</strong>
+              <span class="oda-badge__body">Italiano e inglese integrati in ogni aspetto della vita scolastica, dentro e fuori dall'aula.</span>
+            </span>
+          </div>
+
+        </div>
 
       </div>
     </section>
 
+
     <!-- ==========================================================
-         8. FAQ
+         8. OPEN DAY — struttura identica a index.html
+    ========================================================== -->
+    <section id="open-day" class="open-day-section" aria-labelledby="open-day-title" tabindex="-1">
+
+      <!-- ── PANEL 1: agenda ── -->
+      <div class="oda-panel oda-panel--agenda">
+        <!-- Decorativo: "Open Day" gigante -->
+        <span class="section__eyebrow" aria-hidden="true">Open Day</span>
+
+        <div class="container">
+
+          <div class="section__header fade-up">
+            <h2 id="open-day-title" class="section__title">
+              La scuola giusta si sceglie vivendola.
+            </h2>
+            <p class="open-day__intro">
+              Visita BBEducation, incontra il team e scopri il nostro modo di fare scuola.
+            </p>
+          </div>
+
+          <div class="open-day-agenda" aria-label="Cosa potrai fare durante l'Open Day">
+            <div class="open-day-agenda__photo-hero">
+              <img src="Foto primary/primary.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async">
+            </div>
+            <p class="open-day__agenda-label fade-up">Durante l'Open Day:</p>
+            <div class="open-day-agenda__badges">
+
+              <div class="oda-badge fade-up" style="--badge-delay:0.05s">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Visita la scuola</strong>
+                  <span class="oda-badge__body">Scopri gli ambienti, le aule e gli spazi in cui gli studenti imparano e crescono.</span>
+                </span>
+              </div>
+
+              <div class="oda-badge fade-up" style="--badge-delay:0.15s">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Conosci il team</strong>
+                  <span class="oda-badge__body">Incontra i docenti che accompagneranno tuo figlio nel percorso bilingue.</span>
+                </span>
+              </div>
+
+              <div class="oda-badge fade-up" style="--badge-delay:0.25s">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Scopri il metodo</strong>
+                  <span class="oda-badge__body">Conosci il progetto educativo bilingue della Primary e della Middle School.</span>
+                </span>
+              </div>
+
+              <div class="oda-badge fade-up" style="--badge-delay:0.35s">
+                <span class="oda-badge__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </span>
+                <span class="oda-badge__text">
+                  <strong class="oda-badge__title">Fai le tue domande</strong>
+                  <span class="oda-badge__body">Parla con il team e ricevi tutte le informazioni che stai cercando sul percorso.</span>
+                </span>
+              </div>
+
+            </div>
+          </div>
+
+          <div style="text-align:center; margin-top: var(--space-5);">
+            <a href="#booking-form-section" class="btn btn-white fade-up">Prenota il tuo Open Day</a>
+          </div>
+
+        </div>
+      </div><!-- /oda-panel--agenda -->
+
+      <!-- ── PANEL 2: form ── -->
+      <div class="oda-panel oda-panel--form" id="odaFormPanel">
+        <button class="oda-form-close" id="odaFormClose" aria-label="Torna indietro">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <div class="container">
+
+          <div class="section__header fade-up">
+            <h2 class="section__title" id="oda-form-title">Vieni a conoscere BBEducation.</h2>
+            <p class="section__subtitle">
+              Visita la scuola, incontra il team e scopri il percorso bilingue<br><span style="white-space:nowrap;">Primary e Middle School</span>.
+            </p>
+          </div>
+
+          <div class="open-day__form-photo">
+
+            <div class="open-day__form-col">
+
+              <!-- Nessuna data disponibile -->
+              <div class="no-dates-message" id="no-dates-message" role="status" aria-live="polite">
+                <p>
+                  Al momento non ci sono nuove date disponibili.<br>
+                  <strong>Lasciaci i tuoi dati e ti avviseremo appena apriremo il prossimo Open Day.</strong>
+                </p>
+                <a href="#info" class="btn btn-outline" style="margin-top: 1rem;">Avvisami per la prossima data</a>
+              </div>
+
+              <div
+                id="booking-form-section"
+                class="booking-form-wrapper"
+                aria-label="Modulo di prenotazione Open Day"
+              >
+                <h3 class="booking-form__heading">Prenota il tuo Open Day</h3>
+
+                <form
+                  id="booking-form"
+                  novalidate
+                  aria-label="Modulo prenotazione Open Day"
+                >
+                  <input type="hidden" id="booking-event-type" name="eventType" value="">
+                  <input type="hidden" name="formType" value="openday">
+
+                  <div class="form-grid">
+
+                    <!-- Nome e cognome -->
+                    <div class="form-field">
+                      <label class="form-label" for="booking-name">
+                        Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="booking-name"
+                        name="name"
+                        class="form-input"
+                        autocomplete="name"
+                        required
+                        aria-required="true"
+                        aria-describedby="booking-name-error"
+                        placeholder="es. Marco Rossi"
+                      >
+                      <span class="form-error" id="booking-name-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <!-- Data Open Day — popolata da JS -->
+                    <div class="form-field">
+                      <label class="form-label" for="booking-date-select">
+                        Data Open Day <span class="required-marker" aria-hidden="true">*</span>
+                      </label>
+                      <select
+                        id="booking-date-select"
+                        name="eventId"
+                        class="form-select"
+                        required
+                        aria-required="true"
+                        aria-describedby="booking-date-select-error"
+                      >
+                        <option value="" disabled selected>Seleziona una data&hellip;</option>
+                        <!-- Opzioni iniettate da app.js tramite config-pms.js -->
+                      </select>
+                      <span class="form-error" id="booking-date-select-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <!-- Percorso — radio buttons -->
+                    <div class="form-field form-field--full">
+                      <fieldset style="border:none; padding:0; margin:0;">
+                        <legend class="form-label">
+                          Quale percorso vuoi conoscere? <span class="required-marker" aria-hidden="true">*</span>
+                        </legend>
+                        <div class="percorso-radio-group">
+                          <label>
+                            <input type="radio" name="percorso" value="primary">
+                            Primary School
+                          </label>
+                          <label>
+                            <input type="radio" name="percorso" value="middle">
+                            Middle School
+                          </label>
+                          <label>
+                            <input type="radio" name="percorso" value="entrambi">
+                            Entrambi
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <!-- Anno di nascita -->
+                    <div class="form-field">
+                      <label class="form-label" for="booking-birth-year">
+                        Anno di nascita figlio/i
+                        <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="booking-birth-year"
+                        name="birthYear"
+                        class="form-input"
+                        autocomplete="off"
+                        inputmode="numeric"
+                        placeholder="es. 2015-2019"
+                      >
+                    </div>
+
+                    <!-- Telefono -->
+                    <div class="form-field">
+                      <label class="form-label" for="booking-phone">
+                        Telefono <span class="required-marker" aria-hidden="true">*</span>
+                      </label>
+                      <input
+                        type="tel"
+                        id="booking-phone"
+                        name="phone"
+                        class="form-input"
+                        autocomplete="tel"
+                        inputmode="tel"
+                        required
+                        aria-required="true"
+                        aria-describedby="booking-phone-error"
+                        placeholder="es. 333 000 0000"
+                      >
+                      <span class="form-error" id="booking-phone-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-field">
+                      <label class="form-label" for="booking-email">
+                        Email <span class="required-marker" aria-hidden="true">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="booking-email"
+                        name="email"
+                        class="form-input"
+                        autocomplete="email"
+                        required
+                        aria-required="true"
+                        aria-describedby="booking-email-error"
+                        placeholder="es. marco@email.it"
+                      >
+                      <span class="form-error" id="booking-email-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <!-- Messaggio -->
+                    <div class="form-field form-field--full">
+                      <label class="form-label" for="booking-message">
+                        Messaggio <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
+                      </label>
+                      <textarea
+                        id="booking-message"
+                        name="message"
+                        class="form-textarea"
+                        rows="3"
+                        autocomplete="off"
+                        placeholder="Raccontaci qualcosa in piu o fai una domanda..."
+                      ></textarea>
+                    </div>
+
+                    <!-- Privacy -->
+                    <div class="form-field form-field--full">
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          id="booking-privacy"
+                          name="privacy"
+                          required
+                          aria-required="true"
+                          aria-describedby="booking-privacy-error"
+                        >
+                        <label for="booking-privacy">
+                          Ho letto e accetto la
+                          <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                          di BBEducation e acconsento al trattamento dei dati per la gestione della prenotazione.
+                          <span class="required-marker" aria-hidden="true">*</span>
+                        </label>
+                      </div>
+                      <span class="form-error" id="booking-privacy-error" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                  </div>
+
+                  <div class="form-submit-area">
+                    <button type="submit" class="btn btn-primary btn--compact">
+                      Prenota il tuo Open Day
+                    </button>
+                    <div class="form-status" role="status" aria-live="polite"></div>
+                  </div>
+
+                </form>
+              </div><!-- /booking-form-wrapper -->
+            </div><!-- /open-day__form-col -->
+
+          </div><!-- /open-day__form-photo -->
+
+        </div><!-- /container -->
+      </div><!-- /oda-panel--form -->
+
+    </section>
+
+
+    <!-- ==========================================================
+         9. FAQ
     ========================================================== -->
     <section id="faq" class="section" aria-labelledby="faq-title">
       <div class="container">
 
-        <div class="section__header fade-up">
-          <span class="section__eyebrow">Domande frequenti</span>
-          <h2 id="faq-title" class="section__title">Prima di scegliere, è normale avere domande</h2>
+        <div class="section__header fade-up" style="display:block;">
+          <span class="section__eyebrow" style="display:block; width:100%;">Domande frequenti</span>
+          <h2 id="faq-title" class="section__title">Tutto quello che vuoi sapere prima di scegliere.</h2>
         </div>
 
-        <!-- Accordion generato da app.js tramite config-pms.js -->
+        <!-- Accordion generato da app.js leggendo config-pms.js -->
         <div id="faq-list" class="faq-list" role="list"></div>
 
       </div>
     </section>
 
+
     <!-- ==========================================================
-         9. FORM RICHIESTA INFORMAZIONI
+         10. FORM RICHIESTA INFORMAZIONI
     ========================================================== -->
     <section id="info" class="section section--white info-form-section" aria-labelledby="info-title">
       <div class="container">
@@ -656,10 +1519,10 @@
         <div class="info-form-wrapper fade-up">
           <div class="section__header section__header--left" style="margin-bottom: var(--space-4);">
             <h2 id="info-title" class="section__title" style="font-size: var(--text-2xl);">
-              Non puoi venire alle date proposte?
+              Vuoi maggiori informazioni?
             </h2>
             <p class="section__subtitle" style="margin-inline: 0; text-align: left; margin-top: var(--space-1);">
-              Lasciaci i tuoi dati, ti ricontattiamo noi.
+              Lasciaci i tuoi dati e ti ricontatteremo per approfondire il percorso piu adatto.
             </p>
           </div>
 
@@ -727,29 +1590,44 @@
                 <span class="form-error" id="info-email-error" role="alert" aria-live="assertive"></span>
               </div>
 
+              <!-- Percorso di interesse — radio -->
               <div class="form-field form-field--full">
-                <label class="form-label" for="info-child-age">
-                  Età del ragazzo <span class="required-marker" aria-hidden="true">*</span>
+                <fieldset style="border:none; padding:0; margin:0;">
+                  <legend class="form-label">
+                    Percorso di interesse <span class="required-marker" aria-hidden="true">*</span>
+                  </legend>
+                  <div class="percorso-radio-group">
+                    <label>
+                      <input type="radio" name="info-percorso" value="primary">
+                      Primary School
+                    </label>
+                    <label>
+                      <input type="radio" name="info-percorso" value="middle">
+                      Middle School
+                    </label>
+                    <label>
+                      <input type="radio" name="info-percorso" value="entrambi">
+                      Entrambi
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <!-- Anno di nascita -->
+              <div class="form-field form-field--full">
+                <label class="form-label" for="info-birth-year">
+                  Anno di nascita figlio/i
+                  <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
                 </label>
-                <select
-                  id="info-child-age"
-                  name="childAge"
-                  class="form-select"
-                  required
-                  aria-required="true"
-                  aria-describedby="info-child-age-error"
+                <input
+                  type="text"
+                  id="info-birth-year"
+                  name="birthYear"
+                  class="form-input"
+                  autocomplete="off"
+                  inputmode="numeric"
+                  placeholder="es. 2015"
                 >
-                  <option value="" disabled selected>Seleziona</option>
-                  <option value="6-7">6–7 anni (Primaria — 1°)</option>
-                  <option value="7-8">7–8 anni (Primaria — 2°)</option>
-                  <option value="8-9">8–9 anni (Primaria — 3°)</option>
-                  <option value="9-10">9–10 anni (Primaria — 4°)</option>
-                  <option value="10-11">10–11 anni (Primaria — 5°)</option>
-                  <option value="11-12">11–12 anni (Media — 1°)</option>
-                  <option value="12-13">12–13 anni (Media — 2°)</option>
-                  <option value="13-14">13–14 anni (Media — 3°)</option>
-                </select>
-                <span class="form-error" id="info-child-age-error" role="alert" aria-live="assertive"></span>
               </div>
 
               <div class="form-field form-field--full">
@@ -762,7 +1640,7 @@
                   class="form-textarea"
                   rows="3"
                   autocomplete="off"
-                  placeholder="Raccontaci qualcosa di più sulla tua situazione o fai una domanda..."
+                  placeholder="Raccontaci qualcosa di piu sulla vostra situazione o fate una domanda..."
                 ></textarea>
               </div>
 
@@ -804,7 +1682,7 @@
   </main>
 
   <!-- ============================================================
-       10. FOOTER
+       11. FOOTER
   ============================================================ -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
@@ -812,25 +1690,25 @@
       <!-- CTA block -->
       <div class="footer__cta-block fade-up">
         <p class="footer__cta-headline">
-          Il futuro si costruisce già&nbsp;oggi
+          Il suo futuro bilingue comincia&nbsp;qui
         </p>
-        <a href="#open-day" class="btn btn-white">Prenota il tuo Open Day</a>
+        <a href="#booking-form-section" class="btn btn-white">Prenota il tuo Open Day</a>
         <p class="footer__cta-address">
-          Vi aspettiamo a Biassono, in Via Lega Lombarda n.11
+          Vi aspettiamo a Cesano Maderno, in Via S.Bernardo ang. Via Diaz
         </p>
       </div>
 
-      <!-- Mappa sede BBEducation -->
+      <!-- Mappa -->
       <div class="map-container">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789.9836786737!2d9.201234!3d45.631234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786bbf3a2c5f4c1%3A0xde8fb0a3cf2f9a57!2sVia%20Lega%20Lombarda%2C%2011%2C%2020853%20Biassono%20MB%2C%20Italia!5e0!3m2!1sit!2sit!4v1700000000000"
+          src="https://maps.google.com/maps?f=q&source=s_q&hl=it&q=Via+S.+Bernardo+ang.+Via+Diaz,+20811+Cesano+Maderno+MB,+Italy&z=17&output=embed"
           width="100%"
           height="320"
           style="border:0; border-radius: var(--radius-lg, 16px);"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          title="Sede BBEducation — Via Lega Lombarda n.11, Biassono"
+          title="Sede BBEducation — Via S.Bernardo ang. Via Diaz, Cesano Maderno"
         ></iframe>
       </div>
 
@@ -839,53 +1717,65 @@
 
         <!-- Brand col -->
         <div>
-          <img
-            src="logo/BBEbiancologofull.webp"
-            alt="BBEducation"
-            class="footer__logo"
-            width="216"
-            height="65"
-            loading="lazy"
-          >
+          <a href="#" aria-label="BBEducation — torna all'inizio della pagina">
+            <img
+              src="logo/BBEbiancologofull.webp"
+              alt="BBEducation"
+              class="footer__logo"
+              width="216"
+              height="65"
+              loading="lazy"
+            >
+          </a>
           <p class="footer__tagline">
-            Scuola Primaria e Media bilingue.<br>
-            Sede di Biassono, Brianza.
+            Primary &amp; Middle School bilingue.<br>
+            Sede di Cesano Maderno, Brianza.
           </p>
         </div>
 
         <!-- Contatti -->
         <div>
           <p class="footer__col-title">Contatti</p>
-          <p class="footer__contact-item">
-            <span class="footer__contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </span>
-            Via Lega Lombarda n.11, Biassono (MB)
-          </p>
-          <p class="footer__contact-item">
-            <span class="footer__contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            </span>
-            <a href="tel:+39039491864" style="color:inherit;text-decoration:none;">039 491 864</a>
-          </p>
-          <p class="footer__contact-item">
-            <span class="footer__contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </span>
-            <a href="mailto:info@bbeducation.it" style="color:inherit;text-decoration:none;">info@bbeducation.it</a>
-          </p>
+          <div class="footer__contact-list">
+            <p class="footer__contact-item">
+              <span class="footer__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              Via S.Bernardo ang. Via Diaz, 20811 Cesano M.no (MB)
+            </p>
+            <p class="footer__contact-item">
+              <span class="footer__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </span>
+              <a href="tel:+390362545606" style="color:inherit;text-decoration:none;">Tel. 0362.545606</a>
+            </p>
+            <p class="footer__contact-item">
+              <span class="footer__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18L5 0a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </span>
+              <a href="tel:+393381607768" style="color:inherit;text-decoration:none;">Mobile 338.1607768</a>
+            </p>
+            <p class="footer__contact-item">
+              <span class="footer__contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <a href="mailto:info@bbeducation.it" style="color:inherit;text-decoration:none;">info@bbeducation.it</a>
+            </p>
+          </div>
         </div>
 
-        <!-- Link -->
+        <!-- Navigazione -->
         <div>
           <p class="footer__col-title">Navigazione</p>
           <nav aria-label="Link footer">
             <div class="footer__nav-links" style="flex-direction: column;">
-              <a href="#why">Perché BBEducation</a>
-              <a href="#method">Il metodo</a>
-              <a href="#open-day">Open Day</a>
+              <a href="#percorso">Il percorso</a>
+              <a href="#primary">Primary School</a>
+              <a href="#middle">Middle School</a>
+              <a href="#campus">Nuovo Campus</a>
               <a href="#faq">FAQ</a>
               <a href="#info">Contatti</a>
+              <a href="#booking-form-section">Prenota l'Open Day</a>
             </div>
           </nav>
         </div>
@@ -917,6 +1807,12 @@
               </svg>
             </a>
           </div>
+
+          <!-- Cross-link alla landing Baby -->
+          <p class="footer__col-title" style="margin-top: var(--space-4);">Anche per i piu piccoli</p>
+          <a href="index.html" style="color:rgba(255,255,255,0.75); font-size:0.9rem; text-decoration:underline; text-underline-offset:3px;">
+            BBEducation Baby — Nido &amp; Infanzia
+          </a>
         </div>
 
       </div>
@@ -924,7 +1820,7 @@
       <!-- Bottom bar -->
       <div class="footer__bottom">
         <p class="footer__bottom-text">
-          © BBEducation — Brianza Bilingual Education. Tutti i diritti riservati.
+          &copy; BBEducation — Brianza Bilingual Education. Tutti i diritti riservati.
         </p>
         <div class="footer__nav-links">
           <a href="#">Privacy Policy</a>
@@ -935,29 +1831,194 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts — config-pms.js al posto di config.js -->
   <script src="js/config-pms.js"></script>
   <script src="js/analytics.js"></script>
   <script src="js/app.js"></script>
 
-  <!-- Lazy map loader -->
+  <!-- PMS-specific patches (dopo app.js) -->
   <script>
-    function loadMap(el) {
-      var mapsUrl = (window.BBE_CONFIG && window.BBE_CONFIG.contact && window.BBE_CONFIG.contact.mapsUrl);
-      if (mapsUrl) {
-        var iframe = document.createElement("iframe");
-        iframe.src = mapsUrl;
-        iframe.width = "100%";
-        iframe.height = "100%";
-        iframe.style.border = "0";
-        iframe.allow = "fullscreen";
-        iframe.loading = "lazy";
-        iframe.title = "Mappa sede BBEducation Biassono";
-        el.parentNode.replaceChild(iframe, el);
-      } else {
-        el.setAttribute("aria-label", "Mappa non ancora disponibile — configurare mapsUrl in config.js");
+  (function () {
+    /* ── 1. Rimuove l'optgroup "Open Day del sabato" ──────────────────── */
+    document.addEventListener('DOMContentLoaded', function () {
+      var select = document.getElementById('booking-date-select');
+      if (select) {
+        var grp = select.querySelector('optgroup[label="Open Day del sabato"]');
+        if (grp) {
+          var opts = Array.prototype.slice.call(grp.querySelectorAll('option'));
+          opts.forEach(function (opt) { select.insertBefore(opt, grp); });
+          select.removeChild(grp);
+        }
       }
+
+      /* ── 2. Init scroll narrativo Primary ─────────────────────────── */
+      initPMSPrimary();
+    });
+
+    function initPMSPrimary() {
+      var section = document.getElementById('primary');
+      if (!section) return;
+      var inner  = section.querySelector('.metodo__inner');
+      var panels = section.querySelectorAll('.metodo__panel');
+      var imgs   = section.querySelectorAll('.metodo__img');
+      if (!panels.length || !inner) return;
+
+      var current = 0;
+      var total   = panels.length;
+      var MQ = '(min-width: 760px) and (min-height: 560px)';
+      var mq  = window.matchMedia(MQ);
+
+      /* Colori per la transizione bg: #FF788D → #FFAC59 */
+      var C0 = [255, 120, 141];
+      var C1 = [255, 172,  89];
+
+      function getHeaderH() {
+        var h = document.querySelector('.site-header');
+        return h ? h.getBoundingClientRect().height : 110;
+      }
+
+      function lerpRgb(a, b, t) {
+        return 'rgb(' +
+          Math.round(a[0] + (b[0]-a[0])*t) + ',' +
+          Math.round(a[1] + (b[1]-a[1])*t) + ',' +
+          Math.round(a[2] + (b[2]-a[2])*t) + ')';
+      }
+
+      function goTo(idx) {
+        if (idx === current) return;
+        panels[current].classList.remove('is-active');
+        if (imgs[current]) imgs[current].classList.remove('is-active');
+        current = idx;
+        panels[current].classList.add('is-active');
+        if (imgs[current]) imgs[current].classList.add('is-active');
+      }
+
+      function clearStyles() {
+        section.style.height          = '';
+        section.style.backgroundColor = '';
+        inner.style.position          = '';
+        inner.style.top               = '';
+        inner.style.height            = '';
+        inner.style.boxSizing         = '';
+        inner.style.backgroundColor   = '';
+      }
+
+      var desktopCleanup = null;
+
+      function setupDesktop() {
+        clearStyles();
+        var raf  = null;
+        var stepH = 0; /* altezza adattiva del frame sticky, condivisa tra setH e onScroll */
+
+        function setH() {
+          var headerH = getHeaderH();
+          var viewH   = window.innerHeight - headerH;
+
+          /* Misura l'altezza naturale del contenuto (incluso il padding CSS).
+             Impostiamo height:auto temporaneamente: il flex inner cresce al suo
+             contenuto. scrollHeight restituisce l'altezza reale senza vincolo. */
+          inner.style.height = 'auto';
+          var contentH = inner.scrollHeight;
+
+          /* Il frame deve contenere tutto il contenuto.
+             Se il contenuto è più alto della viewport disponibile, allarghiamo
+             il frame di conseguenza — il clipping lo fa solo la viewport naturale,
+             non un overflow CSS forzato.
+             Se il contenuto è più corto, il frame coincide esattamente con viewH
+             e il contenuto viene centrato normalmente via align-items:safe center. */
+          var finalH = Math.max(viewH, contentH);
+
+          inner.style.boxSizing = 'border-box';
+          inner.style.position  = 'sticky';
+          inner.style.top       = headerH + 'px';
+          inner.style.height    = finalH + 'px';
+          section.style.height  = (total * finalH) + 'px';
+          stepH = finalH;
+        }
+
+        function onScroll() {
+          if (raf) return;
+          raf = requestAnimationFrame(function () {
+            raf = null;
+            var headerH    = getHeaderH();
+            var sectionTop = section.getBoundingClientRect().top;
+            var scrolledIn = Math.max(0, headerH - sectionTop);
+            /* Usa stepH calcolato da setH: se il contenuto è più alto della viewport,
+               lo step di scroll è proporzionale al frame reale, non alla viewport. */
+            var innerH     = stepH > 0 ? stepH : (window.innerHeight - headerH);
+            var totalScr   = (total - 1) * innerH;
+            if (totalScr <= 0) return;
+            var progress   = Math.min(scrolledIn / totalScr, 1);
+            var idx        = Math.min(Math.floor(progress * total), total - 1);
+            goTo(idx);
+            var bg = lerpRgb(C0, C1, progress);
+            section.style.backgroundColor = bg;
+            inner.style.backgroundColor   = bg;
+          });
+        }
+
+        function onResize() { setH(); }
+
+        setH();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onResize, { passive: true });
+        onScroll();
+
+        return function () {
+          window.removeEventListener('scroll', onScroll);
+          window.removeEventListener('resize', onResize);
+          clearStyles();
+        };
+      }
+
+      function setupFlow() {
+        clearStyles();
+        section.classList.add('metodo--flow');
+        section.style.backgroundColor = '#FF788D';
+        section.querySelectorAll('.fade-up').forEach(function (el) {
+          el.classList.add('in-view');
+        });
+        panels.forEach(function (p)   { p.classList.add('is-active'); });
+        imgs.forEach(function (img)   { img.classList.add('is-active'); });
+      }
+
+      function teardownFlow() {
+        section.classList.remove('metodo--flow');
+        clearStyles();
+        current = 0;
+        panels.forEach(function (p, i) {
+          if (i === 0) p.classList.add('is-active');
+          else p.classList.remove('is-active');
+        });
+        imgs.forEach(function (img, i) {
+          if (i === 0) img.classList.add('is-active');
+          else img.classList.remove('is-active');
+        });
+      }
+
+      function onMQChange() {
+        if (mq.matches) {
+          teardownFlow();
+          desktopCleanup = setupDesktop();
+        } else {
+          if (desktopCleanup) { desktopCleanup(); desktopCleanup = null; }
+          setupFlow();
+        }
+      }
+
+      onMQChange();
+      mq.addEventListener('change', onMQChange);
+
+      /* Ri-misura dopo il caricamento dei font.
+         setH() gira su DOMContentLoaded: se Nunito non è ancora applicato,
+         il font di sistema viene usato per la misurazione → altezza sottostimata
+         → il contenuto del pannello Primary risulta tagliato in basso.
+         Dispatch di un resize event sintetico forza il re-calcolo con i font reali. */
+      (document.fonts ? document.fonts.ready : Promise.resolve()).then(function () {
+        window.dispatchEvent(new Event('resize'));
+      });
     }
+  })();
   </script>
 
 </body>
