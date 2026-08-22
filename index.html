@@ -117,7 +117,28 @@
     /* 1 — Una scuola pensata intorno al bambino */
     #why { background: #ffffff !important; }
     /* 2 — Metodo + Bilinguismo */
-    #metodo-section { background: rgba(128,169,213,0.15) !important; }
+    #metodo-section { background: #80A9D5 !important; }
+
+    /* Adattamento testi e UI su sfondo azzurro pieno */
+    #metodo-section .section__title--left { color: #fff !important; }
+    #metodo-section .method__body { color: rgba(255,255,255,0.92) !important; }
+    #metodo-section .method__body strong { color: #fff !important; }
+    #metodo-section .metodo__feature > span:last-child { color: rgba(255,255,255,0.9) !important; }
+    #metodo-section .metodo__feature strong { color: #fff !important; }
+    #metodo-section .metodo__feature span[style] { color: rgba(255,255,255,0.85) !important; }
+    /* Pulsante: outline bianco semitrasparente */
+    #metodo-section .btn-primary {
+      background: rgba(255,255,255,0.18) !important;
+      color: #fff !important;
+      border: 2px solid rgba(255,255,255,0.55) !important;
+      box-shadow: none !important;
+    }
+    #metodo-section .btn-primary:hover {
+      background: rgba(255,255,255,0.30) !important;
+    }
+    /* Dot indicatori */
+    #metodo-section .metodo__dot { background: rgba(255,255,255,0.35) !important; }
+    #metodo-section .metodo__dot.is-active { background: #fff !important; }
     /* 3 — Una giornata fatta di piccoli grandi momenti */
     #giornata { background: #ffffff !important; padding-block: 96px !important; }
     @media (max-width: 767px) { #giornata { padding-block: 48px !important; } }
