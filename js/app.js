@@ -33,7 +33,9 @@
     initStickyMobileCTA();
     initFadeUpObserver();
     initOpenDaySectionObserver();
+    initInfoModal();
     initFormPanel();
+    initHeroBookingForm();
     initScrollStory();
     initMetodo();
     initGiornataFilm();
@@ -773,6 +775,92 @@
     if (formClose) {
       formClose.addEventListener("click", closeFormFixed);
     }
+
+    window._bbeOpenForm = openFormFixed;
+  }
+
+  function initInfoModal() {
+    var modal = document.getElementById("infoModal");
+    if (!modal) return;
+
+    var closeBtn = document.getElementById("infoModalClose");
+
+    function openModal() {
+      modal.showModal();
+      document.body.style.overflow = "hidden";
+      var first = modal.querySelector("input:not([type=hidden]), select, textarea");
+      if (first) setTimeout(function() { first.focus(); }, 50);
+    }
+
+    function closeModal() {
+      modal.close();
+      document.body.style.overflow = "";
+    }
+
+    // Tutti i trigger [data-info-modal]
+    document.querySelectorAll("[data-info-modal]").forEach(function(el) {
+      el.addEventListener("click", function(e) {
+        e.preventDefault();
+        openModal();
+      });
+    });
+
+    // Chiusura via pulsante X
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+
+    // Chiusura via click sull'overlay (<dialog> nativo)
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) closeModal();
+    });
+
+    // Ripristino scroll quando il dialog si chiude (anche via Esc nativo)
+    modal.addEventListener("close", function() {
+      document.body.style.overflow = "";
+    });
+  }
+
+  function initHeroBookingForm() {
+    var heroForm = document.getElementById("hero-booking-form");
+    if (!heroForm) return;
+
+    var mainDateSel = document.getElementById("booking-date-select");
+    var heroDateSel = document.getElementById("hero-date");
+
+    function syncDates() {
+      if (!mainDateSel || !heroDateSel) return;
+      heroDateSel.innerHTML = "";
+      Array.from(mainDateSel.options).forEach(function(opt) {
+        heroDateSel.appendChild(opt.cloneNode(true));
+      });
+    }
+
+    if (mainDateSel && heroDateSel) {
+      new MutationObserver(syncDates).observe(mainDateSel, { childList: true });
+      syncDates();
+    }
+
+    heroForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      // Text/email/tel fields
+      if (mainDateSel && heroDateSel) mainDateSel.value = heroDateSel.value;
+      [["hero-name","booking-name"],["hero-phone","booking-phone"],["hero-email","booking-email"],
+       ["hero-birth-year","booking-birth-year"],["hero-message","booking-message"]].forEach(function(pair) {
+        var src = document.getElementById(pair[0]);
+        var dst = document.getElementById(pair[1]);
+        if (src && dst) dst.value = src.value;
+      });
+      // Radio: percorso
+      var heroPercorso = heroForm.querySelector('input[name="hero-percorso"]:checked');
+      if (heroPercorso) {
+        var mainPercorso = document.querySelector('input[name="percorso"][value="' + heroPercorso.value + '"]');
+        if (mainPercorso) mainPercorso.checked = true;
+      }
+      // Privacy
+      var heroPrivacy = document.getElementById("hero-privacy");
+      var mainPrivacy = document.getElementById("booking-privacy");
+      if (heroPrivacy && mainPrivacy) mainPrivacy.checked = heroPrivacy.checked;
+      if (window._bbeOpenForm) window._bbeOpenForm();
+    });
   }
 
   function initScrollStory() {

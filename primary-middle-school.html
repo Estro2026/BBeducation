@@ -131,9 +131,70 @@
     ════════════════════════════════════════════════════════════ */
     #percorso   { background: #ffffff !important; }
     #why        { background: rgba(255, 172, 89, 0.10) !important; }
-    #primary    { transition: background-color 0.1s linear; }
-    #campus     { background: #ffffff !important; }
-    #faq        { background: rgba(255, 172, 89, 0.10) !important; }
+    #primary    { transition: background-color 0.55s ease; }
+    /* Sezione Campus: foto scuolanew come background con sfumatura verso il bianco in basso */
+    /* ── #campus: img reale + gradiente overlay ─────────────────────
+       L'img si adatta automaticamente alla larghezza della sezione.
+       Il container si sovrappone nella zona bianca tramite margine negativo.
+    ─────────────────────────────────────────────────────────────── */
+    #campus {
+      background: #ffffff;
+      padding-top: 0;
+      overflow: hidden;
+    }
+    .campus__photo {
+      position: relative;
+      width: 100%;
+      line-height: 0;
+    }
+    .campus__photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .campus__photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* Gradiente desktop/tablet: bianco solido al 48% */
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0.10) 0%,
+        rgba(255,255,255,0.55) 20%,
+        rgba(255,255,255,0.90) 36%,
+        #ffffff                48%);
+      pointer-events: none;
+    }
+    /* Mobile: ripristina gradiente originale (quello che funzionava) */
+    @media (max-width: 539px) {
+      .campus__photo::after {
+        background: linear-gradient(to bottom,
+          rgba(255,255,255,0.08) 0%,
+          rgba(255,255,255,0.35) 35%,
+          rgba(255,255,255,0.80) 58%,
+          #ffffff                78%);
+      }
+    }
+    #campus .container {
+      margin-top: clamp(-160px, -14vw, -60px); /* mobile — non toccare */
+      position: relative;
+      z-index: 1;
+    }
+    @media (min-width: 540px) and (max-width: 767px) {
+      #campus .container { margin-top: clamp(-200px, -30vw, -150px); }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #campus .container { margin-top: clamp(-280px, -34vw, -220px); }
+    }
+    @media (min-width: 1024px) and (max-width: 1321px) {
+      #campus .container { margin-top: clamp(-320px, -26vw, -240px); }
+    }
+    @media (min-width: 1322px) and (max-width: 1633px) {
+      #campus .container { margin-top: clamp(-440px, -34vw, -340px); }
+    }
+    @media (min-width: 1634px) {
+      #campus .container { margin-top: clamp(-520px, -50vw, -420px); }
+    }
+    #faq        { background: #ffffff !important; }
 
     /* ════════════════════════════════════════════════════════════
        3. #why — sfondo arancione CHIARO: testo normale
@@ -147,7 +208,7 @@
     #why .value-card__hint { color: rgba(255,255,255,0.75) !important; }
     #why .value-card__title { color: #fff !important; }
     #why .value-card__body { color: rgba(255,255,255,0.92) !important; }
-    #why .section__cta .btn-primary { background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%) !important; color: #1a1a1a !important; }
+    #why .section__cta .btn-primary { background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%) !important; color: #ffffff !important; }
 
     /* ════════════════════════════════════════════════════════════
        4. PERCORSO — Badge, label, linea orizzontale
@@ -311,6 +372,100 @@
     #faq .faq-panel__inner a { color: #FF788D !important; }
 
     /* ════════════════════════════════════════════════════════════
+       8b. SEGMENTED CONTROL Primary / Middle
+    ════════════════════════════════════════════════════════════ */
+    .pms-switcher {
+      display: flex;
+      justify-content: center;
+      padding: clamp(0.75rem, 2svh, 1.25rem) 1rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .pms-switcher__track {
+      display: flex;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 999px;
+      padding: 4px;
+      border: 1px solid rgba(0,0,0,0.09);
+      box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+      gap: 0;
+    }
+    .pms-sw-btn {
+      padding: 0.52em 1.65em;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      color: var(--color-text-secondary, #777);
+      transition: background 0.22s, color 0.22s, box-shadow 0.22s;
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+    .pms-sw-btn:not(.is-active):hover {
+      background: rgba(0,0,0,0.06);
+      color: var(--color-text, #1a1a1a);
+    }
+    .pms-sw-btn[data-idx="0"].is-active {
+      background: #FF788D;
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(255,120,141,0.38);
+    }
+    .pms-sw-btn[data-idx="1"].is-active {
+      background: #FFAC59;
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(255,172,89,0.38);
+    }
+
+    /* ── Dot indicators (override style.css per colori #primary) ── */
+    #primary .metodo__dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      background: rgba(0,0,0,0.20);
+      transition: background 0.22s, width 0.22s, border-radius 0.22s, transform 0.22s;
+    }
+    #primary .metodo__dot.is-active {
+      width: 22px;
+      border-radius: 4px;
+      transform: none;
+      background: #FF788D !important;
+    }
+    #primary .metodo__dot[data-idx="1"].is-active {
+      background: #FFAC59 !important;
+    }
+    /* Dots più visibili nella riga sotto l'immagine */
+    #primary .metodo__dots {
+      margin-top: 0.65rem;
+      gap: 6px;
+    }
+
+    /* ── Layout inner: sempre colonna (switcher in cima, vgrid sotto) ── */
+    #primary .metodo__inner {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+    }
+    @media (min-width: 760px) and (min-height: 560px) {
+      #primary .metodo__inner {
+        padding-block: 0 !important;
+      }
+      #primary .metodo__vgrid {
+        flex: 1;
+        align-content: center;
+        padding-block: clamp(1rem, 3.5svh, 2.5rem);
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════
        9. PRIMARY → MIDDLE — sezione scroll narrativo
        Testo leggibile su sfondi colorati
     ════════════════════════════════════════════════════════════ */
@@ -380,7 +535,10 @@
 
     /* Flow mode (mobile): superficie cromatica continua Primary → Middle.
        Un unico gradiente sull'intera sezione, nessun background sui sotto-blocchi. */
-    #primary.metodo--flow { background: linear-gradient(180deg, #FF788D 0%, #FFAC59 100%); }
+    /* Flow (mobile): gradiente colorato Primary → Middle */
+    #primary.metodo--flow {
+      background: linear-gradient(180deg, #FF788D 0%, #FFAC59 100%);
+    }
     #primary.metodo--flow .metodo__vgrid { gap: 0 !important; }
     #primary.metodo--flow .metodo__inner {
       padding-top: calc(var(--space-5) + var(--space-3)) !important;
@@ -611,9 +769,8 @@
        FORM INFO — wrapper background rosa chiaro
        (solo il box form, non l'intera sezione)
     ════════════════════════════════════════════════════════════ */
-    .info-form-section .info-form-wrapper {
-      background: rgba(255, 120, 141, 0.05) !important;
-    }
+    #info.info-form-section { background: rgba(255, 120, 141, 0.10) !important; }
+    .info-form-section .info-form-wrapper { background: rgba(255, 172, 89, 0.12) !important; }
 
     /* ════════════════════════════════════════════════════════════
        PRIMARY / MIDDLE SCROLL — RIFINITURA UI
@@ -675,6 +832,9 @@
 
     /* Flow mode (mobile/tablet stretto ≤759px): immagine 351×220 sopra il testo */
     @media (max-width: 759px) {
+      /* Nasconde l'intero pair inattivo — il click sullo switch mostra solo il pannello attivo */
+      #primary.metodo--flow .metodo__pair { display: none !important; }
+      #primary.metodo--flow .metodo__pair:has(.metodo__panel.is-active) { display: flex !important; }
       #primary.metodo--flow .metodo__pair {
         gap: var(--space-2) !important;
       }
@@ -684,9 +844,9 @@
         padding-top: var(--space-2) !important;
       }
       #primary.metodo--flow .metodo__img {
-        max-width: 351px !important;
+        max-width: 100% !important;
         width: 100% !important;
-        aspect-ratio: 351 / 220 !important;
+        aspect-ratio: 16 / 9 !important;
         height: auto !important;
         border-radius: var(--radius-lg) !important;
         object-fit: cover !important;
@@ -705,9 +865,9 @@
       #primary .metodo__pair { display: flex !important; flex-direction: column !important; }
       #primary .metodo__img {
         order: -1 !important;
-        max-width: 351px !important;
+        max-width: 100% !important;
         width: 100% !important;
-        aspect-ratio: 351 / 220 !important;
+        aspect-ratio: 16 / 9 !important;
         height: auto !important;
         border-radius: var(--radius-lg) !important;
         object-fit: cover !important;
@@ -782,8 +942,8 @@
       <nav class="header__nav" aria-label="Navigazione principale">
         <ul>
           <li><a href="#percorso">Percorso</a></li>
-          <li><a href="#primary">Primary</a></li>
-          <li><a href="#middle">Middle School</a></li>
+          <li><a href="#primary">Primary &amp; Middle</a></li>
+          <li><a href="#campus">Nuovo Campus</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#info">Contatti</a></li>
         </ul>
@@ -805,50 +965,121 @@
     <!-- ==========================================================
          2. HERO
     ========================================================== -->
-    <section id="hero" class="hero" aria-labelledby="hero-h1">
-      <div class="hero__inner">
+    <section id="hero" class="hero hero--split" aria-labelledby="hero-h1">
 
-        <!-- Immagine -->
-        <div class="hero__media" aria-hidden="true">
-          <img
-            src="Foto primary/primary.webp"
-            alt=""
-            class="hero__image"
-            width="840"
-            height="960"
-            fetchpriority="high"
-            decoding="async"
-          >
-          <div class="hero__media-overlay" aria-hidden="true"></div>
+      <!-- Colonna sinistra 60%: immagine + testo -->
+      <div class="hs-left">
+        <img
+          src="Foto primary/primary.webp"
+          alt=""
+          class="hs-left__img"
+          width="840"
+          height="960"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="hs-left__overlay" aria-hidden="true"></div>
+        <div class="hs-left__content">
+          <p class="hero__eyebrow">SCUOLA ELEMENTARE E MEDIA BILINGUE <br class="m-br">ITALIANO E INGLESE</p>
+          <h1 id="hero-h1" class="hero__h1">Scuola Primaria e Media Bilingue in Brianza</h1>
+          <p class="hero__headline">Il suo prossimo passo<br><span>inizia qui.</span></p>
+          <p class="hero__subtitle">Un percorso bilingue che accompagna gli studenti dalla scuola primaria alla&nbsp;Middle&nbsp;School, unendo apprendimento, innovazione e&nbsp;crescita personale.</p>
         </div>
-
-        <!-- Copy -->
-        <div class="hero__copy">
-          <p class="hero__eyebrow">SCUOLA ELEMENTARE E MEDIA BILINGUE<br class="m-br">ITALIANO E INGLESE</p>
-
-          <h1 id="hero-h1" class="hero__h1">
-            Scuola Primaria e Media Bilingue in Brianza
-          </h1>
-
-          <p class="hero__headline">
-            Il suo prossimo passo<br>
-            <span>inizia qui.</span>
-          </p>
-
-          <p class="hero__subtitle">
-            Un percorso bilingue che accompagna gli studenti dalla scuola primaria alla&nbsp;Middle&nbsp;School, unendo apprendimento, innovazione e&nbsp;crescita personale.
-          </p>
-
-          <div class="hero__cta-group">
-            <a href="#booking-form-section" class="btn btn-primary">
-              Prenota il tuo Open Day
-            </a>
-          </div>
-        </div>
-
       </div>
 
-      <div class="hero__social" style="display:none;"></div>
+      <!-- Colonna destra 40%: pattern + form -->
+      <div class="hs-right">
+        <div class="hs-right__content">
+
+          <p class="hs-form-title">Prenota il tuo Open Day</p>
+
+          <form id="hero-booking-form" class="hs-form" novalidate>
+
+            <div class="form-field">
+              <label class="form-label" for="hero-name">
+                Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+              <input type="text" id="hero-name" class="form-input" autocomplete="name"
+                required aria-required="true" placeholder="es. Marco Rossi">
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="hero-date">
+                Data Open Day <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+              <select id="hero-date" class="form-select" required aria-required="true">
+                <option value="" disabled selected>Seleziona una data&hellip;</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <fieldset style="border:none; padding:0; margin:0;">
+                <legend class="form-label">
+                  Quale percorso vuoi conoscere? <span class="required-marker" aria-hidden="true">*</span>
+                </legend>
+                <div class="percorso-radio-group">
+                  <label><input type="radio" name="hero-percorso" value="primary"> Primary School</label>
+                  <label><input type="radio" name="hero-percorso" value="middle"> Middle School</label>
+                  <label><input type="radio" name="hero-percorso" value="entrambi"> Entrambi</label>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="hero-birth-year">
+                Anno di nascita figlio/i
+                <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
+              </label>
+              <input type="text" id="hero-birth-year" class="form-input" autocomplete="off"
+                inputmode="numeric" placeholder="es. 2015-2019">
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="hero-phone">
+                Telefono <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+              <input type="tel" id="hero-phone" class="form-input" autocomplete="tel"
+                inputmode="tel" required aria-required="true" placeholder="es. 333 000 0000">
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="hero-email">
+                Email <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+              <input type="email" id="hero-email" class="form-input" autocomplete="email"
+                required aria-required="true" placeholder="es. marco@email.it">
+            </div>
+
+            <div class="form-field hs-form__message">
+              <label class="form-label" for="hero-message">
+                Messaggio <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
+              </label>
+              <textarea id="hero-message" class="form-textarea" autocomplete="off"
+                placeholder="Raccontaci qualcosa in più o fai una domanda…"></textarea>
+            </div>
+
+            <div class="form-field">
+              <div class="form-check">
+                <input type="checkbox" id="hero-privacy" required aria-required="true">
+                <label for="hero-privacy">
+                  Ho letto e accetto la
+                  <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                  di BBEducation e acconsento al trattamento dei dati.
+                  <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-submit-area">
+              <button type="submit" class="btn btn--compact hs-btn-gradient">
+                <span class="hs-btn-text">Prenota il tuo Open Day</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
     </section>
 
 
@@ -993,7 +1224,7 @@
             </div>
           </article>
 
-          <!-- Card 4: Continuita educativa -->
+          <!-- Card 4: Continuità educativa -->
           <article class="value-card fade-up" aria-labelledby="vc-4-title" role="button" tabindex="0" aria-expanded="false">
             <div class="value-card__flipper">
               <div class="value-card__front">
@@ -1002,7 +1233,7 @@
                     <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
                   </svg>
                 </div>
-                <p class="value-card__front-label">Continuita educativa</p>
+                <p class="value-card__front-label">Continuità educativa</p>
                 <p class="value-card__hint">scopri di più →</p>
               </div>
               <div class="value-card__back">
@@ -1011,7 +1242,7 @@
                     <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
                   </svg>
                 </div>
-                <h3 id="vc-4-title" class="value-card__title">Continuita educativa</h3>
+                <h3 id="vc-4-title" class="value-card__title">Continuità educativa</h3>
                 <p class="value-card__body">Un unico progetto che evolve con lo studente dalla Primary alla Middle School: stessa comunita, stessi valori, profondita crescente.</p>
               </div>
             </div>
@@ -1033,6 +1264,15 @@
     ========================================================== -->
     <section id="primary" class="metodo" aria-labelledby="primary-title">
       <div class="metodo__inner fade-up">
+
+        <!-- Segmented control: Primary | Middle -->
+        <div class="pms-switcher" role="tablist" aria-label="Scegli il percorso">
+          <div class="pms-switcher__track">
+            <button class="pms-sw-btn is-active" data-idx="0" role="tab" aria-selected="true">Primary School</button>
+            <button class="pms-sw-btn" data-idx="1" role="tab" aria-selected="false">Middle School</button>
+          </div>
+        </div>
+
         <div class="metodo__vgrid">
 
           <!-- PANNELLO 0 — Primary School -->
@@ -1080,7 +1320,7 @@
           </div>
 
           <!-- PANNELLO 1 — Middle School -->
-          <div class="metodo__pair" data-idx="1">
+          <div class="metodo__pair" data-idx="1" id="middle">
             <div class="metodo__panel" data-idx="1">
               <span class="pms-scroll-eyebrow">Il metodo della Middle School</span>
               <h2 id="middle-title" class="section__title section__title--left">
@@ -1123,8 +1363,10 @@
             <img class="metodo__img" data-idx="1" src="Foto primary/primary3.webp" alt="Lezione alla Middle School BBEducation" width="600" height="900" loading="lazy" decoding="async">
           </div>
 
-        </div>
-      </div>
+
+        </div><!-- /metodo__vgrid -->
+
+      </div><!-- /metodo__inner -->
     </section>
 
     <!-- Anchor per la nav "Middle School" — posizionato subito prima del campus -->
@@ -1135,6 +1377,12 @@
          7. NUOVO CAMPUS — section__header + oda-badges (pattern #famiglie)
     ========================================================== -->
     <section id="campus" class="section section--white" aria-labelledby="campus-title">
+
+      <!-- Foto di sfondo come img reale: si adatta al 100% della larghezza -->
+      <div class="campus__photo" aria-hidden="true">
+        <img src="Foto primary/scuolanew1.webp" alt="" width="1600" height="900" loading="lazy" decoding="async">
+      </div>
+
       <div class="container">
 
         <div class="section__header fade-up" style="display:block;">
@@ -1271,7 +1519,7 @@
           </div>
 
           <div style="text-align:center; margin-top: var(--space-5);">
-            <a href="#booking-form-section" class="btn btn-white fade-up">Prenota il tuo Open Day</a>
+            <a href="#booking-form-section" class="btn btn-primary fade-up">Prenota il tuo Open Day</a>
           </div>
 
         </div>
@@ -1301,7 +1549,7 @@
                   Al momento non ci sono nuove date disponibili.<br>
                   <strong>Lasciaci i tuoi dati e ti avviseremo appena apriremo il prossimo Open Day.</strong>
                 </p>
-                <a href="#info" class="btn btn-outline" style="margin-top: 1rem;">Avvisami per la prossima data</a>
+                <a href="#" class="btn btn-outline" style="margin-top: 1rem;" data-info-modal>Avvisami per la prossima data</a>
               </div>
 
               <div
@@ -1516,176 +1764,274 @@
     <!-- ==========================================================
          10. FORM RICHIESTA INFORMAZIONI
     ========================================================== -->
-    <section id="info" class="section section--white info-form-section" aria-labelledby="info-title">
-      <div class="container">
-
-        <div class="info-form-wrapper fade-up">
-          <div class="section__header section__header--left" style="margin-bottom: var(--space-4);">
-            <h2 id="info-title" class="section__title" style="font-size: var(--text-2xl);">
-              Vuoi maggiori informazioni?
-            </h2>
-            <p class="section__subtitle" style="margin-inline: 0; text-align: left; margin-top: var(--space-1);">
-              Lasciaci i tuoi dati e ti ricontatteremo per approfondire il percorso piu adatto.
-            </p>
-          </div>
-
-          <form
-            id="info-form"
-            novalidate
-            aria-label="Modulo richiesta informazioni"
-          >
-            <input type="hidden" name="formType" value="info">
-
-            <div class="form-grid">
-
-              <div class="form-field form-field--full">
-                <label class="form-label" for="info-name">
-                  Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="info-name"
-                  name="name"
-                  class="form-input"
-                  autocomplete="name"
-                  required
-                  aria-required="true"
-                  aria-describedby="info-name-error"
-                  placeholder="es. Marco Rossi"
-                >
-                <span class="form-error" id="info-name-error" role="alert" aria-live="assertive"></span>
-              </div>
-
-              <div class="form-field form-field--full">
-                <label class="form-label" for="info-phone">
-                  Telefono <span class="required-marker" aria-hidden="true">*</span>
-                </label>
-                <input
-                  type="tel"
-                  id="info-phone"
-                  name="phone"
-                  class="form-input"
-                  autocomplete="tel"
-                  inputmode="tel"
-                  required
-                  aria-required="true"
-                  aria-describedby="info-phone-error"
-                  placeholder="es. 333 000 0000"
-                >
-                <span class="form-error" id="info-phone-error" role="alert" aria-live="assertive"></span>
-              </div>
-
-              <div class="form-field form-field--full">
-                <label class="form-label" for="info-email">
-                  Email <span class="required-marker" aria-hidden="true">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="info-email"
-                  name="email"
-                  class="form-input"
-                  autocomplete="email"
-                  required
-                  aria-required="true"
-                  aria-describedby="info-email-error"
-                  placeholder="es. marco@email.it"
-                >
-                <span class="form-error" id="info-email-error" role="alert" aria-live="assertive"></span>
-              </div>
-
-              <!-- Percorso di interesse — radio -->
-              <div class="form-field form-field--full">
-                <fieldset style="border:none; padding:0; margin:0;">
-                  <legend class="form-label">
-                    Percorso di interesse <span class="required-marker" aria-hidden="true">*</span>
-                  </legend>
-                  <div class="percorso-radio-group">
-                    <label>
-                      <input type="radio" name="info-percorso" value="primary">
-                      Primary School
-                    </label>
-                    <label>
-                      <input type="radio" name="info-percorso" value="middle">
-                      Middle School
-                    </label>
-                    <label>
-                      <input type="radio" name="info-percorso" value="entrambi">
-                      Entrambi
-                    </label>
-                  </div>
-                </fieldset>
-              </div>
-
-              <!-- Anno di nascita -->
-              <div class="form-field form-field--full">
-                <label class="form-label" for="info-birth-year">
-                  Anno di nascita figlio/i
-                  <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
-                </label>
-                <input
-                  type="text"
-                  id="info-birth-year"
-                  name="birthYear"
-                  class="form-input"
-                  autocomplete="off"
-                  inputmode="numeric"
-                  placeholder="es. 2015"
-                >
-              </div>
-
-              <div class="form-field form-field--full">
-                <label class="form-label" for="info-message">
-                  Messaggio <span style="font-weight: 400; color: var(--color-text-muted);">(facoltativo)</span>
-                </label>
-                <textarea
-                  id="info-message"
-                  name="message"
-                  class="form-textarea"
-                  rows="3"
-                  autocomplete="off"
-                  placeholder="Raccontaci qualcosa di piu sulla vostra situazione o fate una domanda..."
-                ></textarea>
-              </div>
-
-              <div class="form-field form-field--full">
-                <div class="form-check">
-                  <input
-                    type="checkbox"
-                    id="info-privacy"
-                    name="privacy"
-                    required
-                    aria-required="true"
-                    aria-describedby="info-privacy-error"
-                  >
-                  <label for="info-privacy">
-                    Ho letto e accetto la
-                    <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-                    di BBEducation e acconsento al trattamento dei dati per ricevere informazioni.
-                    <span class="required-marker" aria-hidden="true">*</span>
-                  </label>
-                </div>
-                <span class="form-error" id="info-privacy-error" role="alert" aria-live="assertive"></span>
-              </div>
-
-            </div>
-
-            <div class="form-submit-area">
-              <button type="submit" class="btn btn-primary btn--compact">
-                Richiedi informazioni
-              </button>
-              <div class="form-status" role="status" aria-live="polite"></div>
-            </div>
-
-          </form>
-        </div>
-
-      </div>
-    </section>
-
   </main>
 
   <!-- ============================================================
-       11. FOOTER
+       MODAL — Vuoi maggiori informazioni?
+  ============================================================ -->
+  <dialog id="infoModal" class="info-modal" aria-labelledby="info-modal-title" aria-modal="true">
+    <div class="info-modal__inner">
+
+      <div class="info-modal__header">
+        <div>
+          <h2 id="info-modal-title" class="info-modal__title">Vuoi maggiori informazioni?</h2>
+          <p class="info-modal__subtitle">Lasciaci i tuoi dati e ti ricontatteremo per approfondire il percorso più adatto.</p>
+        </div>
+        <button class="info-modal__close" id="infoModalClose" aria-label="Chiudi">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <form id="info-form" novalidate aria-label="Modulo richiesta informazioni">
+        <input type="hidden" name="formType" value="info">
+
+        <div class="form-grid">
+
+          <div class="form-field form-field--full">
+            <label class="form-label" for="info-name">
+              Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+            </label>
+            <input type="text" id="info-name" name="name" class="form-input"
+              autocomplete="name" required aria-required="true"
+              aria-describedby="info-name-error" placeholder="es. Marco Rossi">
+            <span class="form-error" id="info-name-error" role="alert" aria-live="assertive"></span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="info-phone">
+              Telefono <span class="required-marker" aria-hidden="true">*</span>
+            </label>
+            <input type="tel" id="info-phone" name="phone" class="form-input"
+              autocomplete="tel" inputmode="tel" required aria-required="true"
+              aria-describedby="info-phone-error" placeholder="es. 333 000 0000">
+            <span class="form-error" id="info-phone-error" role="alert" aria-live="assertive"></span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="info-email">
+              Email <span class="required-marker" aria-hidden="true">*</span>
+            </label>
+            <input type="email" id="info-email" name="email" class="form-input"
+              autocomplete="email" required aria-required="true"
+              aria-describedby="info-email-error" placeholder="es. marco@email.it">
+            <span class="form-error" id="info-email-error" role="alert" aria-live="assertive"></span>
+          </div>
+
+          <div class="form-field form-field--full">
+            <fieldset style="border:none; padding:0; margin:0;">
+              <legend class="form-label">
+                Percorso di interesse <span class="required-marker" aria-hidden="true">*</span>
+              </legend>
+              <div class="percorso-radio-group">
+                <label><input type="radio" name="info-percorso" value="primary"> Primary School</label>
+                <label><input type="radio" name="info-percorso" value="middle"> Middle School</label>
+                <label><input type="radio" name="info-percorso" value="entrambi"> Entrambi</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label class="form-label" for="info-birth-year">
+              Anno di nascita figlio/i
+              <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
+            </label>
+            <input type="text" id="info-birth-year" name="birthYear" class="form-input"
+              autocomplete="off" inputmode="numeric" placeholder="es. 2015">
+          </div>
+
+          <div class="form-field form-field--full">
+            <label class="form-label" for="info-message">
+              Messaggio <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
+            </label>
+            <textarea id="info-message" name="message" class="form-textarea" rows="3"
+              autocomplete="off" placeholder="Raccontaci qualcosa di più sulla vostra situazione o fate una domanda…"></textarea>
+          </div>
+
+          <div class="form-field form-field--full">
+            <div class="form-check">
+              <input type="checkbox" id="info-privacy" name="privacy"
+                required aria-required="true" aria-describedby="info-privacy-error">
+              <label for="info-privacy">
+                Ho letto e accetto la
+                <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                di BBEducation e acconsento al trattamento dei dati per ricevere informazioni.
+                <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+            </div>
+            <span class="form-error" id="info-privacy-error" role="alert" aria-live="assertive"></span>
+          </div>
+
+        </div>
+
+        <div class="form-submit-area">
+          <button type="submit" class="btn btn-primary btn--compact">
+            Richiedi informazioni
+          </button>
+          <div class="form-status" role="status" aria-live="polite"></div>
+        </div>
+
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ============================================================
+       11. FORM RICHIESTA INFORMAZIONI
+  ============================================================ -->
+  <section id="info" class="section section--white info-form-section" aria-labelledby="info-title">
+    <div class="container">
+
+      <div class="info-form-wrapper fade-up">
+        <div class="section__header section__header--left" style="margin-bottom: var(--space-4);">
+          <h2 id="info-title" class="section__title" style="font-size: var(--text-2xl);">
+            Non puoi venire alle date proposte?
+          </h2>
+          <p class="section__subtitle" style="margin-inline: 0; text-align: left; margin-top: var(--space-1);">
+            Lasciaci i tuoi dati, ti ricontattiamo noi.
+          </p>
+        </div>
+
+        <form
+          id="info-form"
+          novalidate
+          aria-label="Modulo richiesta informazioni"
+        >
+          <input type="hidden" name="formType" value="info">
+
+          <div class="form-grid">
+
+            <div class="form-field form-field--full">
+              <label class="form-label" for="info-name">
+                Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="info-name"
+                name="name"
+                class="form-input"
+                autocomplete="name"
+                required
+                aria-required="true"
+                aria-describedby="info-name-error"
+                placeholder="es. Marco Rossi"
+              >
+              <span class="form-error" id="info-name-error" role="alert" aria-live="assertive"></span>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label class="form-label" for="info-phone">
+                Telefono <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="tel"
+                id="info-phone"
+                name="phone"
+                class="form-input"
+                autocomplete="tel"
+                inputmode="tel"
+                required
+                aria-required="true"
+                aria-describedby="info-phone-error"
+                placeholder="es. 333 000 0000"
+              >
+              <span class="form-error" id="info-phone-error" role="alert" aria-live="assertive"></span>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label class="form-label" for="info-email">
+                Email <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="info-email"
+                name="email"
+                class="form-input"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="info-email-error"
+                placeholder="es. marco@email.it"
+              >
+              <span class="form-error" id="info-email-error" role="alert" aria-live="assertive"></span>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label class="form-label" for="info-child-age">
+                Età del bambino <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+              <select
+                id="info-child-age"
+                name="childAge"
+                class="form-select"
+                required
+                aria-required="true"
+                aria-describedby="info-child-age-error"
+              >
+                <option value="" disabled selected>Seleziona</option>
+                <option value="6-7">6–7 anni (Primary — 1°)</option>
+                <option value="7-8">7–8 anni (Primary — 2°)</option>
+                <option value="8-9">8–9 anni (Primary — 3°)</option>
+                <option value="9-10">9–10 anni (Primary — 4°)</option>
+                <option value="10-11">10–11 anni (Primary — 5°)</option>
+                <option value="11-12">11–12 anni (Middle — 1°)</option>
+                <option value="12-13">12–13 anni (Middle — 2°)</option>
+                <option value="13-14">13–14 anni (Middle — 3°)</option>
+              </select>
+              <span class="form-error" id="info-child-age-error" role="alert" aria-live="assertive"></span>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label class="form-label" for="info-message">
+                Messaggio <span style="font-weight: 400; color: var(--color-text-muted);">(facoltativo)</span>
+              </label>
+              <textarea
+                id="info-message"
+                name="message"
+                class="form-textarea"
+                rows="3"
+                autocomplete="off"
+                placeholder="Raccontaci qualcosa di più sulla vostra situazione o fai una domanda..."
+              ></textarea>
+            </div>
+
+            <div class="form-field form-field--full">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  id="info-privacy"
+                  name="privacy"
+                  required
+                  aria-required="true"
+                  aria-describedby="info-privacy-error"
+                >
+                <label for="info-privacy">
+                  Ho letto e accetto la
+                  <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                  di BBEducation e acconsento al trattamento dei dati per ricevere informazioni.
+                  <span class="required-marker" aria-hidden="true">*</span>
+                </label>
+              </div>
+              <span class="form-error" id="info-privacy-error" role="alert" aria-live="assertive"></span>
+            </div>
+
+          </div>
+
+          <div class="form-submit-area">
+            <button type="submit" class="btn btn-primary btn--compact">
+              Richiedi informazioni
+            </button>
+            <div class="form-status" role="status" aria-live="polite"></div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       12. FOOTER
   ============================================================ -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
@@ -1773,8 +2119,7 @@
           <nav aria-label="Link footer">
             <div class="footer__nav-links" style="flex-direction: column;">
               <a href="#percorso">Il percorso</a>
-              <a href="#primary">Primary School</a>
-              <a href="#middle">Middle School</a>
+              <a href="#primary">Primary &amp; Middle</a>
               <a href="#campus">Nuovo Campus</a>
               <a href="#faq">FAQ</a>
               <a href="#info">Contatti</a>
@@ -1861,9 +2206,11 @@
     function initPMSPrimary() {
       var section = document.getElementById('primary');
       if (!section) return;
-      var inner  = section.querySelector('.metodo__inner');
-      var panels = section.querySelectorAll('.metodo__panel');
-      var imgs   = section.querySelectorAll('.metodo__img');
+      var inner   = section.querySelector('.metodo__inner');
+      var panels  = section.querySelectorAll('.metodo__panel');
+      var imgs    = section.querySelectorAll('.metodo__img');
+      var swBtns  = section.querySelectorAll('.pms-sw-btn');
+      var dots    = section.querySelectorAll('.metodo__dot');
       if (!panels.length || !inner) return;
 
       var current = 0;
@@ -1887,6 +2234,17 @@
           Math.round(a[2] + (b[2]-a[2])*t) + ')';
       }
 
+      /* Aggiorna switcher e dots per riflettere il pannello corrente */
+      function updateUI() {
+        swBtns.forEach(function(btn, i) {
+          btn.classList.toggle('is-active', i === current);
+          btn.setAttribute('aria-selected', i === current ? 'true' : 'false');
+        });
+        dots.forEach(function(dot, i) {
+          dot.classList.toggle('is-active', i === current);
+        });
+      }
+
       function goTo(idx) {
         if (idx === current) return;
         panels[current].classList.remove('is-active');
@@ -1894,7 +2252,28 @@
         current = idx;
         panels[current].classList.add('is-active');
         if (imgs[current]) imgs[current].classList.add('is-active');
+        /* Aggiorna colore background in tutti i modi — la CSS transition fa la fusione */
+        var targetBg = current === 0 ? '#FF788D' : '#FFAC59';
+        section.style.backgroundColor = targetBg;
+        inner.style.backgroundColor   = targetBg;
+        updateUI();
       }
+
+      /* Click switcher — cambia pannello direttamente senza scrollare la pagina */
+      swBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var idx = parseInt(btn.getAttribute('data-idx'), 10);
+          goTo(idx);
+        });
+      });
+
+      /* Click dots (stesso comportamento del switcher) */
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          var idx = parseInt(dot.getAttribute('data-idx'), 10);
+          goTo(idx);
+        });
+      });
 
       function clearStyles() {
         section.style.height          = '';
@@ -1953,7 +2332,7 @@
             if (totalScr <= 0) return;
             var progress   = Math.min(scrolledIn / totalScr, 1);
             var idx        = Math.min(Math.floor(progress * total), total - 1);
-            goTo(idx);
+            if (idx !== current) goTo(idx);
             var bg = lerpRgb(C0, C1, progress);
             section.style.backgroundColor = bg;
             inner.style.backgroundColor   = bg;
@@ -1966,6 +2345,7 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', onResize, { passive: true });
         onScroll();
+        updateUI();
 
         return function () {
           window.removeEventListener('scroll', onScroll);
@@ -1977,12 +2357,21 @@
       function setupFlow() {
         clearStyles();
         section.classList.add('metodo--flow');
-        section.style.backgroundColor = '#FF788D';
         section.querySelectorAll('.fade-up').forEach(function (el) {
           el.classList.add('in-view');
         });
-        panels.forEach(function (p)   { p.classList.add('is-active'); });
-        imgs.forEach(function (img)   { img.classList.add('is-active'); });
+        /* Mostra solo il pannello corrente (tab) — non entrambi */
+        panels.forEach(function (p, i) {
+          if (i === current) p.classList.add('is-active');
+          else p.classList.remove('is-active');
+        });
+        imgs.forEach(function (img, i) {
+          if (i === current) img.classList.add('is-active');
+          else img.classList.remove('is-active');
+        });
+        /* Colore bg in base al pannello attivo */
+        section.style.backgroundColor = current === 0 ? '#FF788D' : '#FFAC59';
+        updateUI();
       }
 
       function teardownFlow() {
@@ -2024,5 +2413,18 @@
   })();
   </script>
 
+  <script>
+    /* Deep-link switcher: #primary → panel 0, #middle → panel 1 */
+    function pmsDeepLink() {
+      var hash = window.location.hash;
+      if (hash !== '#middle' && hash !== '#primary') return;
+      var idx = hash === '#middle' ? 1 : 0;
+      var btn = document.querySelector('.pms-sw-btn[data-idx="' + idx + '"]');
+      if (btn && !btn.classList.contains('is-active')) btn.click();
+    }
+    /* Esegui dopo l'init del switcher */
+    window.addEventListener('load', function() { setTimeout(pmsDeepLink, 0); });
+    window.addEventListener('hashchange', pmsDeepLink);
+  </script>
 </body>
 </html>

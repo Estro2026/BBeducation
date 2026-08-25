@@ -17,6 +17,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip; /* previene scroll orizzontale su tutti i browser incluso iOS Safari */
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -199,7 +200,7 @@ button {
   background: var(--bbe-baby-gradient);
   background-clip: padding-box;
   border-color: transparent;
-  color: var(--color-text);
+  color: #ffffff;
   box-shadow: var(--shadow-sm);
 }
 
@@ -1141,9 +1142,14 @@ button {
   margin-inline: auto;
   padding-inline: var(--container-px, 1.5rem);
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
+  grid-template-columns: 1fr;       /* mobile: colonna singola */
   gap: var(--space-5);
   align-items: start;
+}
+@media (min-width: 700px) {
+  .scroll-story__frame {
+    grid-template-columns: 1fr 1.4fr; /* tablet/desktop: due colonne */
+  }
 }
 
 /* Sinistra: testo */
@@ -2005,15 +2011,12 @@ button {
 
 /* Panel 2: form — flusso normale, continuo con panel 1 */
 .oda-panel--form {
-  position: relative;
-  z-index: 2;
-  background: #80A9D5;
-  padding-top: var(--space-6);
-  padding-bottom: var(--space-8);
+  display: none; /* nascosto finché non aperto via CTA */
 }
 
 /* Quando aperto via CTA: fixed, intera viewport scrollabile */
 .oda-panel--form.is-fixed-open {
+  display: block;
   position: fixed;
   top: var(--header-height, 72px);
   left: 0;
@@ -2409,7 +2412,7 @@ button {
   -webkit-appearance: none;
   background: white;
   cursor: pointer;
-  margin-top: 2px;
+  margin-top: 0;
   transition: background var(--transition-fast), border-color var(--transition-fast);
   position: relative;
 }
@@ -3575,6 +3578,386 @@ nav .footer__nav-links {
   color: #fff;
 }
 
+/* ════════════════════════════════════════════════════════════
+   HERO SPLIT — layout strutturalmente robusto:
+   • no height fissa — la sezione cresce sempre con il contenuto
+   • no overflow hidden sulla sezione
+   • colonne crescono con il form a qualsiasi zoom / viewport
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Base (mobile, flex-column stacked) ────────────────────
+   flex-direction: column → colonne impilate.
+   min-height → viewport piena, ma la sezione può crescere.
+   height: auto → FONDAMENTALE: non blocca la crescita. */
+.hero--split {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  height: auto;
+  background: none;
+  overflow: visible; /* sovrascrive overflow:hidden della base .hero */
+  width: 100%;      /* bordo-a-bordo — annulla qualsiasi effetto BFC sul width */
+}
+.hero--split::before { display: none; }
+
+/* ── Colonna sinistra: immagine + testo ────────────────────
+   flex: 0 0 auto + min-height → altezza minima fissa, poi segue contenuto.
+   overflow:hidden solo qui — necessario per object-fit dell'immagine. */
+.hs-left {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  min-height: clamp(260px, 45dvh, 520px);
+}
+
+/* L'immagine riempie il suo contenitore via absolute positioning.
+   Funziona correttamente perché .hs-left ha altezza definita. */
+.hs-left__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.hs-left__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(6,14,30,0.80) 0%,
+    rgba(6,14,30,0.35) 55%,
+    rgba(6,14,30,0.05) 100%
+  );
+  pointer-events: none;
+}
+
+/* Il contenuto testuale si posiziona in basso all'interno di .hs-left.
+   height: 100% funziona perché .hs-left ha altezza definita. */
+.hs-left__content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1rem, 4vw, 2rem) clamp(1.25rem, 5vw, 2.5rem) clamp(1.25rem, 4vw, 2rem);
+  gap: clamp(0.3rem, 0.6vw, 0.55rem);
+  color: #fff;
+  animation: hero-copy-panel-in 0.65s 0.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hs-left__content .hero__eyebrow {
+  color: rgba(255,255,255,0.68);
+  font-size: clamp(0.62rem, 1vw, 0.8rem);
+}
+.hs-left__content .hero__headline {
+  color: #fff;
+  font-size: clamp(1.25rem, 3.5vw, var(--text-4xl));
+}
+.hs-left__content .hero__headline span {
+  background: var(--bbe-baby-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hs-left__content .hero__subtitle {
+  color: rgba(255,255,255,0.80);
+  font-size: clamp(0.78rem, 1vw + 0.4rem, 0.95rem);
+}
+
+/* ── Colonna destra: pattern + form ────────────────────────
+   flex: 0 0 auto = altezza NATURALE del contenuto, nessuna crescita forzata.
+   La sezione (height:auto) cresce automaticamente a contenere sinistra+destra.
+   Nessun clipping del form, nessuna sovrapposizione con la sezione successiva. */
+.hs-right {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: url('../gradientiepatternbaby/patterngradientprimarymiddle.png') center / cover no-repeat;
+}
+.hs-right__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(1.25rem, 4vw, 2rem);
+  gap: clamp(0.4rem, 0.7vw, 0.6rem);
+}
+
+/* Titolo form */
+.hs-form-title {
+  font-size: clamp(0.65rem, 0.9vw, 0.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--color-text);
+  margin: 0 0 0.2rem;
+  flex-shrink: 0;
+}
+
+/* Form: flex colonna, riempie tutto il blocco destra.
+   flex: 1 lo fa crescere, ma i campi non si comprimono (flex-shrink:0). */
+.hs-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.35rem, 0.6vw, 0.55rem);
+}
+.hs-form .form-field { gap: 0.15rem; flex-shrink: 0; }
+.hs-form .form-label { font-size: clamp(0.68rem, 0.85vw, 0.76rem); }
+.hs-form .form-input,
+.hs-form .form-select,
+.hs-form .form-textarea {
+  font-size: clamp(0.78rem, 0.9vw + 0.4rem, 0.88rem);
+  padding-top: clamp(0.32rem, 0.5vw, 0.48rem);
+  padding-bottom: clamp(0.32rem, 0.5vw, 0.48rem);
+}
+.hs-form .form-check { flex-shrink: 0; }
+.hs-form .form-check label { font-size: clamp(0.66rem, 0.8vw, 0.73rem); color: var(--color-text); }
+.hs-form .form-check label a { color: var(--color-text); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+/* Textarea: cresce per riempire lo spazio disponibile, ma ha limiti
+   ragionevoli così non domina il form a viewport molto alte. */
+.hs-form__message { flex: 1; display: flex; flex-direction: column; }
+.hs-form__message .form-textarea {
+  flex: 1;
+  min-height: 3rem;
+  max-height: clamp(5rem, 12vh, 10rem);
+  resize: none;
+}
+
+.hs-form .form-submit-area { margin-top: 0.2rem; flex-shrink: 0; }
+.hs-btn-gradient {
+  width: 100%;
+  background: #fff !important;
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s;
+}
+.hs-btn-gradient:hover { opacity: 0.82; }
+
+.hs-btn-text {
+  background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Input/select/textarea: semi-trasparenti */
+.hs-form .form-input,
+.hs-form .form-select,
+.hs-form .form-textarea {
+  background: rgba(255,255,255,0.55) !important;
+  border-color: rgba(255,255,255,0.45) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: var(--color-text);
+}
+.hs-form .form-input::placeholder,
+.hs-form .form-textarea::placeholder {
+  color: rgba(30,20,10,0.45);
+}
+.hs-form .form-input:focus,
+.hs-form .form-select:focus,
+.hs-form .form-textarea:focus {
+  background: rgba(255,255,255,0.82) !important;
+  border-color: rgba(255,120,141,0.5) !important;
+  outline: none;
+}
+
+/* ── Layout affiancato: si attiva a 660 px ──────────────────
+   align-items: stretch → entrambe le colonne hanno SEMPRE la stessa altezza.
+   Il container (height:auto) cresce liberamente se il form supera min-height.
+   Nessun align-self né min-height separato sulle colonne: tutto gestito
+   dal container con min-height + auto expansion. */
+@media (min-width: 660px) {
+  .hero--split {
+    flex-direction: row;
+    align-items: stretch;     /* colonne sempre uguali in altezza */
+    min-height: calc(100dvh - var(--header-height));
+  }
+  .hs-left {
+    flex: 0 0 58%;
+    min-height: 0;
+    /* align-self non necessario: eredita stretch dal container */
+  }
+  .hs-right {
+    flex: 0 0 42%;
+    /* min-height non necessario: il container garantisce già 100dvh - header.
+       Se il form è più alto, il container cresce e .hs-left cresce con esso. */
+  }
+  .hs-left__content {
+    justify-content: flex-end;
+    padding: clamp(1.25rem, 3.5vw, 2.5rem) clamp(1.5rem, 4.5vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+    gap: clamp(0.4rem, 0.7vw, 0.7rem);
+  }
+  .hs-left__content .hero__eyebrow { font-size: clamp(0.68rem, 0.9vw, 0.82rem); }
+  .hs-left__content .hero__headline { font-size: clamp(1.4rem, 2.8vw, var(--text-4xl)); }
+  .hs-left__content .hero__subtitle { font-size: clamp(0.82rem, 1vw, 0.95rem); }
+  .hs-right__content {
+    padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.25rem, 2.5vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem) clamp(1rem, 2vw, 2rem);
+    gap: clamp(0.45rem, 0.7vw, 0.65rem);
+  }
+  .hs-form__message .form-textarea { max-height: clamp(4rem, 14vh, 12rem); }
+}
+
+/* ── Proporzioni 60/40 su viewport largi ≥ 900 px */
+@media (min-width: 900px) {
+  .hs-left { flex: 0 0 60%; }
+  .hs-right { flex: 0 0 40%; }
+  .hs-left__content {
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(2.5rem, 5.5vw, 4.5rem) clamp(2.5rem, 5vw, 3.5rem);
+    gap: clamp(0.5rem, 0.8vw, 0.85rem);
+  }
+  .hs-right__content {
+    padding: clamp(1.5rem, 2.8vw, 2.5rem) clamp(1.75rem, 3vw, 3rem) clamp(1.5rem, 2.8vw, 2.5rem) clamp(1.5rem, 2.5vw, 2.5rem);
+    gap: clamp(0.5rem, 0.75vw, 0.7rem);
+  }
+  .hs-form { gap: clamp(0.45rem, 0.65vw, 0.65rem); }
+  .hs-form__message .form-textarea { max-height: clamp(5rem, 16vh, 13rem); }
+}
+
+/* ── Modal info-form ───────────────────────────────────────────────── */
+.info-modal {
+  border: none;
+  border-radius: 20px;
+  padding: 0;
+  width: min(600px, calc(100vw - 2rem));
+  max-height: calc(100dvh - 3rem);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08);
+  background: var(--color-bg, #fff);
+}
+.info-modal::backdrop {
+  background: rgba(8,15,30,0.55);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.info-modal[open] {
+  animation: modal-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+.info-modal__inner {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 3rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 2rem;
+  gap: 1.25rem;
+}
+.info-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.info-modal__title {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  line-height: 1.2;
+}
+.info-modal__subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-top: 0.35rem;
+}
+.info-modal__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--color-surface, #f3f3f0);
+  color: var(--color-text);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.info-modal__close:hover { background: var(--color-border, #e0e0dc); }
+
+/* ── Hero Booking Card ─────────────────────────────────────────────── */
+.hero__form-card {
+  background: rgba(255,255,255,0.97);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.hero__form-card__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted, #888);
+  margin-bottom: 0.75rem !important;
+  margin-top: 0 !important;
+}
+.hero__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.hero__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.hero__form-submit {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+.hero__form-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.hero__form-legend {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.4rem;
+}
+.hero__form-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+.hero__form-radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+.hero__form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted, #666);
+  line-height: 1.4;
+}
+.hero__form-check input[type="checkbox"] {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.hero__form-check a {
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .hero__form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .footer__social-link:hover {
   background: rgba(255,255,255,0.35);
 }
@@ -3705,11 +4088,23 @@ nav .footer__nav-links {
 /* ── CONTINUITÀ: layout a linee ── */
 .continuita-path {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--space-5);
+  grid-template-columns: 1fr;        /* mobile: colonna singola */
+  gap: var(--space-4);
   position: relative;
   margin-top: var(--space-6);
   padding-top: 2.5rem; /* spazio per la linea orizzontale + connettori */
+}
+@media (min-width: 540px) {
+  .continuita-path {
+    grid-template-columns: 1fr 1fr;  /* tablet piccolo: 2 colonne */
+    gap: var(--space-4);
+  }
+}
+@media (min-width: 860px) {
+  .continuita-path {
+    grid-template-columns: 1fr 1fr 1fr; /* desktop: 3 colonne */
+    gap: var(--space-5);
+  }
 }
 
 /* linea orizzontale principale: il percorso di vita */
@@ -3897,12 +4292,13 @@ nav .footer__nav-links {
 
   /* Reviews: nessun override su mobile, usa il valore base */
 
-  /* --- Hero: altezza auto su mobile, niente spazio vuoto in fondo --- */
-  /* Hero: fullscreen mobile */
-  .hero {
+  /* Hero standard fullscreen mobile (non split) */
+  .hero:not(.hero--split) {
     height: calc(100svh - var(--header-height));
     min-height: 560px;
   }
+  /* Hero split: nessun override qui — il base .hero--split ha già height:auto.
+     Il layout a colonna (<660px) usa il min-height del blocco base (100dvh). */
 
   /* Immagine: occupa tutto lo spazio che avanza dopo il copy */
   .hero__media {
