@@ -18,7 +18,7 @@
 
   <!-- Performance: preload critical font & LCP image -->
   <link rel="preload" href="Font/Nunito-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-  <link rel="preload" href="Foto/baby.webp" as="image">
+  <link rel="preload" href="fotobaby/1.webp" as="image">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/tokens.css">
@@ -353,6 +353,10 @@
       }
     }
 
+    /* Header CTA — visibile solo dopo la hero */
+    .header__cta { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .header__cta.is-visible { opacity: 1; pointer-events: auto; }
+
     /* ════════════════════════════════════════════════════════════
        HERO — pattern Baby e gradiente CTA verde/azzurro
     ════════════════════════════════════════════════════════════ */
@@ -415,7 +419,7 @@
 
       <!-- CTA primaria -->
       <div class="header__cta">
-        <a href="#booking-form-section" class="btn btn-primary">Prenota una visita</a>
+        <a href="#hero" class="btn btn-primary">Prenota una visita</a>
       </div>
 
     </div>
@@ -434,7 +438,7 @@
       <!-- Colonna sinistra: immagine + overlay + testo -->
       <div class="hs-left">
         <img
-          src="Foto/baby.webp"
+          src="fotobaby/1.webp"
           alt=""
           class="hs-left__img"
           width="840"
@@ -740,7 +744,7 @@
         </div>
 
         <div class="section__cta fade-up" style="text-align:center; margin-top: var(--space-5);">
-          <a href="#booking-form-section" class="btn btn-primary">Prenota una visita</a>
+          <a href="#hero" class="btn btn-primary">Prenota una visita</a>
         </div>
 
       </div>
@@ -799,6 +803,10 @@
           </div>
         </div>
 
+        <div class="section__cta fade-up" style="text-align:center; margin-top: var(--space-5);">
+          <a href="#hero" class="btn btn-primary">Partecipa all'Open Day</a>
+        </div>
+
       </div>
     </section>
 
@@ -819,7 +827,7 @@
         <div class="continuita-path">
           <div class="continuita-step continuita-step--active continuita-step--anim">
             <div class="continuita-step__img-wrap">
-              <img src="Foto/baby.webp" alt="Bambini al Baby" class="continuita-step__img" loading="lazy" width="400" height="300">
+              <img src="fotobaby/baby.webp" alt="Bambini al Baby" class="continuita-step__img" loading="lazy" width="400" height="300">
             </div>
             <span class="continuita-step__badge pms-badge--baby">0–6</span>
             <strong class="continuita-step__label pms-label--baby">Baby</strong>
@@ -827,7 +835,7 @@
           </div>
           <div class="continuita-step continuita-step--anim" style="--step-delay:0.28s">
             <div class="continuita-step__img-wrap">
-              <img src="Foto/baby2.webp" alt="Bambini alla Primary" class="continuita-step__img" loading="lazy" width="400" height="300">
+              <img src="fotobaby/last.webp" alt="Bambini alla Primary" class="continuita-step__img" loading="lazy" width="400" height="300">
             </div>
             <span class="continuita-step__badge pms-badge--primary">6–11</span>
             <strong class="continuita-step__label pms-label--primary">Primary</strong>
@@ -835,12 +843,16 @@
           </div>
           <div class="continuita-step continuita-step--anim" style="--step-delay:0.52s">
             <div class="continuita-step__img-wrap">
-              <img src="Foto/baby3.webp" alt="Ragazzi alla Middle School" class="continuita-step__img" loading="lazy" width="400" height="300">
+              <img src="fotobaby/middle.webp" alt="Ragazzi alla Middle School" class="continuita-step__img" loading="lazy" width="400" height="300">
             </div>
             <span class="continuita-step__badge pms-badge--middle">11–14</span>
             <strong class="continuita-step__label pms-label--middle">Middle School</strong>
             <span class="continuita-step__desc">Scuola Secondaria di primo grado</span>
           </div>
+        </div>
+
+        <div class="section__cta fade-up" style="text-align:center; margin-top: var(--space-5);">
+          <a href="#hero" class="btn btn-primary">Vieni a conoscerci</a>
         </div>
 
       </div>
@@ -869,7 +881,7 @@
 
           <div class="open-day-agenda" aria-label="Cosa potrai fare durante l'Open Day">
             <div class="open-day-agenda__photo-hero">
-              <img src="Foto/baby3.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async">
+              <img src="fotobaby/primary.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async" style="object-position: center 38%;">
             </div>
             <p class="open-day__agenda-label fade-up">Durante l'Open Day:</p>
             <div class="open-day-agenda__badges">
@@ -913,32 +925,17 @@
           </div>
 
           <div style="text-align:center; margin-top: var(--space-5);">
-            <a href="#booking-form-section" class="btn btn-primary fade-up">Prenota una visita</a>
+            <a href="#hero" class="btn btn-primary fade-up">Prenota una visita</a>
           </div>
 
         </div>
       </div><!-- /oda-panel--agenda -->
 
-      <!-- ── PANEL 2: form — slide-up via CTA ── -->
-      <div class="oda-panel oda-panel--form" id="odaFormPanel">
-        <button class="oda-form-close" id="odaFormClose" aria-label="Torna indietro">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </button>
+      <!-- ── PANEL 2: form ── -->
+      <div class="oda-panel oda-panel--form" id="odaFormPanel" style="display:none !important;">
         <div class="container">
-
-          <div class="section__header fade-up">
-            <h2 class="section__title" id="oda-form-title">Vieni a conoscere BBEducation.</h2>
-            <p class="section__subtitle">
-              Visita la scuola, incontra il team e scopri come accompagniamo i bambini nei loro primi anni di crescita.
-            </p>
-          </div>
-
           <div class="open-day__form-photo">
-
-          <!-- Form prenotazione (sinistra) -->
           <div class="open-day__form-col">
-
-            <!-- Nessuna data disponibile -->
             <div class="no-dates-message" id="no-dates-message" role="status" aria-live="polite">
               <p>
                 Al momento non ci sono nuove date disponibili.<br>
@@ -1291,7 +1288,7 @@
         <p class="footer__cta-headline">
           Il suo futuro comincia dalle prime&nbsp;esperienze
         </p>
-        <a href="#booking-form-section" class="btn btn-white">Prenota il tuo Open Day</a>
+        <a href="#hero" class="btn btn-white">Prenota il tuo Open Day</a>
         <p class="footer__cta-address">
           Vi aspettiamo a Biassono, in Via Lega Lombarda n.11
         </p>
@@ -1366,7 +1363,7 @@
               <a href="#continuita">Il percorso</a>
               <a href="#faq">FAQ</a>
               <a href="#info">Contatti</a>
-              <a href="#booking-form-section">Prenota una visita</a>
+              <a href="#hero">Prenota una visita</a>
             </div>
           </nav>
         </div>
@@ -1455,6 +1452,19 @@
     }
   </script>
 
+  <script>
+    (function() {
+      var hero = document.getElementById('hero');
+      var cta  = document.querySelector('.header__cta');
+      if (!hero || !cta) return;
+      function check() {
+        var bottom = hero.getBoundingClientRect().bottom;
+        cta.classList.toggle('is-visible', bottom <= 0);
+      }
+      window.addEventListener('scroll', check, { passive: true });
+      check();
+    })();
+  </script>
 
 </body>
 </html>

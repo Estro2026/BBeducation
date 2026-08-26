@@ -912,6 +912,14 @@
     @media (max-width: 600px) {
       #info .info-form-wrapper { padding: var(--space-3) var(--space-2) !important; }
     }
+    /* Middle School img — zoom out su mobile */
+    @media (max-width: 639px), (max-height: 400px) {
+      .metodo__img[data-idx="1"] { object-position: center bottom !important; }
+    }
+    .metodo--flow .metodo__img[data-idx="1"] { object-position: center bottom !important; }
+    /* Header CTA — visibile solo dopo la hero */
+    .header__cta { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; visibility: hidden; }
+    .header__cta.is-visible { opacity: 1; pointer-events: auto; visibility: visible; }
   </style>
 </head>
 
@@ -951,7 +959,7 @@
 
       <!-- CTA primaria -->
       <div class="header__cta">
-        <a href="#booking-form-section" class="btn btn-primary">Prenota il tuo Open Day</a>
+        <a href="#hero" class="btn btn-primary">Prenota il tuo Open Day</a>
       </div>
 
     </div>
@@ -970,7 +978,7 @@
       <!-- Colonna sinistra 60%: immagine + testo -->
       <div class="hs-left">
         <img
-          src="Foto primary/primary.webp"
+          src="fotoprimary/1.webp"
           alt=""
           class="hs-left__img"
           width="840"
@@ -1101,7 +1109,7 @@
           <!-- BABY -->
           <div class="continuita-step continuita-step--active continuita-step--anim">
             <div class="continuita-step__img-wrap">
-              <img src="Foto primary/primary.webp" alt="Bambini al Baby BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
+              <img src="fotoprimary/baby.webp" alt="Bambini al Baby BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
             </div>
             <span class="continuita-step__badge pms-badge--baby">0–6</span>
             <strong class="continuita-step__label pms-label--baby">Baby</strong>
@@ -1111,7 +1119,7 @@
           <!-- PRIMARY -->
           <div class="continuita-step continuita-step--anim" style="--step-delay:0.18s">
             <div class="continuita-step__img-wrap">
-              <img src="Foto primary/primary2.webp" alt="Studenti alla Primary BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
+              <img src="fotoprimary/primary.webp" alt="Studenti alla Primary BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
             </div>
             <span class="continuita-step__badge pms-badge--primary">6–11</span>
             <strong class="continuita-step__label pms-label--primary">Primary</strong>
@@ -1121,7 +1129,7 @@
           <!-- MIDDLE SCHOOL -->
           <div class="continuita-step continuita-step--anim" style="--step-delay:0.36s">
             <div class="continuita-step__img-wrap">
-              <img src="Foto primary/primary3.webp" alt="Studenti alla Middle School BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
+              <img src="fotoprimary/middle.webp" alt="Studenti alla Middle School BBEducation" class="continuita-step__img" loading="lazy" width="400" height="300">
             </div>
             <span class="continuita-step__badge pms-badge--middle">11–14</span>
             <strong class="continuita-step__label pms-label--middle">Middle School</strong>
@@ -1131,7 +1139,7 @@
         </div>
 
         <div class="section__cta fade-up" style="text-align:center; margin-top: var(--space-5);">
-          <a href="#booking-form-section" class="btn btn-primary">Partecipa all'Open Day</a>
+          <a href="#hero" class="btn btn-primary">Partecipa all'Open Day</a>
         </div>
 
       </div>
@@ -1251,7 +1259,7 @@
         </div>
 
         <div class="section__cta fade-up" style="text-align:center; margin-top: var(--space-5);">
-          <a href="#booking-form-section" class="btn btn-primary">Vieni a conoscerci</a>
+          <a href="#hero" class="btn btn-primary">Vieni a conoscerci</a>
         </div>
 
       </div>
@@ -1314,9 +1322,9 @@
                   <span><strong>Ogni studente al centro</strong><br><span style="font-weight:400">Classi contenute e&nbsp;attenzione alla persona permettono di costruire un&nbsp;percorso educativo attento alle caratteristiche e&nbsp;ai tempi di ogni studente.</span></span>
                 </li>
               </ul>
-              <a href="#booking-form-section" class="pms-scroll-cta">Scopri la Primary School</a>
+              <a href="#hero" class="pms-scroll-cta">Scopri la Primary School</a>
             </div>
-            <img class="metodo__img is-active" data-idx="0" src="Foto primary/primary2.webp" alt="Lezione alla Primary BBEducation" width="600" height="900" loading="lazy" decoding="async">
+            <img class="metodo__img is-active" data-idx="0" src="fotoprimary/imparare facendo.webp" alt="Lezione alla Primary BBEducation" width="600" height="900" loading="lazy" decoding="async"><!-- slot 5: imparare facendo -->
           </div>
 
           <!-- PANNELLO 1 — Middle School -->
@@ -1358,9 +1366,9 @@
                   <span><strong>Future Skills</strong><br><span style="font-weight:400">Pensiero critico, creativita, autonomia e capacita di collaborare.</span></span>
                 </li>
               </ul>
-              <a href="#booking-form-section" class="pms-scroll-cta">Scopri la Middle School</a>
+              <a href="#hero" class="pms-scroll-cta">Scopri la Middle School</a>
             </div>
-            <img class="metodo__img" data-idx="1" src="Foto primary/primary3.webp" alt="Lezione alla Middle School BBEducation" width="600" height="900" loading="lazy" decoding="async">
+            <img class="metodo__img" data-idx="1" src="fotoprimary/imparare a pensare.webp" alt="Lezione alla Middle School BBEducation" width="600" height="900" loading="lazy" decoding="async">
           </div>
 
 
@@ -1470,7 +1478,7 @@
 
           <div class="open-day-agenda" aria-label="Cosa potrai fare durante l'Open Day">
             <div class="open-day-agenda__photo-hero">
-              <img src="Foto primary/primary.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async">
+              <img src="fotoprimary/finale.webp" alt="" class="open-day-agenda__photo-img" loading="lazy" decoding="async">
             </div>
             <p class="open-day__agenda-label fade-up">Durante l'Open Day:</p>
             <div class="open-day-agenda__badges">
@@ -1519,7 +1527,7 @@
           </div>
 
           <div style="text-align:center; margin-top: var(--space-5);">
-            <a href="#booking-form-section" class="btn btn-primary fade-up">Prenota il tuo Open Day</a>
+            <a href="#hero" class="btn btn-primary fade-up">Prenota il tuo Open Day</a>
           </div>
 
         </div>
@@ -2041,7 +2049,7 @@
         <p class="footer__cta-headline">
           Il suo futuro bilingue comincia&nbsp;qui
         </p>
-        <a href="#booking-form-section" class="btn btn-white">Prenota il tuo Open Day</a>
+        <a href="#hero" class="btn btn-white">Prenota il tuo Open Day</a>
         <p class="footer__cta-address">
           Vi aspettiamo a Cesano Maderno, in Via S.Bernardo ang. Via Diaz
         </p>
@@ -2123,7 +2131,7 @@
               <a href="#campus">Nuovo Campus</a>
               <a href="#faq">FAQ</a>
               <a href="#info">Contatti</a>
-              <a href="#booking-form-section">Prenota l'Open Day</a>
+              <a href="#hero">Prenota l'Open Day</a>
             </div>
           </nav>
         </div>
@@ -2426,5 +2434,19 @@
     window.addEventListener('load', function() { setTimeout(pmsDeepLink, 0); });
     window.addEventListener('hashchange', pmsDeepLink);
   </script>
+
+  <script>
+    (function() {
+      var hero = document.getElementById('hero');
+      var cta  = document.querySelector('.header__cta');
+      if (!hero || !cta) return;
+      function check() {
+        cta.classList.toggle('is-visible', hero.getBoundingClientRect().bottom <= 0);
+      }
+      window.addEventListener('scroll', check, { passive: true });
+      check();
+    })();
+  </script>
+
 </body>
 </html>
