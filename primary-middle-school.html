@@ -679,26 +679,28 @@
       z-index: -1;
       pointer-events: none;
     }
-    /* Animated gradient border layer */
+    /* Sweep stroke — stesso comportamento di #percorso */
     #campus .oda-badge::before {
       content: '';
       position: absolute;
       inset: -2px;
       border-radius: inherit;
-      background: conic-gradient(from var(--campus-angle), #FF788D 0%, #FFAC59 50%, #FF788D 100%);
-      z-index: -2;
-      opacity: 0;
-      transition: opacity 0.35s ease;
+      background: conic-gradient(from -90deg, #FF788D 0%, #FFAC59 var(--ct-sweep), transparent var(--ct-sweep));
+      padding: 2px;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      --ct-sweep: 0%;
+      transition: --ct-sweep 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 1;
       pointer-events: none;
     }
     #campus .oda-badge:hover {
-      border-color: transparent !important;
       box-shadow: 0 8px 24px rgba(255,120,141,0.15) !important;
     }
-    #campus .oda-badge:hover::before {
-      opacity: 1;
-      animation: campus-border-spin 2.5s linear infinite;
-    }
+    #campus .oda-badge:hover::before { --ct-sweep: 100%; }
+    @media (hover: none) { #campus .oda-badge::before { display: none; } }
 
     #campus .oda-badge__icon { background: rgba(255,120,141,0.10) !important; color: #FF788D !important; }
 
