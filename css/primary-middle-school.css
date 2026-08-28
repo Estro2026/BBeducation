@@ -1,4 +1,4 @@
-/* ================================================================
+﻿/* ================================================================
    BBEducation — Primary & Middle School
    Solo override di palette.
    Caricato DOPO tokens.css e style.css.
@@ -32,7 +32,7 @@
    3. HERO — sostituisce patterngradientebaby con patterngradientprimarymiddle
 ---------------------------------------------------------------- */
 #hero.hero::before {
-  background: url('../gradientiepatternbaby/patterngradientprimarymiddle.png') center / cover no-repeat !important;
+  background: url('../gradientiepattern/patterngradientprimarymiddle.png') center / cover no-repeat !important;
 }
 .hero__media-overlay {
   background: none !important;
@@ -106,5 +106,6 @@
    8. FOOTER
 ---------------------------------------------------------------- */
 .site-footer {
-  background: url('../gradientiepatternbaby/patterngradientprimarymiddle.png') center/cover no-repeat;
+  background: url('../gradientiepattern/patterngradientprimarymiddle.png') center/cover no-repeat;
 }
+

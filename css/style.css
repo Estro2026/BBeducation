@@ -1,4 +1,4 @@
-/* ================================================================
+﻿/* ================================================================
    BBEducation — Main Stylesheet
    Landing Baby: Nido & Scuola dell'Infanzia, Biassono
    Mobile-first
@@ -401,7 +401,7 @@ button {
   content: '';
   position: absolute;
   inset: -6%;
-  background: url('../gradientiepatternbaby/patterngradientebaby.webp') center / cover no-repeat;
+  background: url('../gradientiepattern/patterngradientebaby.webp') center / cover no-repeat;
   animation: hero-bg-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
   pointer-events: none;
   z-index: 0;
@@ -981,7 +981,7 @@ button {
 
 /* Sezione con sfondo pattern (riutilizzabile) */
 .section--pattern {
-  background: url('../gradientiepatternbaby/patterngradientebaby.webp') center/cover no-repeat;
+  background: url('../gradientiepattern/patterngradientebaby.webp') center/cover no-repeat;
   padding-top: 0;
 }
 .section--pattern .section__title { color: #ffffff; }
@@ -2774,7 +2774,7 @@ button {
    FOOTER
 --------------------------------------------------------------- */
 .site-footer {
-  background: url('../gradientiepatternbaby/patterngradientebaby.webp') center/cover no-repeat;
+  background: url('../gradientiepattern/patterngradientebaby.webp') center/cover no-repeat;
   color: var(--color-text);
   padding-block: var(--space-4) var(--space-2);
   position: relative;
@@ -3675,7 +3675,7 @@ nav .footer__nav-links {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  background: url('../gradientiepatternbaby/patterngradientprimarymiddle.png') center / cover no-repeat;
+  background: url('../gradientiepattern/patterngradientprimarymiddle.png') center / cover no-repeat;
 }
 .hs-right__content {
   flex: 1;
@@ -4537,3 +4537,4 @@ nav .footer__nav-links {
     padding-block: 48px !important;
   }
 }
+
