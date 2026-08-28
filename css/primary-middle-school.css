@@ -34,6 +34,9 @@
 #hero.hero::before {
   background: url('../gradientiepattern/patterngradientprimarymiddle.webp') center / cover no-repeat !important;
 }
+.hs-right {
+  background: url('../gradientiepattern/patterngradientprimarymiddle.webp') center / cover no-repeat !important;
+}
 .hero__media-overlay {
   background: none !important;
 }
