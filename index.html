@@ -152,6 +152,14 @@
       #open-day .oda-panel--agenda,
       #open-day .oda-panel--form { flex: 1 1 50% !important; }
     }
+    /* Radio group "Sei interessato/a" */
+    .percorso-radio-group { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .percorso-radio-group label { display: flex; align-items: center; gap: 0.5rem; font-weight: 400; cursor: pointer; font-size: var(--text-base); }
+    .percorso-radio-group input[type="radio"] { accent-color: #80a9d5; width: 1.1em; height: 1.1em; cursor: pointer; flex-shrink: 0; }
+    @media (max-width: 639px) { .percorso-radio-group { gap: 0.75rem 1rem; } }
+    @media (max-width: 659px) { .hs-form .form-textarea { min-height: 140px; } }
+    @media (max-width: 767px) { .form-textarea { min-height: 120px; } }
+    @media (max-width: 1042px) { .hero--split { min-height: 0 !important; height: auto !important; } }
     /* Form panel: comportamento slide-up uguale a PMS (gestito da initFormPanel in app.js) */
     /* 3 — Crescere insieme, scuola e famiglia */
     #famiglie { background: rgba(128,169,213,0.15) !important; }
@@ -464,6 +472,14 @@
           <form id="hero-booking-form" class="hs-form" novalidate>
 
             <div class="form-field">
+              <label class="form-label" for="hero-name">
+                Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+              </label>
+              <input type="text" id="hero-name" class="form-input" autocomplete="name"
+                required aria-required="true" placeholder="es. Marco Rossi">
+            </div>
+
+            <div class="form-field">
               <label class="form-label" for="hero-date">
                 Data Open Day <span class="required-marker" aria-hidden="true">*</span>
               </label>
@@ -473,11 +489,30 @@
             </div>
 
             <div class="form-field">
-              <label class="form-label" for="hero-name">
-                Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
+              <fieldset style="border:none; padding:0; margin:0;">
+                <legend class="form-label">
+                  Sei interessato a <span class="required-marker" aria-hidden="true">*</span>
+                </legend>
+                <div class="percorso-radio-group">
+                  <label>
+                    <input type="radio" name="hero-interesse" value="nido" required> Nido
+                  </label>
+                  <label>
+                    <input type="radio" name="hero-interesse" value="infanzia"> Infanzia
+                  </label>
+                  <label>
+                    <input type="radio" name="hero-interesse" value="entrambi"> Entrambi
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="hero-child-year">
+                Anno di nascita del bambino/a <span class="required-marker" aria-hidden="true">*</span>
               </label>
-              <input type="text" id="hero-name" class="form-input" autocomplete="name"
-                required aria-required="true" placeholder="es. Marco Rossi">
+              <input type="text" id="hero-child-year" class="form-input" autocomplete="off"
+                inputmode="numeric" required aria-required="true" placeholder="es. 2020-2026">
             </div>
 
             <div class="form-field">
@@ -494,21 +529,6 @@
               </label>
               <input type="email" id="hero-email" class="form-input" autocomplete="email"
                 required aria-required="true" placeholder="es. marco@email.it">
-            </div>
-
-            <div class="form-field">
-              <label class="form-label" for="hero-child-age">
-                Età del bambino <span class="required-marker" aria-hidden="true">*</span>
-              </label>
-              <select id="hero-child-age" class="form-select" required aria-required="true">
-                <option value="" disabled selected>Seleziona</option>
-                <option value="0-1">0–1 anni (Nido piccoli)</option>
-                <option value="1-2">1–2 anni (Nido medi)</option>
-                <option value="2-3">2–3 anni (Nido grandi)</option>
-                <option value="3-4">3–4 anni (Scuola dell'Infanzia — 1°)</option>
-                <option value="4-5">4–5 anni (Scuola dell'Infanzia — 2°)</option>
-                <option value="5-6">5–6 anni (Scuola dell'Infanzia — 3°)</option>
-              </select>
             </div>
 
             <div class="form-field hs-form__message">
@@ -984,6 +1004,7 @@
                 </p>
               </div>
 
+              <!-- Nome -->
               <div class="form-field">
                 <label class="form-label" for="booking-name">
                   Nome e cognome <span class="required-marker" aria-hidden="true">*</span>
@@ -1002,6 +1023,7 @@
                 <span class="form-error" id="booking-name-error" role="alert" aria-live="assertive"></span>
               </div>
 
+              <!-- Telefono -->
               <div class="form-field">
                 <label class="form-label" for="booking-phone">
                   Telefono <span class="required-marker" aria-hidden="true">*</span>
@@ -1021,6 +1043,7 @@
                 <span class="form-error" id="booking-phone-error" role="alert" aria-live="assertive"></span>
               </div>
 
+              <!-- Email -->
               <div class="form-field">
                 <label class="form-label" for="booking-email">
                   Email <span class="required-marker" aria-hidden="true">*</span>
@@ -1039,6 +1062,7 @@
                 <span class="form-error" id="booking-email-error" role="alert" aria-live="assertive"></span>
               </div>
 
+              <!-- Età del bambino -->
               <div class="form-field">
                 <label class="form-label" for="booking-child-age">
                   Età del bambino <span class="required-marker" aria-hidden="true">*</span>
@@ -1474,4 +1498,5 @@
 
 </body>
 </html>
+
 

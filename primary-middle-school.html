@@ -751,7 +751,7 @@
       color: transparent !important; opacity: 0.25 !important; margin-top: 2rem !important;
     }
     #open-day .oda-panel--agenda .container { padding-top: 2rem !important; }
-    #open-day .oda-panel--form { background: url('gradientiepattern/patterngradientprimarymiddle.png') center / cover no-repeat !important; padding-top: 80px !important; padding-bottom: 80px !important; }
+    #open-day .oda-panel--form { background: url('gradientiepattern/patterngradientprimarymiddle.webp') center / cover no-repeat !important; padding-top: 80px !important; padding-bottom: 80px !important; }
     @media (max-width: 767px) { #open-day .oda-panel--form { padding-top: 48px !important; padding-bottom: 48px !important; } }
     #booking-form-section { margin-top: 0 !important; }
     #open-day .oda-panel--form .section__header { margin-bottom: 2rem !important; }
@@ -901,6 +901,9 @@
     @media (max-width: 480px) {
       .percorso-radio-group { gap: 0.75rem 1rem !important; }
     }
+    @media (max-width: 659px) { .hs-form .form-textarea { min-height: 140px; } }
+    @media (max-width: 767px) { .form-textarea { min-height: 120px; } }
+    @media (max-width: 1042px) { .hero--split { min-height: 0 !important; height: auto !important; } }
 
     /* ════════════════════════════════════════════════════════════
        RESPONSIVE — Sezioni: padding ridotto su mobile
@@ -1039,11 +1042,10 @@
 
             <div class="form-field">
               <label class="form-label" for="hero-birth-year">
-                Anno di nascita figlio/i
-                <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
+                Anno di nascita figlio/i <span class="required-marker" aria-hidden="true">*</span>
               </label>
               <input type="text" id="hero-birth-year" class="form-input" autocomplete="off"
-                inputmode="numeric" placeholder="es. 2015-2019">
+                inputmode="numeric" required aria-required="true" placeholder="es. 2015-2019">
             </div>
 
             <div class="form-field">
@@ -1645,8 +1647,7 @@
                     <!-- Anno di nascita -->
                     <div class="form-field">
                       <label class="form-label" for="booking-birth-year">
-                        Anno di nascita figlio/i
-                        <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
+                        Anno di nascita figlio/i <span class="required-marker" aria-hidden="true">*</span>
                       </label>
                       <input
                         type="text"
@@ -1655,8 +1656,12 @@
                         class="form-input"
                         autocomplete="off"
                         inputmode="numeric"
-                        placeholder="es. 2015-2019"
+                        required
+                        aria-required="true"
+                        aria-describedby="booking-birth-year-error"
+                        placeholder="es. 2015"
                       >
+                      <span class="form-error" id="booking-birth-year-error" role="alert" aria-live="assertive"></span>
                     </div>
 
                     <!-- Telefono -->
@@ -1846,11 +1851,12 @@
 
           <div class="form-field form-field--full">
             <label class="form-label" for="info-birth-year">
-              Anno di nascita figlio/i
-              <span style="font-weight:400; color:var(--color-text-muted);">(facoltativo)</span>
+              Anno di nascita figlio/i <span class="required-marker" aria-hidden="true">*</span>
             </label>
             <input type="text" id="info-birth-year" name="birthYear" class="form-input"
-              autocomplete="off" inputmode="numeric" placeholder="es. 2015">
+              autocomplete="off" inputmode="numeric" required aria-required="true"
+              aria-describedby="info-birth-year-error" placeholder="es. 2015">
+            <span class="form-error" id="info-birth-year-error" role="alert" aria-live="assertive"></span>
           </div>
 
           <div class="form-field form-field--full">
@@ -2454,4 +2460,5 @@
 
 </body>
 </html>
+
 
