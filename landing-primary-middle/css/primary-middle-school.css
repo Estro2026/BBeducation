@@ -1,0 +1,112 @@
+﻿/* ================================================================
+   BBEducation — Primary & Middle School
+   Solo override di palette.
+   Caricato DOPO tokens.css e style.css.
+   Non modifica index.html né crea nuovi componenti UI.
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. OVERRIDE DESIGN TOKENS — palette PMS
+---------------------------------------------------------------- */
+:root {
+  --bbe-baby-green:          #FFAC59;
+  --bbe-baby-blue:           #FF788D;
+  --bbe-baby-gradient:       linear-gradient(90deg,  #FF788D 0%, #FFAC59 100%);
+  --bbe-baby-gradient-135:   linear-gradient(135deg, #FF788D 0%, #FFAC59 100%);
+  --bbe-baby-gradient-180:   linear-gradient(180deg, #FF788D 0%, #FFAC59 100%);
+  --color-bg-baby-tint:      rgba(255, 120, 141, 0.07);
+  --color-border-baby:       rgba(255, 120, 141, 0.4);
+  --shadow-card-hover:       0 8px 24px rgba(255, 120, 141, 0.2);
+  --focus-ring:              0 0 0 3px rgba(255, 120, 141, 0.5);
+  --focus-outline:           2px solid #FF788D;
+}
+
+/* ----------------------------------------------------------------
+   2. HEADER
+---------------------------------------------------------------- */
+.site-header::after {
+  background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%);
+}
+
+/* ----------------------------------------------------------------
+   3. HERO — sostituisce patterngradientebaby con patterngradientprimarymiddle
+---------------------------------------------------------------- */
+#hero.hero::before {
+  background: url('../gradientiepattern/patterngradientprimarymiddle.webp') center / cover no-repeat !important;
+}
+.hero__media-overlay {
+  background: none !important;
+}
+
+/* ----------------------------------------------------------------
+   4. VALUE CARDS
+---------------------------------------------------------------- */
+.value-card__front,
+.value-card__back {
+  background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  box-shadow: 0 4px 20px rgba(255, 120, 141, 0.25);
+  transition: background-position 0.65s, box-shadow 0.3s;
+}
+#why .value-card:hover {
+  transform: translateY(-6px) scale(1.025);
+  box-shadow: 0 16px 40px rgba(255, 120, 141, 0.28);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.value-card:hover .value-card__front,
+.value-card:hover .value-card__back {
+  background-position: 100% 100%;
+  box-shadow: 0 8px 32px rgba(255, 172, 89, 0.4);
+}
+
+/* ----------------------------------------------------------------
+   5. INFO FORM — bordo gradiente rosa → arancione
+---------------------------------------------------------------- */
+.info-form-section .info-form-wrapper {
+  background: #fff;
+  border: none;
+  position: relative;
+}
+.info-form-section .info-form-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius-xl, 20px) + 2px);
+  background: linear-gradient(90deg, #FF788D 0%, #FFAC59 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+.info-form-section .info-form-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ----------------------------------------------------------------
+   6. FORM SELECT — freccia rosa
+---------------------------------------------------------------- */
+.form-select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23FF788D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  background-size: 14px 9px;
+  padding-right: 2.5rem;
+}
+
+/* ----------------------------------------------------------------
+   7. FAQ — background arancione tenue (design system tint)
+      Il valore esatto è gestito nell'inline style del HTML.
+      Qui si assicura solo che il tono del titolo-underline
+      usi il gradiente PMS invece di quello Baby.
+---------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------
+   8. FOOTER
+---------------------------------------------------------------- */
+.site-footer {
+  background: url('../gradientiepattern/patterngradientprimarymiddle.webp') center/cover no-repeat;
+}
+
+
